@@ -1,0 +1,3 @@
+[submodule "circle_0/libft"]
+	path = circle_0/libft
+	url = git@vogsphere-v2.42lyon.fr:vogsphere/intra-uuid-dcd1dcdc-9d43-447c-82fc-565f17b33ab3-4533827-mchenava
