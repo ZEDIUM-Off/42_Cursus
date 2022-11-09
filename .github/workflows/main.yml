@@ -1,0 +1,12 @@
+on: [ push, pull_request ]
+
+jobs:
+    pushing-vogsphere:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Setup key
+                uses: webfactory/ssh-agent@v0.6.0
+                with:
+                    ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            -   run: make save-vog
