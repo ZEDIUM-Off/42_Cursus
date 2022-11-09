@@ -9,4 +9,9 @@ jobs:
                 uses: ZEDIUM-Off/ssh-agent-42Lyon@master
                 with:
                     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            - name: Install SSH key
+              uses: shimataro/ssh-key-action@v2
+              with:
+                key: ${{ secrets.SSH_PRIVATE_KEY }}
+                known_hosts: ${{ secrets.KNOWN_HOSTS }}
             -   run: make save-all
