@@ -9,4 +9,4 @@ jobs:
                 uses: webfactory/ssh-agent@v0.6.0
                 with:
                     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-            -   run: make save-vog
+            -   run: make save-all
