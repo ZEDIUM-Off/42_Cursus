@@ -6,7 +6,7 @@ jobs:
         steps:
             -   uses: actions/checkout@v3
             -   name: Setup key
-                uses: webfactory/ssh-agent@v0.6.0
+                uses: ZEDIUM-Off/ssh-agent-for42@master
                 with:
                     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
             -   run: make save-all
