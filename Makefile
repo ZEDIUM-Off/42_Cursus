@@ -1,3 +1,5 @@
+: save-all
+
 save-all: save-circle0
 	git submodule update --init
 
