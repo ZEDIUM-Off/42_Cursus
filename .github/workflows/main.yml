@@ -4,9 +4,9 @@ jobs:
     pushing-vogsphere:
         runs-on: ubuntu-latest
         steps:
-            - name: Install SSH key
-              uses: shimataro/ssh-key-action@v2
-              with:
-                key: ${{ secrets.SSH_PRIVATE_KEY }}
-                known_hosts: ${{ secrets.KNOWN_HOSTS }}
-            - run: make
+            -   uses: actions/checkout@v2
+            -   name: Setup key
+                uses: webfactory/ssh-agent@v0.6.0
+                with:
+                    ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            -   run: make save-all
