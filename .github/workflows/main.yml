@@ -11,6 +11,12 @@ jobs:
                     key: ${{ secrets.SSH_PRIVATE_KEY }}
                     known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
+            -   name: Saving all changes
+                run : |
+                    git config --global user.email matisse.chenavas@gmail.com
+                    git config --global user.name mchenava
+                    make save-all
+
             -   name: Clone libftTester
                 uses: actions/checkout@v2
                 with:
@@ -19,14 +25,7 @@ jobs:
 
             -   name: Testing libft
                 run : |
-                    cd circle_0/_libft
-                    ls -a
-                    cd libftTester
-                    ls -a
+                    cd circle_0/_libft/libftTester
+                    cat Makefile
                     make m = launch mandatory tests
 
-            -   name: Saving all changes
-                run : |
-                    git config --global user.email matisse.chenavas@gmail.com
-                    git config --global user.name mchenava
-                    make save-all
