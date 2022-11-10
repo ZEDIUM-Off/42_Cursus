@@ -2,7 +2,7 @@
 
 save-all: save-circle0
 
-chekout-all: checkout-libft
+checkout-all: checkout-libft
 
 save-circle0: save-libft
 
