@@ -6,7 +6,9 @@ jobs:
         steps:
             -   uses: actions/checkout@v2
             -   name: Setup key
-                uses: webfactory/ssh-agent@v0.6.0
+                uses: shimataro/ssh-key-action@v2
                 with:
-                    ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-            -   run: make save-all
+                    key: ${{ secrets.SSH_PRIVATE_KEY }}
+                    known_hosts: ${{ secrets.KNOWN_HOSTS }}
+            -   name: Saving all changes
+                run : make save-all
