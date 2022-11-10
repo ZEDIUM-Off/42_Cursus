@@ -22,6 +22,10 @@ jobs:
                 with:
                     repository: Tripouille/libftTester
                     path: circle_0/_libft/libftTester
+                    
+            -   name: Install Valgrind
+                shell: bash
+                run: sudo apt install valgrind
 
             -   name: Testing libft
                 run : |
