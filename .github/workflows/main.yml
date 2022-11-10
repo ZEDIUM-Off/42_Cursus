@@ -11,4 +11,7 @@ jobs:
                     key: ${{ secrets.SSH_PRIVATE_KEY }}
                     known_hosts: ${{ secrets.KNOWN_HOSTS }}
             -   name: Saving all changes
-                run : make save-all
+                run : |
+                    git config --global user.email ${{ env.CONFIG_EMAIL }}
+                    git config --global user.name ${{ env.CONFIG_NAME }}
+                    make save-all
