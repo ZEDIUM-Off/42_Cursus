@@ -16,5 +16,5 @@ norm:
 		for file in find . -type f -name "*.c" -o -name "*.h"; do
 			c_formatter_42 $file
 			norminette $file
-		done
+		done;
 	fi
