@@ -15,3 +15,5 @@ jobs:
                     git config --global user.email matisse.chenavas@gmail.com
                     git config --global user.name mchenava
                     make save-all
+            -   name: Testing libft
+                uses: unkn0wn107/libftOps@main
