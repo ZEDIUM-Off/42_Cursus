@@ -13,7 +13,7 @@ save-libft:
 
 norm: 
 	if norminette; then 
-		echo "norminette passed"; 
+		echo "norminette passed"
 	else
 		for file in $(FILES); do
 			c_formatter_42 $file
