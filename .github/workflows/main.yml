@@ -11,10 +11,18 @@ jobs:
                     key: ${{ secrets.SSH_PRIVATE_KEY }}
                     known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
+            -   name: install norminette
+                run: |
+                    python3 -m pip install --upgrade pip setuptools && python3 -m pip install norminette
+
+            -   name: install c-formatter
+                run: pip3 install c-formatter-42
+
             -   name: Saving all changes
                 run : |
                     git config --global user.email matisse.chenavas@gmail.com
                     git config --global user.name mchenava
+                    make norm
                     make save-all
 
             -   name: Clone libftTester
@@ -22,7 +30,7 @@ jobs:
                 with:
                     repository: Tripouille/libftTester
                     path: circle_0/_libft/libftTester
-                    
+
             -   name: Install Valgrind
                 shell: bash
                 run: sudo apt install valgrind
