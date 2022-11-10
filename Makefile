@@ -3,6 +3,7 @@
 save-all: save-circle0
 
 checkout-all: checkout-libft
+	
 
 save-circle0: save-libft
 
@@ -12,4 +13,5 @@ save-libft:
 	cd circle_0 && cp _libft/* libft && cd libft && git add . && if git commit -m 'auto save' -a; then git push; fi
 
 checkout-libft:
+	@echo "checking out libft" 
 	cd circle_0/libft && git checkout master
