@@ -16,7 +16,7 @@ TEST_PROG = test.out
 OBJECTS = $(SOURCES:.c=.o)
 SOURCES = $(shell find . -type f -name 'ft_*.c')
 TEST_MAIN = tests.c
-HEADER = libft.h
+HEADER = .
 
 CFLAGS = -Wall -Wextra -Werror 
 EXTRA_FLAGS = -c -I $(HEADER)

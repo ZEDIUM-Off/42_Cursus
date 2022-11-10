@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchenava <mchenava@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 10:31:35 by mchenava            #+#    #+#             */
-/*   Updated: 2022/11/10 11:15:49 by mchenava           ###   ########.fr       */
+/*   Created: 2022/11/10 16:14:11 by mchenava            #+#    #+#             */
+/*   Updated: 2022/11/10 16:15:07 by mchenava           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *ft_memset (void *s, int c, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-		unsigned char *ptr;
-		size_t i;
+	unsigned char *ptr;
+	unsigned char *ptr2;
 
-		ptr = (unsigned char *)s;
-		i = 0;
-		while (i < n)
+	ptr = (unsigned char *)dest;
+	ptr2 = (unsigned char *)src;
+	if (ptr2 < ptr)
+	{
+		while (n--)
 		{
-				ptr[i] = (unsigned char)c;
-				i++;
-		}	
-		return (s); 
+			ptr[n] = ptr2[n];
+		}
+	}
+	else
+	{
+		while (n--)
+		{
+			*ptr++ = *ptr2++;
+		}
+	}
+	return (dest);
 }

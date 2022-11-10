@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 10:31:35 by mchenava            #+#    #+#             */
-/*   Updated: 2022/11/10 11:15:49 by mchenava           ###   ########.fr       */
+/*   Created: 2022/11/10 17:39:05 by marvin            #+#    #+#             */
+/*   Updated: 2022/11/10 17:44:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void *ft_memset (void *s, int c, size_t n)
+char	*ft_itoa(int n)
 {
-		unsigned char *ptr;
-		size_t i;
-
-		ptr = (unsigned char *)s;
-		i = 0;
-		while (i < n)
-		{
-				ptr[i] = (unsigned char)c;
-				i++;
-		}	
-		return (s); 
+	
 }

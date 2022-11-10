@@ -15,3 +15,10 @@ save-libft:
 checkout-libft:
 	@echo "checking out libft" 
 	cd circle_0/libft && git checkout master
+
+push:
+	@echo "sending those file to github :"
+	@git status -u
+	git add . 
+	git commit -m 'send $(shell git status -u | grep circle) to github' -a
+	git push

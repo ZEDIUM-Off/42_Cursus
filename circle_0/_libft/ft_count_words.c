@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_count_words.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 10:31:35 by mchenava            #+#    #+#             */
-/*   Updated: 2022/11/10 11:15:49 by mchenava           ###   ########.fr       */
+/*   Created: 2022/11/10 17:26:46 by marvin            #+#    #+#             */
+/*   Updated: 2022/11/10 17:28:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *ft_memset (void *s, int c, size_t n)
+int	ft_count_words(char *str, char sep)
 {
-		unsigned char *ptr;
-		size_t i;
+	int	i;
+	int	count;
 
-		ptr = (unsigned char *)s;
-		i = 0;
-		while (i < n)
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] != sep)
 		{
-				ptr[i] = (unsigned char)c;
+			count++;
+			while (str[i] != sep && str[i])
 				i++;
-		}	
-		return (s); 
+		}
+		else
+			i++;
+	}
+	return (count);
 }
