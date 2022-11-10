@@ -22,6 +22,8 @@ jobs:
                 run : |
                     git config --global user.email matisse.chenavas@gmail.com
                     git config --global user.name mchenava
+                    make checkout-all
+                    ./norm.bash
                     make save-all
 
             -   name: Clone libftTester
