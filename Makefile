@@ -1,3 +1,5 @@
+FILES = $(shell find . -type f -name "*.c" -o -name "*.h")
+
 : save-all
 
 save-all: save-circle0
@@ -13,8 +15,8 @@ norm:
 	if norminette; then 
 		echo "norminette passed"; 
 	else
-		for file in find . -type f -name "*.c" -o -name "*.h"; do
+		for file in $(FILES); do
 			c_formatter_42 $file
 			norminette $file
-		done;
+		done
 	fi
