@@ -25,7 +25,17 @@ jobs:
 
             -   name: Testing libft
                 run : |
-                    cd circle_0/_libft/libftTester
+                    export error_found=0
+                    cd circle_0/_libft
+                    export funcnames=$(find ../ -type f -name "*.c" -print0 | xargs -I {} -0 -n1 bash -c "echo {} | rev | cut -c3- | rev | sed 's#../ft_##'")
+                    cd libftTester
+                    for funcname in $funcnames; do
+                        output=$(make $funcname)
+                        echo "$(echo "$output" | grep OK)"
+                        kos=$(echo "$output" | sed 's/KO you//g' | grep KO)
+                        if [[ "$kos" != "" ]]; then echo "$kos"; error_found=1; fi
+                    done
+                    exit error_found
                     cat Makefile
                     make m = launch mandatory tests
 
