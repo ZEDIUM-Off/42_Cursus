@@ -12,6 +12,6 @@ jobs:
                     known_hosts: ${{ secrets.KNOWN_HOSTS }}
             -   name: Saving all changes
                 run : |
-                    git config --global user.email ${{ env.CONFIG_EMAIL }}
-                    git config --global user.name ${{ env.CONFIG_NAME }}
+                    git config --global user.email matisse.chenavas@gmail.com
+                    git config --global user.name mchenava
                     make save-all
