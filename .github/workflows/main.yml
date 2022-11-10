@@ -10,10 +10,20 @@ jobs:
                 with:
                     key: ${{ secrets.SSH_PRIVATE_KEY }}
                     known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+            -   name: Clone libftTester
+                uses: actions/checkout@v2
+                with:
+                    repository: Tripouille/libftTester
+                    path: circle_0/_libft/libftTester
+
+            -   name: Testing libft
+                run : |
+                    cd circle_0/_libft/libftTester
+                    make m = launch mandatory tests
+                    
             -   name: Saving all changes
                 run : |
                     git config --global user.email matisse.chenavas@gmail.com
                     git config --global user.name mchenava
                     make save-all
-            -   name: Testing libft
-                uses: unkn0wn107/libftOps@main
