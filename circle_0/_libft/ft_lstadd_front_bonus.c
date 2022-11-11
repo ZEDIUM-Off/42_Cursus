@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_words.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 17:26:46 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/11 11:16:30 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/11/11 10:56:18 by mchenava            #+#    #+#             */
+/*   Updated: 2022/11/11 11:12:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h" 
+#include "libft.h"
 
-int	ft_count_words(char const *str, char sep)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
+	if (lst && new)
 	{
-		if (str[i] != sep)
-		{
-			count++;
-			while (str[i] != sep && str[i])
-				i++;
-		}
-		else
-			i++;
+		new->next = *lst;
+		*lst = new;
 	}
-	return (count);
 }

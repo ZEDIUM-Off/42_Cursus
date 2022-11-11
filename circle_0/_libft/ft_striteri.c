@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_words.c                                   :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 17:26:46 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/11 11:16:30 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/11/11 10:32:42 by mchenava            #+#    #+#             */
+/*   Updated: 2022/11/11 10:34:28 by mchenava           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h" 
-
-int	ft_count_words(char const *str, char sep)
+void	ft_striteri(char *s, void(*f)(unsigned int, char*))
 {
-	int	i;
-	int	count;
+	unsigned int	i;
 
 	i = 0;
-	count = 0;
-	while (str[i])
+	if (!s || !f)
+		return ;
+	while (s[i])
 	{
-		if (str[i] != sep)
-		{
-			count++;
-			while (str[i] != sep && str[i])
-				i++;
-		}
-		else
-			i++;
+		f(i, &s[i]);
+		i++;
 	}
-	return (count);
 }

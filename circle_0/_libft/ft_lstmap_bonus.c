@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_words.c                                   :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 17:26:46 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/11 11:16:30 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/11/11 11:11:50 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/11/11 11:15:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h" 
+#include "libft.h"
 
-int	ft_count_words(char const *str, char sep)
+t_list	*ft_lstmap(t_list *lst, void*(*f)(void*), void(*del)(void*))
 {
-	int	i;
-	int	count;
+	t_list	*new;
+	t_list	*tmp;
 
-	i = 0;
-	count = 0;
-	while (str[i])
+	if (!lst || !f)
+		return (NULL);
+	new = ft_lstnew(f(lst->content));
+	if (!new)
+		return (NULL);
+	tmp = new;
+	lst = lst->next;
+	while (lst)
 	{
-		if (str[i] != sep)
+		new = ft_lstnew(f(lst->content));
+		if (!new)
 		{
-			count++;
-			while (str[i] != sep && str[i])
-				i++;
+			ft_lstclear(&tmp, del);
+			return (NULL);
 		}
-		else
-			i++;
+		ft_lstadd_back(&tmp, new);
+		lst = lst->next;
 	}
-	return (count);
+	return (tmp);
 }

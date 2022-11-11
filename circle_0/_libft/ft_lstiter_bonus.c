@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_words.c                                   :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 17:26:46 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/11 11:16:30 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/11/11 11:10:44 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/11/11 11:12:12 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h" 
+#include "libft.h"
 
-int	ft_count_words(char const *str, char sep)
+void	ft_lstiter(t_list *lst, void(*f)(void*))
 {
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
+	if (lst && f)
 	{
-		if (str[i] != sep)
+		while (lst)
 		{
-			count++;
-			while (str[i] != sep && str[i])
-				i++;
+			f(lst->content);
+			lst = lst->next;
 		}
-		else
-			i++;
 	}
-	return (count);
 }

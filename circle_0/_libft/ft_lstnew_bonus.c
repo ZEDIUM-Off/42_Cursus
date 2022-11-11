@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_words.c                                   :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 17:26:46 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/11 11:16:30 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/11/11 10:48:05 by mchenava            #+#    #+#             */
+/*   Updated: 2022/11/11 10:55:29 by mchenava           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h" 
+#include "libft.h"
 
-int	ft_count_words(char const *str, char sep)
+t_list	*ft_lstnew(void *content)
 {
-	int	i;
-	int	count;
+	t_list *new;
 
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] != sep)
-		{
-			count++;
-			while (str[i] != sep && str[i])
-				i++;
-		}
-		else
-			i++;
-	}
-	return (count);
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
