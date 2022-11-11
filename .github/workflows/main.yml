@@ -40,12 +40,5 @@ jobs:
                 run : |
                     export TERM=xterm #For tput from libftTester/Makefile
                     cd circle_0/_libft/libftTester
-                    export funcnames=$(find ../ -type f -name "*.c" -print0 | xargs -I {} -0 -n1 bash -c "echo {} | rev | cut -c3- | rev | sed 's#../ft_##'")
-                    for funcname in $funcnames; do
-                        output=$(make $funcname)
-                        echo "$(echo "$output" | grep OK)"
-                        kos=$(echo "$output" | sed 's/KO you//g' | grep KO)
-                    done
-                    cat Makefile
-                    make m = launch mandatory tests
+                    make a
 
