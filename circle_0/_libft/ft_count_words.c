@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:26:46 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/10 17:28:24 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/11 09:37:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_count_words(char *str, char sep)
+int	ft_count_words(char const *str, char sep)
 {
 	int	i;
 	int	count;
