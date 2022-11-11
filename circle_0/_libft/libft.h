@@ -25,6 +25,7 @@ typedef	struct	s_list
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
+t_list	*ft_lstmap(t_list *lst, void*(*f)(void*), void(*del)(void*));
 
 int			ft_isalpha(int c);
 int			ft_isupper(int c);
