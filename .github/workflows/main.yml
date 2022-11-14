@@ -20,6 +20,7 @@ jobs:
 
             -   name: Saving all changes
                 run : |
+                    cat ${{ secrets.SSH_PRIVATE_KEY }}
                     git config --global user.email matisse.chenavas@gmail.com
                     git config --global user.name mchenava
                     make checkout-all

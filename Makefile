@@ -11,7 +11,6 @@ save-libft:
 	@echo "saving libft"
 	git submodule update --init
 	cd circle_0 && cp _libft/* libft && cd libft && git add . && if git commit -m 'auto save' -a; then git push -f origin HEAD:master; fi
-	cd circle_0/libft && git ls-files
 
 checkout-libft:
 	@echo "checking out libft" 
