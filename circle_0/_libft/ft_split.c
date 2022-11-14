@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:23:08 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/14 11:48:01 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/14 12:01:16 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ char	**ft_split(char const *s, char c)
 			tab[k][j++] = s[i++];
 		tab[k++][j] = '\0';
 	}
-	tab[k] = NULL;
+	tab[k - 1] = NULL;
 	return (tab);
 }
