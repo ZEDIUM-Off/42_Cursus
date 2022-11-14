@@ -40,5 +40,5 @@ jobs:
                 run : |
                     export TERM=xterm #For tput from libftTester/Makefile
                     cd circle_0/_libft/libftTester
-                    make a | grep OK
+                    make a
 
