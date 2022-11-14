@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:23:08 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/14 12:01:16 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/14 12:07:26 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_split(char const *s, char c)
 	tab = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
 	i = 0;
 	k = 0;
-	while (s[i])
+	while (s[i] && ft_count_words(s, c) - k > 0)
 	{
 		while (s[i] && s[i] == c)
 			i++;
@@ -35,6 +35,6 @@ char	**ft_split(char const *s, char c)
 			tab[k][j++] = s[i++];
 		tab[k++][j] = '\0';
 	}
-	tab[k - 1] = NULL;
+	tab[k] = NULL;
 	return (tab);
 }
