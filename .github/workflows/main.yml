@@ -6,7 +6,39 @@ jobs:
         steps:
             -   uses: actions/checkout@v2
             -   name: Setup key
-                uses: webfactory/ssh-agent@v0.6.0
+                uses: shimataro/ssh-key-action@v2
                 with:
-                    ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-            -   run: make save-all
+                    key: ${{ secrets.SSH_PRIVATE_KEY }}
+                    known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+            -   name: install norminette
+                run: |
+                    python3 -m pip install --upgrade pip setuptools && python3 -m pip install norminette
+
+            -   name: install c-formatter
+                run: pip3 install c-formatter-42
+
+            -   name: Saving all changes
+                run : |
+                    git config --global user.email matisse.chenavas@gmail.com
+                    git config --global user.name mchenava
+                    make checkout-all
+                    # ./norm.bash
+                    make save-all
+
+            -   name: Clone libftTester
+                uses: actions/checkout@v2
+                with:
+                    repository: Tripouille/libftTester
+                    path: circle_0/_libft/libftTester
+
+            -   name: Install Valgrind
+                shell: bash
+                run: sudo apt install valgrind
+
+            -   name: Testing libft
+                run : |
+                    export TERM=xterm #For tput from libftTester/Makefile
+                    cd circle_0/_libft/libftTester
+                    make a
+

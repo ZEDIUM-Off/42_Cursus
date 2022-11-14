@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_count_words.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 14:23:31 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/09 14:32:59 by mchenava         ###   ########lyon.fr   */
+/*   Created: 2022/11/10 17:26:46 by mchenava          #+#    #+#             */
+/*   Updated: 2022/11/11 11:16:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft.h" 
 
-size_t	ft_strlen(const char *s)
+int	ft_count_words(char const *str, char sep)
 {
-	size_t	len;
+	int	i;
+	int	count;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] != sep)
+		{
+			count++;
+			while (str[i] != sep && str[i])
+				i++;
+		}
+		else
+			i++;
+	}
+	return (count);
 }
