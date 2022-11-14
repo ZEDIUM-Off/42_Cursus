@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:48:16 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/14 11:17:42 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/14 11:19:17 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*ptr;
-	size_t	to_alloc;
+	void			*ptr;
+	unsigned size_t	to_alloc;
 
-	ptr = malloc(count * size);
+	to_alloc = count * size;
+	ptr = malloc(to_alloc);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, count * size);
+	ft_bzero(ptr, to_alloc);
 	return (ptr);
 }
