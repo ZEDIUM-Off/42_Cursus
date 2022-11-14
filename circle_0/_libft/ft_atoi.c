@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>              +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:43:55 by mchenava            #+#    #+#             */
-/*   Updated: 2022/11/10 16:44:25 by mchenava           ###   ########.fr       */
+/*   Created: 2022/11/10 16:43:55 by mchenava          #+#    #+#             */
+/*   Updated: 2022/11/14 11:21:23 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
-	int		i;
-	int		sign;
-	int		result;
+	int	i;
+	int	sign;
+	int	result;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-	while (nptr[i] == ' ' || nptr[i] == '\t' || nptr[i] == '\n' ||
-			nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
+	while (nptr[i] == ' ' || nptr[i] == '\t' || nptr[i] == '\n'
+		|| nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
 		i++;
 	if (nptr[i] == '-')
 		sign = -1;
