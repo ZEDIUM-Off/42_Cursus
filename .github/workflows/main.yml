@@ -29,6 +29,7 @@ jobs:
             -   name: Install francinette
                 run : |
                     cd $HOME
+                    pip install wheel
                     sudo bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
                     alias francinette="$HOME"/francinette/tester.sh
                     alias paco="$HOME"/francinette/tester.sh
@@ -39,7 +40,6 @@ jobs:
 
             -   name: Testing libft
                 run : |
-                    export TERM=xterm #For tput from libftTester/Makefile
                     cd circle_0/_libft/
                     francinette
 
