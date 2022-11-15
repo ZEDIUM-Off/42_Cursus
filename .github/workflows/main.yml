@@ -18,13 +18,13 @@ jobs:
             -   name: install c-formatter
                 run: pip3 install c-formatter-42
 
-            -   name: Saving all changes
-                run : |
-                    git config --global user.email matisse.chenavas@gmail.com
-                    git config --global user.name mchenava
-                    make checkout-all
-                    ./norm.bash
-                    make save-all
+            # -   name: Saving all changes
+            #     run : |
+            #         git config --global user.email matisse.chenavas@gmail.com
+            #         git config --global user.name mchenava
+            #         make checkout-all
+            #         ./norm.bash
+            #         make save-all
 
             -   name: Clone libftTester
                 uses: actions/checkout@v2
