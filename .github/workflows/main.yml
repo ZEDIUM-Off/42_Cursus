@@ -41,5 +41,5 @@ jobs:
                 run : |
                     export TERM=xterm #For tput from libftTester/Makefile
                     cd circle_0/_libft/
-                    paco
+                    francinette
 
