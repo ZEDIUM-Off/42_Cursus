@@ -34,10 +34,6 @@ jobs:
                     alias francinette="$HOME"/francinette/tester.sh
                     alias paco="$HOME"/francinette/tester.sh
 
-            -   name: Install Valgrind
-                shell: bash
-                run: sudo apt install valgrind
-
             -   name: Testing libft
                 run : |
                     cd circle_0/_libft/
