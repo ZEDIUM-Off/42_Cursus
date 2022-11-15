@@ -6,16 +6,18 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 09:48:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/15 09:49:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/11/15 09:56:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
+#include "libft.h"
+
+size_t	ft_sqrt(size_t nb)
 {
-	int			start;
-	int			end;
-	int			mid;
-	long int	sqr;
+	size_t	start;
+	size_t	end;
+	size_t	mid;
+	size_t	sqr;
 
 	if (nb < 2)
 		return (nb);
