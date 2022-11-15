@@ -28,7 +28,7 @@ jobs:
 
             -   name: Install francinette
                 run : |
-                    cd $HOME
+                    cd /home/runner/
                     python3 -m pip install wheel
                     sudo bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
                     alias francinette="$HOME"/francinette/tester.sh
@@ -36,7 +36,7 @@ jobs:
 
             -   name: Testing libft
                 run : |
-                    alias francinette=/root/temp_____/francinette/tester.sh
+                    alias francinette=/home/runner/francinette/tester.sh
                     cd circle_0/_libft/
                     francinette
 
