@@ -20,11 +20,12 @@ void	*ft_calloc(size_t count, size_t size)
 	max = ft_sqrt(SIZE_MAX);
 	if (!count || !size)
 		return (NULL);
-	if (count >= max || size >= max)
-		return (NULL);
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, count * size);
-	return (ptr);
+	if (count < max || size < max)
+	{
+		ptr = malloc(count * size);
+		if (!ptr)
+			return (NULL);
+		ft_bzero(ptr, count * size);
+		return (ptr);
+	}
 }
