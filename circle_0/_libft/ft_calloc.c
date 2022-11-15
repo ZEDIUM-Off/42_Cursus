@@ -18,8 +18,6 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	max;
 
 	max = ft_sqrt(SIZE_MAX);
-	if (!count || !size)
-		return (NULL);
 	if (count < max || size < max)
 	{
 		ptr = malloc(count * size);
