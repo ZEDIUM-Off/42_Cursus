@@ -21,7 +21,7 @@ void	*ft_calloc(size_t count, size_t size)
 	
 	st_count = (size_t)count;
 	st_size = (size_t)size;
-	max = ft_sqrt(SIZE_MAX);
+	max = 4294967296;
 	if (st_count > max || st_size > max)
 		return (NULL);
 	ptr = malloc(count * size);
