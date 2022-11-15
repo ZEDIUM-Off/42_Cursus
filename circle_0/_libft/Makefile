@@ -15,13 +15,25 @@ TEST_PROG = test.out
 
 OBJECTS = $(SOURCES:.c=.o)
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
-SOURCES = $(shell find . -type f -name 'ft_*.c' -not -name 'ft_*_bonus.c')
-BONUS_SRC = $(shell find . -type f -name 'ft_*_bonus.c')
-TEST_MAIN = tests.c
-HEADER = .
+SOURCES = ./ft_isalnum.c ./ft_isalpha.c ./ft_isascii.c ./ft_isdigit.c \
+					./ft_islower.c ./ft_isprint.c ./ft_isupper.c ./ft_strlen.c \
+					./ft_count_words.c ./ft_atoi.c ./ft_bzero.c ./ft_calloc.c \
+					./ft_itoa.c ./ft_memchr.c ./ft_memcmp.c ./ft_memcpy.c \
+					./ft_memmove.c ./ft_memset.c ./ft_putchar_fd.c ./ft_putendl_fd.c \
+					./ft_putnbr_fd.c ./ft_putstr_fd.c ./ft_split.c ./ft_strchr.c \
+					./ft_strdup.c ./ft_striteri.c ./ft_strjoin.c ./ft_strlcat.c \
+					./ft_strlcpy.c ./ft_strmapi.c ./ft_strncmp.c ./ft_strnstr.c \
+					./ft_strrchr.c ./ft_strtrim.c ./ft_substr.c ./ft_tolower.c \
+					./ft_toupper.c ./ft_sqrt.c
+
+BONUS_SRC = ./ft_lstadd_back_bonus.c ./ft_lstadd_front_bonus.c ./ft_lstclear_bonus.c \
+						./ft_lstdelone_bonus.c ./ft_lstiter_bonus.c ./ft_lstlast_bonus.c \
+						./ft_lstmap_bonus.c ./ft_lstnew_bonus.c ./ft_lstsize_bonus.c
+
+HEADER = libft.h
 
 CFLAGS = -Wall -Wextra -Werror 
-EXTRA_FLAGS = -c -I $(HEADER)
+EXTRA_FLAGS = -c -I .
 CC = gcc
 
 CLEAN = rm -f
@@ -32,7 +44,7 @@ $(LIB_NAME) : $(OBJECTS)
 	ar rc $@ $^
 	ranlib $@
 
-%.o : %.c
+%.o : %.c $(HEADER) Makefile
 	$(CC) $(CFLAGS) $(EXTRA_FLAGS) $< -o $@
 
 clean :
@@ -44,12 +56,7 @@ fclean : clean
 	$(CLEAN) $(TEST_PROG)
 
 check : 
-	norminette $(SOURCES)
-
-test : check re 
-	$(CC) $(CFLAGS) $(LIB_NAME) $(TEST_MAIN) -o $(TEST_PROG)
-	$(CLEAN) $(OBJECTS)
-	./$(TEST_PROG)
+	norminette $(SOURCES) $(BONUS_SRC) $(HEADER)
 
 re : fclean all
 

@@ -17,6 +17,10 @@ void	*ft_calloc(size_t count, size_t size)
 	void	*ptr;
 	size_t	to_alloc;
 
+	if (!count || !size)
+		return (NULL);
+	if (count >= ft_sqrt(SIZE_MAX) || size >= ft_sqrt(SIZE_MAX))
+		return (NULL);
 	to_alloc = count * size;
 	ptr = malloc(to_alloc);
 	if (!ptr)
