@@ -12,31 +12,39 @@
 
 #include "libft.h"
 
-static 
-
-char	**ft_split(char const *s, char c)
+static char **ft_str_cut(char **dest, char const *src, char sep)
 {
-	char	**tab;
 	int		i;
 	int		j;
 	int		k;
 
-	tab = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
 	i = 0;
 	k = 0;
-	while (s[i] && ft_count_words(s, c) - k > 0)
+	while (src[i] && ft_count_words(src, sep) - k > 0)
 	{
-		while (s[i] && s[i] == c)
+		while (src[i] && src[i] == sep)
 			i++;
 		j = i;
-		while (s[j] && s[j] != c)
+		while (src[j] && src[j] != sep)
 			j++;
-		tab[k] = (char *)malloc(sizeof(char) * (j - i + 1));
+		dest[k] = (char *)malloc(sizeof(char) * (j - i + 1));
+		if (!dest[k])
+			return (ft_free_tab(dest, k));
 		j = 0;
-		while (s[i] && s[i] != c)
-			tab[k][j++] = s[i++];
-		tab[k++][j] = '\0';
+		while (src[i] && src[i] != sep)
+			dest[k][j++] = src[i++];
+		dest[k++][j] = '\0';
 	}
-	tab[k] = NULL;
-	return (tab);
+	dest[k] = NULL;
+	return (dest);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**tab;
+
+	tab = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	if (!tab)
+		return (NULL);
+	return (ft_str_cut(tab, s, c));
 }
