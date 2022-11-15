@@ -12,6 +12,8 @@
 
 #include "libft.h"
 
+static 
+
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
