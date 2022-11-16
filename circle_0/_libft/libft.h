@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:36:51 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/16 11:33:54 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/16 11:09:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**ft_split(char const *s, char c);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
-size_t	ft_sqrt(size_t nb);
+size_t	ft_intlen(int n);
 
 void	ft_bzero(void *s, size_t n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));

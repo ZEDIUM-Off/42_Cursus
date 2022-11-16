@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 11:11:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/14 10:48:25 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/16 11:19:08 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ t_list	*ft_lstmap(t_list *lst, void*(*f)(void*), void(*del)(void*))
 		return (NULL);
 	new = ft_lstnew(f(lst->content));
 	if (!new)
+	{
+		ft_lstclear(&new, del);
 		return (NULL);
+	}
 	tmp = new;
 	lst = lst->next;
 	while (lst)

@@ -18,25 +18,11 @@ jobs:
             -   name: install c-formatter
                 run: pip3 install c-formatter-42
 
-            # -   name: Saving all changes
-            #     run : |
-            #         git config --global user.email matisse.chenavas@gmail.com
-            #         git config --global user.name mchenava
-            #         make checkout-all
-            #         ./norm.bash
-            #         make save-all
-
-            -   name: Install francinette
+            -   name: Saving all changes
                 run : |
-                    cd /home/runner/
-                    python3 -m pip install wheel
-                    sudo bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
-                    alias francinette="$HOME"/francinette/tester.sh
-                    alias paco="$HOME"/francinette/tester.sh
-
-            -   name: Testing libft
-                run : |
-                    alias francinette=/home/runner/francinette/tester.sh
-                    cd circle_0/_libft/
-                    francinette
+                    git config --global user.email matisse.chenavas@gmail.com
+                    git config --global user.name mchenava
+                    make checkout-all
+                    ./norm.bash
+                    make save-all
 
