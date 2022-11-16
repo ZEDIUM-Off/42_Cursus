@@ -6,17 +6,17 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:23:08 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/14 12:07:26 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/16 10:32:37 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char **ft_str_cut(char **dest, char const *src, char sep)
+static char	**ft_str_cut(char **dest, char const *src, char sep)
 {
-	int		i;
-	int		j;
-	int		k;
+	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
 	k = 0;

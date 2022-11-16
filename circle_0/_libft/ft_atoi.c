@@ -6,18 +6,18 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:43:55 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/14 11:21:23 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/16 11:35:15 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	sign;
-	int	result;
+	int			i;
+	int			sign;
+	long int	result;
 
-	if (!nptr)
-		return (0);
 	i = 0;
 	sign = 1;
 	result = 0;
@@ -33,5 +33,7 @@ int	ft_atoi(const char *nptr)
 		result = result * 10 + nptr[i] - '0';
 		i++;
 	}
-	return (result * sign);
+	if (result * sign > INT_MAX || result * sign < INT_MIN)
+		return (-1);
+	return ((int)(result * sign));
 }

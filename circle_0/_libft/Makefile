@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 13:53:10 by mchenava          #+#    #+#              #
-#    Updated: 2022/11/09 14:17:08 by mchenava         ###   ########lyon.fr    #
+#    Updated: 2022/11/16 10:49:02 by  mchenava        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-LIB_NAME = libft.a
+NAME = libft.a
 TEST_PROG = test.out
 
 OBJECTS = $(SOURCES:.c=.o)
@@ -34,13 +34,13 @@ HEADER = libft.h
 
 CFLAGS = -Wall -Wextra -Werror 
 EXTRA_FLAGS = -c -I .
-CC = gcc
+CC = cc
 
 CLEAN = rm -f
 
-all :	$(LIB_NAME)
+all :	$(NAME)
 
-$(LIB_NAME) : $(OBJECTS)
+$(NAME) : $(OBJECTS)
 	ar rc $@ $^
 	ranlib $@
 
@@ -52,7 +52,7 @@ clean :
 	$(CLEAN) $(BONUS_OBJ)
 
 fclean : clean
-	$(CLEAN) $(LIB_NAME)
+	$(CLEAN) $(NAME)
 	$(CLEAN) $(TEST_PROG)
 
 check : 
@@ -61,5 +61,5 @@ check :
 re : fclean all
 
 bonus : $(BONUS_OBJ) $(OBJECTS)
-	ar rc $(LIB_NAME) $^
-	ranlib $(LIB_NAME)
+	ar rc $(NAME) $^
+	ranlib $(NAME)
