@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:43:55 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/16 11:35:15 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/16 13:26:08 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int			i;
-	int			sign;
-	long int	result;
+	int					i;
+	int					sign;
+	unsigned long long	result;
 
 	i = 0;
 	sign = 1;
@@ -33,7 +33,9 @@ int	ft_atoi(const char *nptr)
 		result = result * 10 + nptr[i] - '0';
 		i++;
 	}
-	if (result * sign > INT_MAX || result * sign < INT_MIN)
+	if (result > LLONG_MAX && sign < 0)
+		return (0);
+	if (result > LLONG_MAX && sign > 0)
 		return (-1);
 	return ((int)(result * sign));
 }

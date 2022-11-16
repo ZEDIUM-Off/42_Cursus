@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:48:16 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/16 10:32:23 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/16 14:15:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*ptr;
-	size_t	max;
+	void				*ptr;
+	unsigned long long	res;
 
-	max = 4294967296;
-	if (count > max || size > max)
+	res = count * size;
+	if (res > SIZE_MAX)
 		return (NULL);
-	ptr = malloc(count * size);
+	ptr = malloc(res);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, count * size);
+	ft_bzero(ptr, res);
 	return (ptr);
 }
