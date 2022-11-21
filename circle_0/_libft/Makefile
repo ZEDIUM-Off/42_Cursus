@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 13:53:10 by mchenava          #+#    #+#              #
-#    Updated: 2022/11/16 11:11:45 by  mchenava        ###   ########.fr        #
+#    Updated: 2022/11/21 13:49:11 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,10 @@ BONUS_SRC = ./ft_lstadd_back_bonus.c ./ft_lstadd_front_bonus.c ./ft_lstclear_bon
 						./ft_lstdelone_bonus.c ./ft_lstiter_bonus.c ./ft_lstlast_bonus.c \
 						./ft_lstmap_bonus.c ./ft_lstnew_bonus.c ./ft_lstsize_bonus.c
 
-HEADER = libft.h
+HEADER = ./libft.h
 
-CFLAGS = -Wall -Wextra -Werror 
-EXTRA_FLAGS = -c -I .
+CFLAGS = -Wall -Wextra -Werror -I $(HEADER)
+EXTRA_FLAGS = -I $(HEADER) -c
 CC = cc
 
 CLEAN = rm -f
@@ -63,3 +63,5 @@ re : fclean all
 bonus : $(BONUS_OBJ) $(OBJECTS)
 	ar rc $(NAME) $^
 	ranlib $(NAME)
+
+.PHONY : all clean fclean re bonus check
