@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 13:53:10 by mchenava          #+#    #+#              #
-#    Updated: 2022/11/21 13:49:11 by  mchenava        ###   ########.fr        #
+#    Updated: 2022/11/21 13:50:08 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ BONUS_SRC = ./ft_lstadd_back_bonus.c ./ft_lstadd_front_bonus.c ./ft_lstclear_bon
 
 HEADER = ./libft.h
 
-CFLAGS = -Wall -Wextra -Werror -I $(HEADER)
-EXTRA_FLAGS = -I $(HEADER) -c
+CFLAGS = -Wall -Wextra -Werror
+EXTRA_FLAGS = -c -I $(HEADER)
 CC = cc
 
 CLEAN = rm -f
