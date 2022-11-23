@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:24:19 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/22 10:25:59 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/11/23 11:51:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,47 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (ptr);
 }
 
-void	*ft_memset(void *s, int c, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char	*ptr;
-	size_t			i;
+	char	*str;
+	int		i;
+	int		j;
 
-	ptr = (unsigned char *)s;
 	i = 0;
-	while (i < n)
+	j = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
 	{
-		ptr[i] = (unsigned char)c;
+		str[i] = s1[i];
 		i++;
 	}
-	return (s);
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free((char *)s1);
+	return (str);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void				*ptr;
+	unsigned long long	res;
+	unsigned char		*ptr_zero;
+	size_t				i;
+
+	res = count * size;
+	if (res > SIZE_MAX)
+		return (NULL);
+	ptr = malloc(res);
+	if (!ptr)
+		return (NULL);
+	ptr_zero = (unsigned char *)ptr;
+	i = 0;
+	while (i < res)
+		ptr_zero[i++] = 0;
+	return (ptr_zero);
 }

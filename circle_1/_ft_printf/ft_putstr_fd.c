@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:36:53 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/17 10:28:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/11/23 12:08:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ int	ft_putstr_fd(char *s, int fd)
 		return (ft_putnull_fd(fd));
 	i = 0;
 	while (s[i])
-	{
-		write(fd, &s[i], 1);
 		i++;
-	}
-	return (i);
+	return (write(fd, s, i));
 }

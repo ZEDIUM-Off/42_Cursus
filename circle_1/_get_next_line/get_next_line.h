@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:24:30 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/22 09:42:51 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/11/23 11:43:21 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s);
 char	*get_next_line(int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
 
-void	*ft_memset(void *s, int c, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 
 size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 #endif
