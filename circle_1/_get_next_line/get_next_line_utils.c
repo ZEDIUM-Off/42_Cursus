@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:24:19 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/24 10:36:55 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/11/24 13:18:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	len;
 
+	if (!s)
+		return (0);
 	len = 0;
 	while (s[len])
 		len++;
@@ -24,6 +26,8 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (!s)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == c)
@@ -34,27 +38,6 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
-
-// char	*ft_strdup(const char *s)
-// {
-// 	char	*ptr;
-// 	int		i;
-
-// 	i = 0;
-// 	while (s[i])
-// 		i++;
-// 	ptr = (char *)malloc(sizeof(char) * (i + 1));
-// 	if (ptr == NULL)
-// 		return (NULL);
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		ptr[i] = s[i];
-// 		i++;
-// 	}
-// 	ptr[i] = '\0';
-// 	return (ptr);
-// }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -86,20 +69,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 	int		j;
 
-	i = 0;
-	j = 0;
 	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s1[i])
+	if (s1)
 	{
-		str[i] = s1[i];
-		i++;
+		while (s1[i])
+		{
+			str[i] = s1[i];
+			i++;
+		}
 	}
-	while (s2[j])
-		str[i++] = s2[j++];
+	if (s2)
+		while (s2[j])
+			str[i++] = s2[j++];
 	str[i] = '\0';
 	free((char *)s1);
 	free((char *)s2);

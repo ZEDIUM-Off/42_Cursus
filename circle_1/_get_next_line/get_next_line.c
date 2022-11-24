@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:24:16 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/24 10:54:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/11/24 14:33:56 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*read_file(int fd, char *buff)
 	char	*tmp_buff;
 	int		read_bytes;
 
-	if (!buff)
-		buff = ft_calloc(1, sizeof(char));
 	read_bytes = 1;
 	while (read_bytes > 0 && !ft_strchr(buff, '\n'))
 	{
@@ -27,33 +25,43 @@ char	*read_file(int fd, char *buff)
 		if (!tmp_buff)
 			return (NULL);
 		read_bytes = read(fd, tmp_buff, BUFFER_SIZE);
-		if (read_bytes == -1)
-			return (NULL);
 		buff = ft_strjoin(buff, tmp_buff);
-		if (!buff)
+		if (read_bytes == -1)
+		{
+			free(tmp_buff);
+			// printf("Error reading file\n");
 			return (NULL);
+		}
 	}
 	if (!buff[0])
 	{
 		free(buff);
 		return (NULL);
 	}
+	// printf ("buff: |%s|\n\n", buff);
 	return (buff);
 }
 
-char	*next_buff(int fd, char *buff)
+char	*next_buff(char *buff)
 {
 	int		i;
+	char	*next_buff;
 
 	i = 0;
 	if (!buff)
-		return (read_file(fd, buff));
+		return (NULL);
 	while (buff[i] && buff[i] != '\n')
 		i++;
-	buff = ft_substr(buff, i + 1, ft_strlen(buff));
-	if (!buff)
+	next_buff = ft_substr(buff, i + 1, ft_strlen(buff));
+	free(buff);
+	if (!next_buff)
 		return (NULL);
-	return (read_file(fd, buff));
+	if (!next_buff[0])
+	{
+		free(next_buff);
+		return (NULL);
+	}
+	return (next_buff);
 }
 
 char	*new_line(char *buff)
@@ -79,35 +87,54 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
+	// printf("fd : |%d|\n", fd);
+	s_buff = read_file(fd, s_buff);
 	// printf("s_buff: |%s|\n", s_buff);
-	s_buff = next_buff(fd, s_buff);
 	line = new_line(s_buff);
-	// free(s_buff);
+	s_buff = next_buff(s_buff);
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
+int	main(void)
+{
+	int		fd;
+	char	*line;
 
-// 	fd = open("/home/codespace/francinette/tests/get_next_line/fsoares/1char.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	printf("line: |%s|\n", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("line: |%s|\n", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("line: |%s|\n", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("line: |%s|\n", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("line: |%s|\n", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("line: |%s|\n", line);
-// 	free(line);
-// }
+	// fd = open("test.txt", O_RDONLY);
+	fd = open("/home/codespace/francinette/tests/get_next_line/fsoares/read_error.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf("line1: |%s|\n", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("line2: |%s|\n", line);
+	free(line);
+	if (BUFFER_SIZE > 100)
+	{
+		char *temp;
+		do {
+			temp = get_next_line(fd);
+			printf("temp: |%s|\n", temp);
+			free(temp);
+		} while (temp != NULL);
+	}
+	line = get_next_line(fd);
+	printf("line3: |%s|\n", line);
+	free(line);
+	close(fd);
+	fd = open("/home/codespace/francinette/tests/get_next_line/fsoares/read_error.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf("line4: |%s|\n", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("line5: |%s|\n", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("line6: |%s|\n", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("line7: |%s|\n", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("line8: |%s|\n", line);
+	free(line);
+}
