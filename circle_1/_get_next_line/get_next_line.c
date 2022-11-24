@@ -6,69 +6,61 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:24:16 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/23 16:15:46 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/11/24 10:54:56 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-int	read_file(int fd, char **buff)
+char	*read_file(int fd, char *buff)
 {
 	char	*tmp_buff;
 	int		read_bytes;
-	int		i;
 
-	tmp_buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!tmp_buff)
-		return (0);
-	*buff = ft_calloc(1, sizeof(char));
+	if (!buff)
+		buff = ft_calloc(1, sizeof(char));
 	read_bytes = 1;
-	while (read_bytes > 0 && !ft_strchr(*buff, '\n'))
+	while (read_bytes > 0 && !ft_strchr(buff, '\n'))
 	{
+		tmp_buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		if (!tmp_buff)
+			return (NULL);
 		read_bytes = read(fd, tmp_buff, BUFFER_SIZE);
 		if (read_bytes == -1)
-			return (0);
-		*buff = ft_strjoin(*buff, tmp_buff);
-		// printf("is '\\n' in buff? %d\n", ft_strchr(*buff, '\n'));
-		i = 0;
-		while (tmp_buff[i])
-			tmp_buff[i++] = '\0';
+			return (NULL);
+		buff = ft_strjoin(buff, tmp_buff);
+		if (!buff)
+			return (NULL);
 	}
-	free(tmp_buff);
-	if (!*buff[0])
-		free(*buff);
-	// printf("buff: |%s|\n", *buff);
-	return (1);
+	if (!buff[0])
+	{
+		free(buff);
+		return (NULL);
+	}
+	return (buff);
 }
 
 char	*next_buff(int fd, char *buff)
 {
 	int		i;
-	char	*next_buff;
 
 	i = 0;
-	while (buff[i] != '\n' && buff[i])
+	if (!buff)
+		return (read_file(fd, buff));
+	while (buff[i] && buff[i] != '\n')
 		i++;
-	next_buff = ft_substr(buff, i + 1, ft_strlen(buff));
-	free(buff);
-	if (!next_buff)
-		next_buff = NULL;
-	if (!next_buff[0])
-	{
-		free(next_buff);
-		read_file(fd, &next_buff);
-	}
-	return (next_buff);
+	buff = ft_substr(buff, i + 1, ft_strlen(buff));
+	if (!buff)
+		return (NULL);
+	return (read_file(fd, buff));
 }
 
-char	*new_line(int fd, char *buff)
+char	*new_line(char *buff)
 {
 	int		i;
 	char	*line;
 
-	if (!buff)
-		read_file(fd, &buff);
 	if (!buff)
 		return (NULL);
 	i = 0;
@@ -77,11 +69,6 @@ char	*new_line(int fd, char *buff)
 	line = ft_substr(buff, 0, i + 1);
 	if (!line)
 		return (NULL);
-	if (!line[0])
-	{
-		free(line);
-		return (NULL);
-	}
 	return (line);
 }
 
@@ -92,11 +79,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	if (s_buff == NULL)
-		/*printf("reading res : %d\n",*/read_file(fd, &s_buff)/*)*/;
-	else
-		s_buff = next_buff(fd, s_buff);
-	line = new_line(fd, s_buff);
+	// printf("s_buff: |%s|\n", s_buff);
+	s_buff = next_buff(fd, s_buff);
+	line = new_line(s_buff);
+	// free(s_buff);
 	return (line);
 }
 
@@ -105,19 +91,23 @@ char	*get_next_line(int fd)
 // 	int		fd;
 // 	char	*line;
 
-// 	fd = open("/home/codespace/francinette/tests/get_next_line/fsoares/read_error.txt", O_RDONLY);
+// 	fd = open("/home/codespace/francinette/tests/get_next_line/fsoares/1char.txt", O_RDONLY);
 // 	line = get_next_line(fd);
-// 	printf(" 1. =|%s|=\n\n", line);
+// 	printf("line: |%s|\n", line);
+// 	free(line);
 // 	line = get_next_line(fd);
-// 	printf(" 2. =|%s|=\n\n", line);
+// 	printf("line: |%s|\n", line);
+// 	free(line);
 // 	line = get_next_line(fd);
-// 	printf(" 3. =|%s|=\n\n", line);
+// 	printf("line: |%s|\n", line);
+// 	free(line);
 // 	line = get_next_line(fd);
-// 	printf(" 4. =|%s|=\n\n", line);
+// 	printf("line: |%s|\n", line);
+// 	free(line);
 // 	line = get_next_line(fd);
-// 	printf(" 5. =|%s|=\n\n", line);
+// 	printf("line: |%s|\n", line);
+// 	free(line);
 // 	line = get_next_line(fd);
-// 	printf(" 6. =|%s|=\n\n", line);
-// 	line = get_next_line(fd);
-// 	printf(" 7. =|%s|=\n\n", line);
+// 	printf("line: |%s|\n", line);
+// 	free(line);
 // }

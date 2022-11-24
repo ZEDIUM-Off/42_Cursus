@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:24:19 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/23 15:19:44 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/11/24 10:36:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,39 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
-int	ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	while (*s)
 	{
 		if (*s == c)
-			return (1);
+			return ((char *)s);
 		s++;
 	}
-	return (0);
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
 
-char	*ft_strdup(const char *s)
-{
-	char	*ptr;
-	int		i;
+// char	*ft_strdup(const char *s)
+// {
+// 	char	*ptr;
+// 	int		i;
 
-	i = 0;
-	while (s[i])
-		i++;
-	ptr = (char *)malloc(sizeof(char) * (i + 1));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		ptr[i] = s[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
+// 	i = 0;
+// 	while (s[i])
+// 		i++;
+// 	ptr = (char *)malloc(sizeof(char) * (i + 1));
+// 	if (ptr == NULL)
+// 		return (NULL);
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		ptr[i] = s[i];
+// 		i++;
+// 	}
+// 	ptr[i] = '\0';
+// 	return (ptr);
+// }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -100,6 +102,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		str[i++] = s2[j++];
 	str[i] = '\0';
 	free((char *)s1);
+	free((char *)s2);
 	return (str);
 }
 
