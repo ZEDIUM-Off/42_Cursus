@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:24:16 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/28 11:26:33 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/11/28 11:26:41 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_file(int fd, char *buff)
 {
@@ -77,13 +77,13 @@ char	*new_line(char *buff)
 
 char	*get_next_line(int fd)
 {
-	static char	*s_buff;
+	static char	*s_buff[FD_MAX + 1];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FD_MAX)
 		return (NULL);
-	s_buff = read_file(fd, s_buff);
-	line = new_line(s_buff);
-	s_buff = next_buff(s_buff);
+	s_buff[fd] = read_file(fd, s_buff[fd]);
+	line = new_line(s_buff[fd]);
+	s_buff[fd] = next_buff(s_buff[fd]);
 	return (line);
 }
