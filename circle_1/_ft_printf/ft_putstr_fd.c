@@ -6,22 +6,30 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:36:53 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/23 12:08:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/06 09:28:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd, int *len)
 {
 	int	i;
 
-	if (fd < 0)
-		return (-1);
-	if (s == NULL)
-		return (ft_putnull_fd(fd));
 	i = 0;
-	while (s[i])
-		i++;
-	return (write(fd, s, i));
+	if (fd < 0)
+		*len = -1;
+	if (s == NULL)
+		ft_putstr_fd("(null)", fd, len);
+	else
+	{
+		while (s[i])
+		{
+			if (write(fd, &s[i], 1) == -1)
+				*len = -1;
+			else
+				*len += 1;
+			i++;
+		}
+	}
 }

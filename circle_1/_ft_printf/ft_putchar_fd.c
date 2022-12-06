@@ -6,15 +6,18 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:35:35 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/17 09:52:55 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/06 09:07:03 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd, int *len)
 {
 	if (fd < 0)
-		return (-1);
-	return (write(fd, &c, 1));
+		*len = -1;
+	if (write(fd, &c, 1) == -1)
+		*len = -1;
+	else
+		*len += 1;
 }

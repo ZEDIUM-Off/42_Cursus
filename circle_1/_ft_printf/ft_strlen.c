@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 10:38:57 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/17 11:07:21 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/12/06 09:18:30 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/06 09:18:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_putnbr_fd(int n, int fd)
+int	ft_strlen(char *str)
 {
-	char	c;
-	int		len;
+	int	i;
 
-	len = ft_intlen(n);
-	if (fd < 0)
-		return (-1);
-	if (n == -2147483648)
-	{
-		ft_putstr_fd("-2147483648", fd);
-		return (len);
-	}
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		n = -n;
-	}
-	if (n >= 10)
-		ft_putnbr_fd(n / 10, fd);
-	c = n % 10 + '0';
-	ft_putchar_fd(c, fd);
-	return (len);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

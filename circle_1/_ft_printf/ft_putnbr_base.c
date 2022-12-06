@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uintlen.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 09:39:22 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/17 09:57:18 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/12/06 08:48:30 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/06 11:27:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_uintlen(unsigned int n)
+void	ft_putnbr_base(long long nbr, char *base, int *len, int _signed)
 {
-	size_t	len;
+	unsigned long long	nb;
 
-	len = 0;
-	if (n <= 0)
-		len++;
-	while (n)
+	if (nbr < 0 && _signed)
 	{
-		n /= 10;
-		len++;
+		nb = -nbr;
+		ft_putchar_fd('-', 1, len);
 	}
-	return (len);
+	else
+		nb = nbr;
+	if (nb >= (unsigned int)ft_strlen(base))
+		ft_putnbr_base(nb / ft_strlen(base), base, len, _signed);
+	ft_putchar_fd(base[nb % ft_strlen(base)], 1, len);
 }

@@ -6,29 +6,26 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 09:08:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/17 10:11:57 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/06 09:08:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_parse_flags(const char *format, va_list args)
+void	ft_parse_flags(const char *format, va_list args, int *len)
 {
 	int		i;
-	int		len;
 
 	i = 0;
-	len = 0;
-	while (format[i])
+	while (format[i] && *len >= 0)
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			len += ft_on_flag_action(format[i], args);
+			ft_on_flag_action(format[i], args, len);
 		}
 		else
-			len += ft_putchar_fd(format[i], 1);
+			ft_putchar_fd(format[i], 1, len);
 		i++;
 	}
-	return (len);
 }

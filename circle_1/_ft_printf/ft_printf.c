@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 09:01:10 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/11/28 11:53:35 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/12/06 11:35:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	int		len;
 
-	if (write(1, 0, 0))
-		return (-1);
+	len = 0;
 	va_start(args, format);
-	len = ft_parse_flags(format, args);
+	ft_parse_flags(format, args, &len);
 	va_end(args);
 	return (len);
 }
