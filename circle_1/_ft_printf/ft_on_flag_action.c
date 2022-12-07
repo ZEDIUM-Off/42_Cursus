@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 09:17:13 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/06 11:23:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/07 09:52:59 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void	ft_on_flag_action(char flag, va_list args, int *len)
 	else if (flag == 'X')
 		ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF", len, 0);
 	else if (flag == 'p')
-		ft_putptr(va_arg(args, unsigned long long), len);
+	{
+		ft_putstr_fd("0x", 1, len);
+		ft_putnbr_base(
+			va_arg(args, unsigned long long), "0123456789abcdef", len, 0);
+	}
 	else if (flag == '%')
 		ft_putchar_fd('%', 1, len);
 }
