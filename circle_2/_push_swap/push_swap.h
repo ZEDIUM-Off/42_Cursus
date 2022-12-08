@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:31:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/08 10:16:12 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/12/08 09:53:31 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/08 10:02:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-int	main(int argc, char **argv)
-{
-	t_stack	*stack_a;
-	int		*values;
+# include "stack.h"
 
-	if (!parse_args(argc, argv))
-		return (1);
-	values = extract_values(argc - 1, argv + 1);
-	stack_a = stack_init(argc - 1, values);
-	display_stack(stack_a);
-}
+int	*extract_values(int numbers, char **values);
+
+#endif

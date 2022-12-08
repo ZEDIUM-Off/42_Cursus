@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:31:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/08 10:16:12 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/12/08 09:37:23 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/08 10:11:33 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef STACK_H
+# define STACK_H
 
-int	main(int argc, char **argv)
+# include <stdlib.h>
+
+typedef struct s_node
 {
-	t_stack	*stack_a;
-	int		*values;
+	int				value;
+	struct s_node	*next;
+}	t_node;
 
-	if (!parse_args(argc, argv))
-		return (1);
-	values = extract_values(argc - 1, argv + 1);
-	stack_a = stack_init(argc - 1, values);
-	display_stack(stack_a);
-}
+typedef struct s_stack
+{
+	unsigned int	size;
+	struct s_node	*top;
+}	t_stack;
+
+t_stack	*stack_init(int size, int *values);
+void	display_stack(t_stack *stack);
+
+#endif
