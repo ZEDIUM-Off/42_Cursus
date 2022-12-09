@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:37:23 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 10:59:00 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/12/09 13:51:24 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 typedef struct s_node
 {
 	int				value;
+	int				position;
 	struct s_node	*next;
+	struct s_node	*prev;
 }	t_node;
 
 typedef struct s_stack

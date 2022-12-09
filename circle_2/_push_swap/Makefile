@@ -13,14 +13,13 @@ EXTRA_FLAGS = -I . -I ./libstack
 all :	$(NAME)
 
 $(NAME) : $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $(OBJDIR)/*
+	$(CC) $(CFLAGS) -o $@ $^
 
 %.o : %.c $(HEADERS) Makefile
-	@mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) $(EXTRA_FLAGS) -o $(OBJDIR)/$(shell basename $@) -c $<
+	$(CC) $(CFLAGS) $(EXTRA_FLAGS) -o $@ -c $<
 
 clean :
-	if [ -d "$(OBJDIR)" ]; then rm -Rf $(OBJDIR); fi
+	$(RM) $(OBJECTS)
 
 fclean : clean
 	$(RM) $(NAME)
