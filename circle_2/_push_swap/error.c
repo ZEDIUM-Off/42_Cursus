@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:31:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 11:02:39 by  mchenava        ###   ########lyon.fr   */
+/*   Created: 2022/12/09 10:59:29 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/09 11:01:42 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	disp_err(void)
 {
-	t_stack	*stack_a;
-	int		*values;
-
-	if (!parse_args(argc - 1, argv + 1))
-		return (disp_err());
-	values = extract_values(argc - 1, argv + 1);
-	stack_a = stack_init(argc - 1, values);
-	display_stack(stack_a);
+	write(1, "Error\n", 6);
+	return (1);
 }

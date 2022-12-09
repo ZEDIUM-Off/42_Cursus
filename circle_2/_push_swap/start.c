@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:56:24 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/08 10:21:41 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/09 12:59:45 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int		i;
 	int		sign;
@@ -36,10 +36,21 @@ int	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
-
+#include <stdio.h>
 int	parse_args(int argc, char **argv)
 {
-	
+	int		i;
+	long	test;
+
+	argc--;
+	while (argc)
+	{
+		test = ft_atoi(argv[argc]);
+		if (test > INT_MAX || test < INT_MIN)
+			return (0);
+		argc--;
+	}
+	return (1);
 }
 
 int	*extract_values(int numbers, char **values)
