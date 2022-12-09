@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   stack_op.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:53:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 16:01:02 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/12/09 14:41:02 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/09 17:16:37 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include <unistd.h>
-# include <limits.h>
+#ifndef STACK_OP_H
+# define STACK_OP_H
 
 # include "stack.h"
-# include "stack_op.h"
-# include "ft_printf.h"
+# include <unistd.h>
 
-int		*extract_values(int numbers, char **values);
-int		parse_args(int argc, char **argv);
-int		disp_err(void);
+void	both(
+			t_stack **stack_1,
+			t_stack **stack_2,
+			void (*op)(t_stack **, int),
+			char *str
+			);
+void	swap(t_stack **stack, int disp_op);
+void	push(t_stack **stack_in, t_stack **stack_out, int disp_op);
+void	rotate(t_stack **stack, int disp_op);
+void	reverse_rotate(t_stack **stack, int disp_op);
 
 #endif

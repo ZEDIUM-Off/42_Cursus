@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:53:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 16:01:02 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/12/09 15:48:46 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/09 15:48:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+int ft_strlen(const char *s)
+{
+	int i;
 
-# include <unistd.h>
-# include <limits.h>
-
-# include "stack.h"
-# include "stack_op.h"
-# include "ft_printf.h"
-
-int		*extract_values(int numbers, char **values);
-int		parse_args(int argc, char **argv);
-int		disp_err(void);
-
-#endif
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

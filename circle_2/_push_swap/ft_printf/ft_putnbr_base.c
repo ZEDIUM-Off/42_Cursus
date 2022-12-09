@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:53:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 16:01:02 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/12/06 08:48:30 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/09 15:49:19 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <limits.h>
+void	ft_putnbr_base(long long nbr, char *base, int *len, int _signed)
+{
+	unsigned long long	nb;
 
-# include "stack.h"
-# include "stack_op.h"
-# include "ft_printf.h"
-
-int		*extract_values(int numbers, char **values);
-int		parse_args(int argc, char **argv);
-int		disp_err(void);
-
-#endif
+	if (nbr < 0 && _signed)
+	{
+		nb = -nbr;
+		ft_putchar_fd('-', 1, len);
+	}
+	else
+		nb = nbr;
+	if (nb >= (unsigned int)ft_strlen(base))
+		ft_putnbr_base(nb / ft_strlen(base), base, len, _signed);
+	ft_putchar_fd(base[nb % ft_strlen(base)], 1, len);
+}

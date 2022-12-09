@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:53:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 16:01:02 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/11/11 10:35:35 by mchenava          #+#    #+#             */
+/*   Updated: 2022/12/09 15:49:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <limits.h>
-
-# include "stack.h"
-# include "stack_op.h"
-# include "ft_printf.h"
-
-int		*extract_values(int numbers, char **values);
-int		parse_args(int argc, char **argv);
-int		disp_err(void);
-
-#endif
+void	ft_putchar_fd(char c, int fd, int *len)
+{
+	if (fd < 0)
+		*len = -1;
+	else if (write(fd, &c, 1) == -1)
+		*len = -1;
+	else
+		*len += 1;
+}

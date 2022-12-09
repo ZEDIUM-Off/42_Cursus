@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_parse_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:53:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 16:01:02 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/11/17 09:08:47 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/09 15:49:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <limits.h>
+void	ft_parse_flags(const char *format, va_list args, int *len)
+{
+	int		i;
 
-# include "stack.h"
-# include "stack_op.h"
-# include "ft_printf.h"
-
-int		*extract_values(int numbers, char **values);
-int		parse_args(int argc, char **argv);
-int		disp_err(void);
-
-#endif
+	i = 0;
+	while (format[i] && *len >= 0)
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			ft_on_flag_action(format[i], args, len);
+		}
+		else
+			ft_putchar_fd(format[i], 1, len);
+		i++;
+	}
+}
