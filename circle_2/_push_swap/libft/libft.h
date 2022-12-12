@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:36:51 by mchenava          #+#    #+#             */
-/*   Updated: 2022/11/16 11:09:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/12 13:23:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 int		ft_count_words(char const *str, char sep);
 int		ft_lstsize(t_list *lst);
 
@@ -50,7 +50,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char	*big, const char *little, size_t len);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strtrim(char const *s1, char const *set);

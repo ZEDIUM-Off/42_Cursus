@@ -6,36 +6,11 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:56:24 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/12 10:33:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/12 14:18:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-long	ft_atoi(const char *str)
-{
-	int		i;
-	int		sign;
-	long	result;
-
-	i = 0;
-	sign = 1;
-	result = 0;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i])
-	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (LONG_MAX);
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	return (result * sign);
-}
 
 int	find_duplicate(int numbers, int *values)
 {
@@ -57,24 +32,33 @@ int	find_duplicate(int numbers, int *values)
 	return (0);
 }
 
-int	parse_args(int argc, char **argv)
+int	parse_args(int argc, char ***argv)
 {
 	long	test;
 	int		i;
+	int		size;
+	int		*values;
+	char	*char_values;
 
-	if (argc == 1)
-		argv = ft_split(argv[0], ' ');
+	i = 1;
+	char_values = NULL;
+	while (i < argc + 1)
+		char_values = ft_strjoin(char_values, (*argv)[i++]);
+	size = ft_count_words(char_values, ' ');
+	*argv = ft_split(char_values, ' ');
+	free(char_values);
 	i = 0;
-	while (i < argc)
+	while (i < size)
 	{
-		test = ft_atoi(argv[i]);
+		test = ft_atoi((*argv)[i]);
 		if (test > INT_MAX || test < INT_MIN)
 			return (0);
 		i++;
 	}
-	if (find_duplicate(argc, extract_values(argc, argv)))
-		return (0);
-	return (1);
+	values = extract_values(size, (*argv));
+	if (find_duplicate(size, values))
+		return (free(values), 0);
+	return (free(values), size);
 }
 
 int	*extract_values(int numbers, char **values)
@@ -88,6 +72,7 @@ int	*extract_values(int numbers, char **values)
 	i = 0;
 	while (i < numbers)
 	{
+		ft_printf("%s\n", values[i]);
 		values_int[i] = ft_atoi(values[i]);
 		i++;
 	}

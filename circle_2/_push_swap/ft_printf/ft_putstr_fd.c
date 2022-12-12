@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:36:53 by mchenava          #+#    #+#             */
-/*   Updated: 2022/12/09 15:49:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/12 10:48:35 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr_fd(char *s, int fd, int *len)
+void	pf_putstr_fd(char *s, int fd, int *len)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ void	ft_putstr_fd(char *s, int fd, int *len)
 	if (fd < 0)
 		*len = -1;
 	if (s == NULL)
-		ft_putstr_fd("(null)", fd, len);
+		pf_putstr_fd("(null)", fd, len);
 	else
 	{
 		while (s[i])
