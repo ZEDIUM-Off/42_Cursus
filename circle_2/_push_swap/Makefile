@@ -13,7 +13,7 @@ HEADERS = push_swap.h ./libstack/stack.h
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 EXTRA_FLAGS = -I . -I ./libstack -I ./stack_op -I ./ft_printf
 
-all :	$(NAME)
+all : $(NAME) lib
 
 $(NAME) : $(OBJECTS) $(LIB_PF)
 	$(CC) $(CFLAGS) -o $@ $^
@@ -21,8 +21,10 @@ $(NAME) : $(OBJECTS) $(LIB_PF)
 %.o : %.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) $(EXTRA_FLAGS) -o $@ -c $<
 
-$(LIB_PF) :
+lib : 
 	$(MAKE) -C ./ft_printf
+
+$(LIB_PF) : lib
 
 clean :
 	$(RM) $(OBJECTS)

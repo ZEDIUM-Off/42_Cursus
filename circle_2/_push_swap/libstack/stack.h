@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:37:23 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 15:36:51 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/12 09:39:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_stack
 	struct s_node	*bottom;
 }	t_stack;
 
-t_stack	*stack_init(int size, int *values, char *name);
+void	stack_init(int size, int *values, char *name, t_stack	**stack);
 void	display_stack(t_stack *stack);
-void	stack_clear(t_stack *stack);
+void	stack_clear(t_stack **stack);
 
 #endif

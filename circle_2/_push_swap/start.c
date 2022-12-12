@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:56:24 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 13:50:21 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2022/12/12 10:33:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,43 @@ long	ft_atoi(const char *str)
 	return (result * sign);
 }
 
+int	find_duplicate(int numbers, int *values)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < numbers)
+	{
+		j = i + 1;
+		while (j < numbers)
+		{
+			if (values[i] == values[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	parse_args(int argc, char **argv)
 {
 	long	test;
+	int		i;
 
-	argc--;
-	while (argc)
+	if (argc == 1)
+		argv = ft_split(argv[0], ' ');
+	i = 0;
+	while (i < argc)
 	{
-		test = ft_atoi(argv[argc]);
+		test = ft_atoi(argv[i]);
 		if (test > INT_MAX || test < INT_MIN)
 			return (0);
-		argc--;
+		i++;
 	}
+	if (find_duplicate(argc, extract_values(argc, argv)))
+		return (0);
 	return (1);
 }
 
@@ -67,4 +92,11 @@ int	*extract_values(int numbers, char **values)
 		i++;
 	}
 	return (values_int);
+}
+
+void	init_a_b(t_stack **stack_a, t_stack **stack_b, int numbers, int *values)
+{
+	stack_init(numbers, values, "a", stack_a);
+	stack_init(0, NULL, "b", stack_b);
+	free(values);
 }

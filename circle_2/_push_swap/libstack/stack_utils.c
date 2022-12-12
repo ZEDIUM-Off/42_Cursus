@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:49:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 17:19:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/11 20:17:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,46 +53,44 @@ t_node	*new_node(int value, int position)
 	return (node);
 }
 
-t_stack	*stack_init(int size, int *values, char *name)
+void	stack_init(int size, int *values, char *name, t_stack	**stack)
 {
-	t_stack	*stack;
 	t_node	*node;
 	t_node	*tmp;
 	int		i;
 
-	stack = new_stack(size, name);
+	(*stack) = new_stack(size, name);
 	i = size - 1;
 	while (i >= 0 && values != NULL)
 	{
 		node = new_node(values[i], i);
-		if (stack->top == NULL)
+		if ((*stack)->top == NULL)
 		{
-			stack->top = node;
-			stack->bottom = node;
+			(*stack)->top = node;
+			(*stack)->bottom = node;
 		}
 		else
 		{
-			tmp = stack->top;
-			stack->top = node;
-			stack->top->next = tmp;
-			tmp->prev = stack->top;
+			tmp = (*stack)->top;
+			(*stack)->top = node;
+			(*stack)->top->next = tmp;
+			tmp->prev = (*stack)->top;
 		}
 		i--;
 	}
-	return (stack);
 }
 
-void	stack_clear(t_stack *stack)
+void	stack_clear(t_stack **stack)
 {
 	t_node	*node;
 	t_node	*tmp;
 
-	node = stack->top;
+	node = (*stack)->top;
 	while (node != NULL)
 	{
 		tmp = node;
 		node = node->next;
 		free(tmp);
 	}
-	free(stack);
+	free((*stack));
 }
