@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:21:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/12 12:27:45 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/14 15:03:00 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort(t_stack **stack_a, t_stack **stack_b)
+char	*sort(t_stack_state *stacks)
 {
-	radix(stack_a, stack_b);
+	return (quick(stacks));
 }

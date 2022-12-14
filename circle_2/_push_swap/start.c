@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:56:24 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/12 14:18:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/14 12:42:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	parse_args(int argc, char ***argv)
 	i = 1;
 	char_values = NULL;
 	while (i < argc + 1)
-		char_values = ft_strjoin(char_values, (*argv)[i++]);
+		char_values = ft_strsepjoin(char_values, (*argv)[i++], ' ');
 	size = ft_count_words(char_values, ' ');
 	*argv = ft_split(char_values, ' ');
 	free(char_values);
@@ -72,16 +72,39 @@ int	*extract_values(int numbers, char **values)
 	i = 0;
 	while (i < numbers)
 	{
-		ft_printf("%s\n", values[i]);
 		values_int[i] = ft_atoi(values[i]);
 		i++;
 	}
 	return (values_int);
 }
 
-void	init_a_b(t_stack **stack_a, t_stack **stack_b, int numbers, int *values)
+t_stack_state	*init_a_b(
+	t_stack **stack_a, t_stack **stack_b, int numbers, int *values)
 {
+	t_stack_state	*stacks;
+
 	stack_init(numbers, values, "a", stack_a);
 	stack_init(0, NULL, "b", stack_b);
 	free(values);
+	stacks = malloc(sizeof(t_stack_state));
+	if (!stacks)
+		return (NULL);
+	stacks->stack_a = stack_a;
+	stacks->stack_b = stack_b;
+	return (stacks);
+}
+
+void	act_position(t_stack **stack)
+{
+	t_node	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = (*stack)->top;
+	while (tmp)
+	{
+		tmp->position = i;
+		tmp = tmp->next;
+		i++;
+	}
 }

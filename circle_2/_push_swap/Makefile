@@ -2,8 +2,8 @@ NAME = push_swap
 
 SOURCES = ./push_swap.c ./start.c ./error.c ./sort.c
 STACK_SRC = ./libstack/stack_utils.c
-OP_SRC = ./stack_op/stack_op.c
-SORT_SRC = ./sorting_algo/radix.c ./sorting_algo/quick.c ./sorting_algo/merge.c ./sorting_algo/counting.c ./sorting_algo/bucket.c
+OP_SRC = ./stack_op/stack_op.c ./big_op/get_node.c ./big_op/swap_values.c ./big_op/top.c
+SORT_SRC = ./sorting_algo/radix.c ./sorting_algo/merge.c ./sorting_algo/counting.c ./sorting_algo/bucket.c ./sorting_algo/is_sorted.c ./sorting_algo/quick.c 
 
 
 
@@ -15,7 +15,7 @@ LIBFT = libft/libft.a
 HEADERS = push_swap.h ./libstack/stack.h
 
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
-EXTRA_FLAGS = -I . -I ./libstack -I ./stack_op -I ./ft_printf -I ./libft -I ./sorting_algo
+EXTRA_FLAGS = -I . -I ./libstack -I ./stack_op -I ./ft_printf -I ./libft -I ./sorting_algo -I ./big_op
 
 all : $(NAME) pf lib
 

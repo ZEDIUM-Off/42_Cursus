@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_op.h                                         :+:      :+:    :+:   */
+/*   top.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 14:41:02 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/14 13:35:31 by  mchenava        ###   ########.fr       */
+/*   Created: 2022/12/14 14:32:39 by  mchenava         #+#    #+#             */
+/*   Updated: 2022/12/14 14:36:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_OP_H
-# define STACK_OP_H
+#include "push_swap.h"
 
-# include "stack.h"
-# include <unistd.h>
+char	*top(t_stack **stack, int i)
+{
+	char	*ops;
+	int		k;
 
-char	*both(
-			t_stack **stack_1,
-			t_stack **stack_2,
-			void (*op)(t_stack **, int),
-			char *str
-			);
-char	*swap(t_stack **stack, int disp_op);
-char	*push(t_stack **stack_in, t_stack **stack_out, int disp_op);
-char	*rotate(t_stack **stack, int disp_op);
-char	*rev_rotate(t_stack **stack, int disp_op);
-
-#endif
+	ops = NULL;
+	if (i > (int)(*stack)->size / 2)
+	{
+		k = 0;
+		while (k < (int)(*stack)->size - i)
+		{
+			ops = ft_strjoin(ops, rev_rotate(stack, 1));
+			k++;
+		}
+	}
+	else
+	{
+		k = 0;
+		while (k < i)
+		{
+			ops = ft_strjoin(ops, rotate(stack, 1));
+			k++;
+		}
+	}
+	return (ops);
+}

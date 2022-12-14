@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:10:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/09 17:14:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2022/12/14 10:49:11 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack **stack, int disp_op)
+char	*swap(t_stack **stack, int disp_op)
 {
 	t_node	*tmp;
 	int		tmp_pos;
@@ -26,12 +26,15 @@ void	swap(t_stack **stack, int disp_op)
 		tmp_pos = (*stack)->top->position;
 		(*stack)->top->position = tmp->position;
 		tmp->position = tmp_pos;
+		if (disp_op && ft_strncmp((*stack)->name, "a", 5) == 0)
+			return ("sa\n");
+		else if (disp_op && ft_strncmp((*stack)->name, "b", 5) == 0)
+			return ("sb\n");
 	}
-	if (disp_op)
-		ft_printf("s%s\n", (*stack)->name);
+	return (NULL);
 }
 
-void	push(t_stack **stack_in, t_stack **stack_out, int disp_op)
+char	*push(t_stack **stack_in, t_stack **stack_out, int disp_op)
 {
 	t_node	*tmp;
 
@@ -43,12 +46,17 @@ void	push(t_stack **stack_in, t_stack **stack_out, int disp_op)
 		tmp->next = (*stack_in)->top;
 		(*stack_in)->top = tmp;
 		(*stack_in)->size++;
+		act_position(stack_in);
+		act_position(stack_out);
+		if (disp_op && ft_strncmp((*stack_in)->name, "a", 5) == 0)
+			return ("pa\n");
+		else if (disp_op && ft_strncmp((*stack_in)->name, "b", 5) == 0)
+			return ("pb\n");
 	}
-	if (disp_op)
-		ft_printf("p%s\n", (*stack_in)->name);
+	return (NULL);
 }
 
-void	rotate(t_stack **stack, int disp_op)
+char	*rotate(t_stack **stack, int disp_op)
 {
 	t_node	*tmp;
 
@@ -59,12 +67,16 @@ void	rotate(t_stack **stack, int disp_op)
 		tmp->next = NULL;
 		(*stack)->bottom->next = tmp;
 		(*stack)->bottom = tmp;
+		act_position(stack);
+		if (disp_op && ft_strncmp((*stack)->name, "a", 5) == 0)
+			return ("ra\n");
+		else if (disp_op && ft_strncmp((*stack)->name, "b", 5) == 0)
+			return ("rb\n");
 	}
-	if (disp_op)
-		ft_printf("r%s\n", (*stack)->name);
+	return (NULL);
 }
 
-void	rev_rotate(t_stack **stack, int disp_op)
+char	*rev_rotate(t_stack **stack, int disp_op)
 {
 	t_node	*tmp;
 
@@ -77,12 +89,16 @@ void	rev_rotate(t_stack **stack, int disp_op)
 		tmp->next = NULL;
 		(*stack)->bottom->next = (*stack)->top;
 		(*stack)->top = (*stack)->bottom;
+		act_position(stack);
+		if (disp_op && ft_strncmp((*stack)->name, "a", 5) == 0)
+			return ("rra\n");
+		else if (disp_op && ft_strncmp((*stack)->name, "b", 5) == 0)
+			return ("rrb\n");
 	}
-	if (disp_op)
-		ft_printf("rr%s\n", (*stack)->name);
+	return (NULL);
 }
 
-void	both(
+char	*both(
 	t_stack **stack_1,
 	t_stack **stack_2,
 	void (*op)(t_stack **, int),
@@ -91,5 +107,5 @@ void	both(
 {
 	op(stack_1, 0);
 	op(stack_2, 0);
-	ft_printf("%s", str);
+	return (str);
 }
