@@ -1,21 +1,22 @@
 NAME = push_swap
 
-SOURCES = ./push_swap.c ./start.c ./error.c ./sort.c
+SOURCES = ./push_swap.c 
+UTILS = ./utils/start.c ./utils/error.c
 STACK_SRC = ./libstack/stack_utils.c
-OP_SRC = ./stack_op/stack_op.c ./big_op/get_node.c ./big_op/swap_values.c ./big_op/top.c
-SORT_SRC = ./sorting_algo/radix.c ./sorting_algo/merge.c ./sorting_algo/counting.c ./sorting_algo/bucket.c ./sorting_algo/is_sorted.c ./sorting_algo/quick.c 
+OP_SRC = ./stack_op/stack_op.c
+SORT_SRC = ./sorting_algo/radix.c ./sorting_algo/is_sorted.c
 
 
 
-OBJECTS = $(SOURCES:.c=.o) $(STACK_SRC:.c=.o) $(OP_SRC:.c=.o) $(SORT_SRC:.c=.o)
+OBJECTS = $(SOURCES:.c=.o) $(STACK_SRC:.c=.o) $(OP_SRC:.c=.o) $(SORT_SRC:.c=.o) $(UTILS:.c=.o)
 OBJDIR = ./objs
 
 LIB_PF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
-HEADERS = push_swap.h ./libstack/stack.h
+HEADERS = push_swap.h ./libstack/stack.h stack_op/stack_op.h ./sorting_algo/algo.h
 
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
-EXTRA_FLAGS = -I . -I ./libstack -I ./stack_op -I ./ft_printf -I ./libft -I ./sorting_algo -I ./big_op
+EXTRA_FLAGS = -I . -I ./libstack -I ./stack_op -I ./ft_printf -I ./libft -I ./sorting_algo -I ./utils
 
 all : $(NAME) pf lib
 
@@ -38,10 +39,12 @@ $(LIBFT) : lib
 clean :
 	$(RM) $(OBJECTS)
 	$(MAKE) -C ./ft_printf clean
+	$(MAKE) -C ./libft clean
 
 fclean : clean
 	$(RM) $(NAME)
 	$(MAKE) -C ./ft_printf fclean
+	$(MAKE) -C ./libft fclean
 
 check : 
 	norminette $(SOURCES) $(HEADERS)

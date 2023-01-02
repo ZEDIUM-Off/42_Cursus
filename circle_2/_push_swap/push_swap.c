@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:31:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/14 15:03:42 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/02 11:06:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ int	main(int argc, char **argv)
 	values = extract_values(size, argv);
 	ft_free_tab(argv, size);
 	stacks = init_a_b(&stack_a, &stack_b, size, values);
-	display_stack(stack_a);
-	ft_printf("%s", sort(stacks));
-	display_stack(stack_a);
+	radix(stacks);
 	stack_clear(&stack_a);
 	stack_clear(&stack_b);
+	free(stacks);
 	return (0);
 }

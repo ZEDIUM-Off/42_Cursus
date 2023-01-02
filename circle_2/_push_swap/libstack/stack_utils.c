@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:49:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/11 20:17:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/02 11:03:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,31 @@
 void	display_stack(t_stack *stack)
 {
 	t_node	*node;
-	int		i;
 
 	node = stack->top;
-	i = 0;
 	ft_printf("======== stack %s : ==========\n", stack->name);
-	while ((unsigned int)i < stack->size)
+	while (node != NULL)
 	{
-		ft_printf("Valeur n.%d = %d \n", node->position, node->value);
+		ft_printf("Valeur n.%d = %d [prev : %d <> next : %d]\n",
+			node->position, node->value,
+			node->prev ? node->prev->value : 0,
+			node->next ? node->next->value : 0);
 		node = node->next;
-		i++;
 	}
+}
+
+t_node	*get_node(t_stack **stack, int position)
+{
+	t_node	*node;
+
+	node = (*stack)->top;
+	while (node != NULL)
+	{
+		if (node->position == position)
+			return (node);
+		node = node->next;
+	}
+	return (NULL);
 }
 
 t_stack	*new_stack(int size, char *name)
@@ -37,7 +51,6 @@ t_stack	*new_stack(int size, char *name)
 	stack->name = name;
 	stack->size = size;
 	stack->top = NULL;
-	stack->bottom = NULL;
 	return (stack);
 }
 
@@ -65,10 +78,7 @@ void	stack_init(int size, int *values, char *name, t_stack	**stack)
 	{
 		node = new_node(values[i], i);
 		if ((*stack)->top == NULL)
-		{
 			(*stack)->top = node;
-			(*stack)->bottom = node;
-		}
 		else
 		{
 			tmp = (*stack)->top;

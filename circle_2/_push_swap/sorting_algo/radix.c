@@ -6,36 +6,33 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:22:53 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/13 10:23:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/02 11:02:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*radix(t_stack **stack_a, t_stack **stack_b)
+void	radix(t_stack_state *stacks)
 {
 	int		size;
 	int		top;
 	int		i;
-	char	*ops;
 
 	i = 0;
-	ops = NULL;
-	while (!is_sorted(stack_a))
+	while (!is_sorted(stacks->stack_a))
 	{
-		size = (*stack_a)->size;
+		size = (*stacks->stack_a)->size;
 		while (size)
 		{
-			top = (*stack_a)->top->value;
+			top = (*stacks->stack_a)->top->value;
 			if ((top >> i) & 1)
-				ops = ft_strjoin(ops, rotate(stack_a, 1));
+				rotate(stacks->stack_a, 1);
 			else
-				ops = ft_strjoin(ops, push(stack_b, stack_a, 1));
+				push(stacks->stack_b, stacks->stack_a, 1);
 			size--;
 		}
-		while ((*stack_b)->top != NULL)
-			ops = ft_strjoin(ops, push(stack_a, stack_b, 1));
+		while ((*stacks->stack_b)->top != NULL)
+			push(stacks->stack_a, stacks->stack_b, 1);
 		i++;
 	}
-	return (ops);
 }
