@@ -13,7 +13,7 @@ OBJDIR = ./objs
 
 LIB_PF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
-HEADERS = push_swap.h ./libstack/stack.h stack_op/stack_op.h ./sorting_algo/algo.h
+HEADERS = push_swap.h ./libstack/stack.h stack_op/stack_op.h ./sorting_algo/algo.h ./utils/utils.h
 
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 EXTRA_FLAGS = -I . -I ./libstack -I ./stack_op -I ./ft_printf -I ./libft -I ./sorting_algo -I ./utils

@@ -6,33 +6,60 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:22:53 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/02 11:02:36 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/04 10:39:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	radix(t_stack_state *stacks)
+void	simplify(t_stack **stack)
+{
+	int				min;
+	unsigned int	i;
+	t_node			*node;
+
+	min = (*stack)->top->value;
+	node = (*stack)->top;
+	i = 0;
+	while (i < (*stack)->size)
+	{
+		if (node->value < min)
+			min = node->value;
+		node = node->next;
+		i++;
+	}
+	node = (*stack)->top;
+	i = 0;
+	while (i < (*stack)->size)
+	{
+		node->value -= min;
+		node = node->next;
+		i++;
+	}
+}
+
+void	radix(t_stack **stack_a, t_stack **stack_b)
 {
 	int		size;
 	int		top;
 	int		i;
 
 	i = 0;
-	while (!is_sorted(stacks->stack_a))
+	simplify(stack_a);
+	while (!is_sorted(stack_a))
 	{
-		size = (*stacks->stack_a)->size;
+		size = (*stack_a)->size;
 		while (size)
 		{
-			top = (*stacks->stack_a)->top->value;
+			top = (*stack_a)->top->value;
 			if ((top >> i) & 1)
-				rotate(stacks->stack_a, 1);
+				rotate(stack_a, 1);
 			else
-				push(stacks->stack_b, stacks->stack_a, 1);
+				push(stack_b, stack_a, 1);
 			size--;
 		}
-		while ((*stacks->stack_b)->top != NULL)
-			push(stacks->stack_a, stacks->stack_b, 1);
+		while ((*stack_b)->top != NULL)
+			push(stack_a, stack_b, 1);
 		i++;
 	}
 }

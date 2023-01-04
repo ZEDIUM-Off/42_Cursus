@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:56:24 by  mchenava         #+#    #+#             */
-/*   Updated: 2022/12/14 12:42:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/04 10:26:39 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int	parse_args(int argc, char ***argv)
 	{
 		test = ft_atoi((*argv)[i]);
 		if (test > INT_MAX || test < INT_MIN)
-			return (0);
+			return (ft_free_tab(*argv, size), 0);
 		i++;
 	}
 	values = extract_values(size, (*argv));
 	if (find_duplicate(size, values))
-		return (free(values), 0);
+		return (free(values), free(*argv), 0);
 	return (free(values), size);
 }
 
@@ -76,22 +76,6 @@ int	*extract_values(int numbers, char **values)
 		i++;
 	}
 	return (values_int);
-}
-
-t_stack_state	*init_a_b(
-	t_stack **stack_a, t_stack **stack_b, int numbers, int *values)
-{
-	t_stack_state	*stacks;
-
-	stack_init(numbers, values, "a", stack_a);
-	stack_init(0, NULL, "b", stack_b);
-	free(values);
-	stacks = malloc(sizeof(t_stack_state));
-	if (!stacks)
-		return (NULL);
-	stacks->stack_a = stack_a;
-	stacks->stack_b = stack_b;
-	return (stacks);
 }
 
 void	act_position(t_stack **stack)

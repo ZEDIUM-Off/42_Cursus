@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.h                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 12:28:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/04 10:29:53 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/01/04 10:06:27 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/01/04 10:27:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALGO_H
-# define ALGO_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# include "push_swap.h"
-
-void	radix(t_stack **stack_a, t_stack **stack_b);
-int		is_sorted(t_stack **stack);
+int				*extract_values(int numbers, char **values);
+int				parse_args(int argc, char ***argv);
+int				disp_err(void);
+void			act_position(t_stack **stack);
 
 #endif
