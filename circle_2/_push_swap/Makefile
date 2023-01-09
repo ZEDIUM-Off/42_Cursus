@@ -4,7 +4,7 @@ SOURCES = ./push_swap.c
 UTILS = ./utils/start.c ./utils/error.c
 STACK_SRC = ./libstack/stack_utils.c
 OP_SRC = ./stack_op/stack_op.c
-SORT_SRC = ./sorting_algo/radix.c ./sorting_algo/is_sorted.c
+SORT_SRC = ./sorting_algo/radix.c ./sorting_algo/is_sorted.c ./sorting_algo/sort.c
 
 
 
@@ -15,10 +15,11 @@ LIB_PF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 HEADERS = push_swap.h ./libstack/stack.h stack_op/stack_op.h ./sorting_algo/algo.h ./utils/utils.h
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 EXTRA_FLAGS = -I . -I ./libstack -I ./stack_op -I ./ft_printf -I ./libft -I ./sorting_algo -I ./utils
 
-all : $(NAME) pf lib
+all : 
+	$(MAKE) $(NAME) pf lib
 
 $(NAME) : $(OBJECTS) $(LIB_PF) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $^

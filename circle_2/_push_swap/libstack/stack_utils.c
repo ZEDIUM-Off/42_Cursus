@@ -6,12 +6,14 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:49:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/02 11:03:47 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/09 10:25:09 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "ft_printf.h"
+
+#include <stdio.h>
 
 void	display_stack(t_stack *stack)
 {
@@ -21,7 +23,7 @@ void	display_stack(t_stack *stack)
 	ft_printf("======== stack %s : ==========\n", stack->name);
 	while (node != NULL)
 	{
-		ft_printf("Valeur n.%d = %d [prev : %d <> next : %d]\n",
+		printf("Valeur n.%d = %ld [prev : %ld <> next : %ld]\n",
 			node->position, node->value,
 			node->prev ? node->prev->value : 0,
 			node->next ? node->next->value : 0);

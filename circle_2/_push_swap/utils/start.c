@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:56:24 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/04 10:26:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/09 10:38:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int	parse_args(int argc, char ***argv)
 	{
 		test = ft_atoi((*argv)[i]);
 		if (test > INT_MAX || test < INT_MIN)
-			return (ft_free_tab(*argv, size), 0);
+			return (ft_free_tab(*argv, size), -1);
 		i++;
 	}
 	values = extract_values(size, (*argv));
 	if (find_duplicate(size, values))
-		return (free(values), free(*argv), 0);
+		return (free(values), ft_free_tab(*argv, size), -1);
 	return (free(values), size);
 }
 

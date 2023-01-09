@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:31:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/04 10:29:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/09 10:40:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (1);
 	size = parse_args(argc - 1, &argv);
-	if (!size)
-		return (disp_err());
+	if (size <= 0)
+	{
+		if (size == 0)
+			ft_free_tab(argv, size);
+		return (disp_err(size));
+	}
 	values = extract_values(size, argv);
 	ft_free_tab(argv, size);
 	stack_init(size, values, "a", &stack_a);
 	stack_init(0, NULL, "b", &stack_b);
 	free(values);
-	radix(&stack_a, &stack_b);
+	sort(&stack_a, &stack_b);
 	stack_clear(&stack_a);
 	stack_clear(&stack_b);
 	return (0);
