@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:10:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/02 10:59:29 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/09 17:19:53 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	swap(t_stack **stack, int disp_op)
 		tmp1->prev = tmp2;
 		tmp2->next = tmp1;
 		tmp2->prev = NULL;
+		tmp1->next->prev = tmp1;
 		(*stack)->top = tmp2;
 		act_position(stack);
 		if (disp_op && ft_strncmp((*stack)->name, "a", 5) == 0)

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:43:55 by mchenava          #+#    #+#             */
-/*   Updated: 2022/12/12 14:09:45 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/09 12:13:22 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ long	ft_atoi(const char *nptr)
 	}
 	if (nptr[i] != '\0')
 		return (LONG_MAX);
-	return ((int)(result * sign));
+	return ((result * sign));
 }

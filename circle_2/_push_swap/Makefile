@@ -24,7 +24,7 @@ all :
 $(NAME) : $(OBJECTS) $(LIB_PF) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $^
 
-%.o : %.c $(HEADERS) Makefile
+%.o : %.c $(HEADERS)
 	$(CC) $(CFLAGS) $(EXTRA_FLAGS) -o $@ -c $<
 
 pf : 

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:11:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/09 11:01:19 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/09 16:58:02 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ void	sort_5(t_stack	**stack_a, t_stack	**stack_b)
 
 void	sort(t_stack **stack_a, t_stack **stack_b)
 {
-	if ((*stack_a)->size == 2 && (*stack_a)->top->value > (*stack_a)->top->next->value)
-			swap(stack_a, 1);
+	if ((*stack_a)->size == 2
+		&& (*stack_a)->top->value > (*stack_a)->top->next->value)
+		swap(stack_a, 1);
 	else if ((*stack_a)->size == 3)
 		while (!is_sorted(stack_a))
 			sort_3(stack_a);
