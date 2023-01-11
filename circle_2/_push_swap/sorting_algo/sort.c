@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:11:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/09 16:58:02 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2023/01/10 08:59:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 	else if ((*stack_a)->size == 3)
 		while (!is_sorted(stack_a))
 			sort_3(stack_a);
-	else if ((*stack_a)->size <= 5 && !is_sorted(stack_a))
+	else if ((*stack_a)->size <= 5)
 		while (!is_sorted(stack_a))
 			sort_5(stack_a, stack_b);
 	else
