@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:42:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/13 10:58:15 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/13 11:55:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <errno.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 typedef struct s_cmd	t_cmd;
 struct s_cmd {
@@ -33,5 +34,7 @@ typedef struct s_pipex
 	int		*outfile;
 	t_cmd	*cmds;
 }	t_pipex;
+
+t_pipex	*parse(int argc, char **argv, char **envp);
 
 #endif

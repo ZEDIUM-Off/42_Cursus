@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:02:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/13 11:00:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/13 12:32:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ t_cmd	*parse_cmds(int argc, char **argv, char **envp)
 		cmds->cmd = find_cmd(argv[i + 2], envp);
 		if (cmds->cmd)
 			return (NULL);
-		cmds->args = ft_split(argv[i + 2], ' ');
-		if (!cmds->args)
-			return (NULL);
 		cmds->next = (t_cmd *)malloc(sizeof(t_cmd));
 		cmds = cmds->next;
 		i++;
@@ -43,6 +40,6 @@ t_pipex	*parse(int argc, char **argv, char **envp)
 
 	pipex = (t_pipex *)malloc(sizeof(t_pipex));
 	if (!pipex)
-		return (perror("malloc"), NULL);
+		return (NULL);
 	return (pipex);
 }
