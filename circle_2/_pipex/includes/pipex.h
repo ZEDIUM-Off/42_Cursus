@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:42:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/11 13:04:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/13 10:58:15 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,20 @@
 #  define MAX_SIM_PROCESS 16
 # endif
 
-typedef struct s_cmd
-{
-	char	*cmd;
-	char	**args;
-	char	*path;
-	t_cmd	*next;
-}	t_cmd;
+# include <unistd.h>
+# include <errno.h>
+# include <stdio.h>
 
-typedef struct s_file
-{
-	char	*name;
-	int		fd;
-}	t_file;
+typedef struct s_cmd	t_cmd;
+struct s_cmd {
+	char	**cmd;
+	t_cmd	*next;
+};
 
 typedef struct s_pipex
 {
-	t_file	*infile;
-	t_file	*outfile;
+	int		*infile;
+	int		*outfile;
 	t_cmd	*cmds;
 }	t_pipex;
 

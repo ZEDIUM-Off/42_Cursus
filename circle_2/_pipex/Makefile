@@ -1,29 +1,31 @@
 NAME = pipex
-BUILD_DIR = ./build
+BUILD_DIR = build
 SRC_DIR = ./src
 INCLUDE_DIR = ./include
-PF_DIR = ./ft_printf
+PF_DIR = $(SRC_DIR)/ft_printf
 
-SRC = $(SRC_DIR)/pipex/pipex.c
+SRC = $(SRC_DIR)/pipex.c
 
-OBJECTS = $(BUILD_DIR)/$(SRC:.c=.o)
+OBJECTS = $(BUILD_DIR)/$(shell basename $(SRC:.c=.o))
 HEADERS = $(INCLUDE_DIR)/pipex.h $(INCLUDE_DIR)/utils.h
 LIB_PF = $(PF_DIR)/libftprintf.a
 
 CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) -I $(PF_DIR)
+
+: all
 
 pf : 
 	$(MAKE) -C $(PF_DIR)
 
 $(LIB_PF) : pf
 
-$(NAME) : $(OBJECTS) $(LIB_PF)
+$(NAME) : $(LIB_PF) $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(BUILD_DIR)/%.o : %.c $(HEADERS)
-	$(CC) $(CFLAGS) -o $@ -c $<
+$(BUILD_DIR)/%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -o $(BUILD_DIR)/$@ -c $<
 
-all : $(NAME) pf
+all : $(NAME)
 
 clean :
 	$(RM) $(OBJECTS)
