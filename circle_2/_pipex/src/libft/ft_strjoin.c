@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:08:23 by mchenava          #+#    #+#             */
-/*   Updated: 2022/12/14 09:49:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/13 14:47:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 2));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -30,7 +30,6 @@ char	*ft_strjoin(char *s1, char *s2)
 			str[i] = s1[i];
 			i++;
 		}
-		free(s1);
 	}
 	if (s2)
 		while (s2[j])
@@ -58,7 +57,6 @@ char	*ft_strsepjoin(char *s1, char *s2, char delim)
 			i++;
 		}
 		str[i++] = delim;
-		free(s1);
 	}
 	if (s2)
 		while (s2[j])

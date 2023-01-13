@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:42:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/13 11:55:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/13 14:18:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+# include "ft_printf.h"
+# include "libft.h"
 
 typedef struct s_cmd	t_cmd;
 struct s_cmd {
