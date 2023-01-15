@@ -1,11 +1,12 @@
 NAME = pipex
 BUILD_DIR = build
 SRC_DIR = ./src
+UTILS_DIR = $(SRC_DIR)/utils
 INCLUDE_DIR = ./includes
 PF_DIR = $(SRC_DIR)/ft_printf
 LIB_DIR = $(SRC_DIR)/libft
 
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/parsing.c 
+SRC = $(SRC_DIR)/main.c $(UTILS_DIR)/parsing.c $(UTILS_DIR)/free_struct.c
 
 OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
@@ -17,10 +18,19 @@ CFLAGS = -Wall -Werror -Wextra -I $(INCLUDE_DIR) -I $(PF_DIR) -I $(LIB_DIR) -fsa
 
 all : $(NAME)
 
+test:
+	@echo ==================== $(OBJECTS) ====================
+
 $(NAME) : $(OBJECTS) $(LIBFT) $(LIB_PF) 
 	$(CC) $(CFLAGS) -o $@ $^
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)/utils
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+$(BUILD_DIR)/$(UTILS_DIR)/%.o: $(SRC_DIR)/%.c
+	
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 pf : 

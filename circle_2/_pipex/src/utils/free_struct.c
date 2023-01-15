@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 12:45:55 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/15 19:46:06 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/01/15 19:25:37 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/01/15 19:30:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+void	free_cmd(t_cmd *stack)
 {
-	t_pipex	*pipex;
+	t_cmd	*tmp;
 
-	if (argc < 5)
-		return (ft_printf(2, "pipex: not enough arguments\n"), 1);
-	pipex = parse(argc, argv, envp);
-	if (!pipex)
-		return (free_pipex(&pipex), 1);
-	return (free_pipex(&pipex), 0);
+	while (stack)
+	{
+		tmp = stack;
+		stack = stack->next;
+		free(tmp->cmd);
+		free(tmp);
+	}
+}
+
+void	free_pipex(t_pipex **stack)
+{
+	free_cmd((*stack)->cmds);
+	free(*stack);
 }

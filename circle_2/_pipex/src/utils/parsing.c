@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:02:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/13 15:20:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/15 19:36:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*match_path(char **path_list, char *cmd)
 		i++;
 		free(tmp);
 	}
-	return (ft_free_tab(path_list, i), NULL);
+	return (ft_printf(2, "pipex: %s: command not found\n", cmd),
+		ft_free_tab(path_list, i), cmd);
 }
 
 char	**find_cmd(char *cmd, char **envp)
@@ -45,10 +46,7 @@ char	**find_cmd(char *cmd, char **envp)
 	i = 0;
 	_cmd[0] = match_path(path, _cmd[0]);
 	if (!_cmd[0])
-	{
-		ft_printf(2, "pipex: %s: command not found\n", _cmd[0]);
 		return (NULL);
-	}
 	return (_cmd);
 }
 
@@ -67,7 +65,7 @@ t_cmd	*parse_cmds(int argc, char **argv, char **envp)
 	{
 		cmds->cmd = find_cmd(argv[i + 2], envp);
 		if (!cmds->cmd)
-			return (/*free(cmds), */NULL);
+			return (NULL);
 		cmds->next = (t_cmd *)malloc(sizeof(t_cmd));
 		cmds = cmds->next;
 		i++;

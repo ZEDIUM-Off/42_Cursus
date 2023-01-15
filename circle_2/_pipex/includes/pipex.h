@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:42:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/13 14:18:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/15 19:30:42 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ typedef struct s_pipex
 }	t_pipex;
 
 t_pipex	*parse(int argc, char **argv, char **envp);
+void	free_pipex(t_pipex **stack);
 
 #endif
