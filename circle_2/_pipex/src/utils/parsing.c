@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:02:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/16 10:55:12 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/16 10:59:42 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*match_path(char **path_list, char *cmd)
 	{
 		tmp = ft_strsepjoin(path_list[i], cmd, '/');
 		if (access(tmp, X_OK) == 0)
-			return (ft_free_tab(path_list, i), tmp);
+			return (ft_free_tab(path_list, i), free(cmd), tmp);
 		i++;
 		free(tmp);
 	}
@@ -63,7 +63,6 @@ t_cmd	*parse_cmds(int argc, char **argv, char **envp)
 	tmp = cmds;
 	while (i < argc - 3)
 	{
-		ft_printf(1, "i = %d\n", i);
 		cmds->cmd = find_cmd(argv[i + 2], envp);
 		if (!cmds->cmd)
 			return (NULL);
