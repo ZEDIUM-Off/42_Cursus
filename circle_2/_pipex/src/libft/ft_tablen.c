@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 11:18:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/16 10:30:30 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/01/16 10:15:01 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/01/16 10:15:16 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_free_tab(void *tab, int len)
+int	ft_tablen(char **tab)
 {
 	int	i;
 
 	i = 0;
-	while (i < len || ((char **)tab)[i])
-	{
-		free(((char **)tab)[i]);
+	while (tab[i])
 		i++;
-	}
-	free(tab);
-	return (NULL);
+	return (i);
 }

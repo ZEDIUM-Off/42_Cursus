@@ -14,7 +14,7 @@ HEADERS = $(INCLUDE_DIR)/pipex.h $(INCLUDE_DIR)/utils.h
 LIB_PF = $(PF_DIR)/libftprintf.a
 LIBFT = $(LIB_DIR)/libft.a
 
-CFLAGS = -Wall -Werror -Wextra -I $(INCLUDE_DIR) -I $(PF_DIR) -I $(LIB_DIR) -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -I $(INCLUDE_DIR) -I $(PF_DIR) -I $(LIB_DIR) #-fsanitize=address -g3
 
 all : $(NAME)
 

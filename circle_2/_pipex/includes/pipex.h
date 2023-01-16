@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:42:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/15 19:30:42 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/16 10:37:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <limits.h>
 
 # include "ft_printf.h"
 # include "libft.h"

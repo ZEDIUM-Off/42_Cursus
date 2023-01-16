@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:02:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/15 19:36:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/16 10:55:12 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*match_path(char **path_list, char *cmd)
 	while (path_list[i])
 	{
 		tmp = ft_strsepjoin(path_list[i], cmd, '/');
-		if (access(tmp, F_OK) == 0)
+		if (access(tmp, X_OK) == 0)
 			return (ft_free_tab(path_list, i), tmp);
 		i++;
 		free(tmp);
@@ -37,7 +37,7 @@ char	**find_cmd(char *cmd, char **envp)
 	int		i;
 
 	_cmd = ft_split(cmd, ' ');
-	if (access(_cmd[0], F_OK) == 0)
+	if (access(_cmd[0], X_OK) == 0)
 		return (_cmd);
 	i = 0;
 	while (ft_strncmp(envp[i], "PATH=", 5) != 0)
@@ -63,11 +63,15 @@ t_cmd	*parse_cmds(int argc, char **argv, char **envp)
 	tmp = cmds;
 	while (i < argc - 3)
 	{
+		ft_printf(1, "i = %d\n", i);
 		cmds->cmd = find_cmd(argv[i + 2], envp);
 		if (!cmds->cmd)
 			return (NULL);
-		cmds->next = (t_cmd *)malloc(sizeof(t_cmd));
-		cmds = cmds->next;
+		if (i < argc - 4)
+		{
+			cmds->next = (t_cmd *)malloc(sizeof(t_cmd));
+			cmds = cmds->next;
+		}
 		i++;
 	}
 	cmds->next = NULL;
@@ -80,7 +84,7 @@ void	display_cmds(t_cmd *cmds)
 	t_cmd	*tmp;
 
 	tmp = cmds;
-	while (tmp->next)
+	while (tmp)
 	{
 		i = 0;
 		while (tmp->cmd[i])
