@@ -1,47 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_struct.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/15 19:25:37 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/17 12:35:26 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/01/17 10:36:05 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/01/17 13:00:04 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	free_cmd(t_cmd *stack)
+void	newfd(int oldfd, int newfd)
 {
-	t_cmd	*tmp;
-
-	while (stack)
+	if (oldfd != newfd)
 	{
-		tmp = stack;
-		stack = stack->next;
-		ft_free_tab(tmp->cmd, ft_tablen(tmp->cmd));
-		free(tmp);
+		if (dup2(oldfd, newfd) == -1)
+		{
+			perror("dup2");
+			exit(EXIT_FAILURE);
+		}
+		close_fd(oldfd);
 	}
-	free(stack);
 }
 
-void	free_proc(t_process *stack)
+void	exit_with_error(char *error)
 {
-	t_process	*tmp;
-
-	while (stack)
-	{
-		tmp = stack;
-		stack = stack->next;
-		free(tmp);
-	}
-	free(stack);
+	perror(error);
+	exit(EXIT_FAILURE);
 }
 
-void	free_pipex(t_pipex **stack)
+void	close_fd(int fd)
 {
-	free_cmd((*stack)->cmds);
-	free_proc((*stack)->processes);
-	free(*stack);
+	if (close(fd) == -1)
+		exit_with_error("close");
+}
+
+void	piping(t_pipex **pipex)
+{
+	if (pipe((*pipex)->processes->pipefd) == -1)
+		exit_with_error("pipe");
 }

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:02:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/16 10:59:42 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/17 13:21:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,19 @@ t_pipex	*parse(int argc, char **argv, char **envp)
 		return (NULL);
 	pipex->cmds = parse_cmds(argc, argv, envp);
 	if (!pipex->cmds)
-		return (NULL);
+		return (free_pipex(&pipex), NULL);
+	pipex->processes = init_process();
+	if (!pipex->processes)
+		return (free_pipex(&pipex), NULL);
+	pipex->infile = open(argv[1], O_RDONLY);
+	if (pipex->infile < 0)
+		return (ft_printf(2, "pipex: %s: No such file or directory\n", argv[1]),
+			free_pipex(&pipex), NULL);
+	pipex->outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (pipex->outfile < 0)
+		return (ft_printf(2, "pipex: %s: No such file or directory\n", argv[1]),
+			free_pipex(&pipex), NULL);
+	pipex->env = envp;
 	display_cmds(pipex->cmds);
 	return (pipex);
 }

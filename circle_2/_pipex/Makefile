@@ -6,7 +6,7 @@ INCLUDE_DIR = ./includes
 PF_DIR = $(SRC_DIR)/ft_printf
 LIB_DIR = $(SRC_DIR)/libft
 
-SRC = $(SRC_DIR)/main.c $(UTILS_DIR)/parsing.c $(UTILS_DIR)/free_struct.c
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/pipex.c $(UTILS_DIR)/parsing.c $(UTILS_DIR)/free_struct.c $(UTILS_DIR)/s_process_utils.c $(UTILS_DIR)/utils.c
 
 OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
@@ -14,7 +14,7 @@ HEADERS = $(INCLUDE_DIR)/pipex.h $(INCLUDE_DIR)/utils.h
 LIB_PF = $(PF_DIR)/libftprintf.a
 LIBFT = $(LIB_DIR)/libft.a
 
-CFLAGS = -Wall -Werror -Wextra -I $(INCLUDE_DIR) -I $(PF_DIR) -I $(LIB_DIR) #-fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -I $(INCLUDE_DIR) -I $(PF_DIR) -I $(LIB_DIR) -fsanitize=address -g3
 
 all : $(NAME)
 
