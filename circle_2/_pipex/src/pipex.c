@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:59:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/20 14:04:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/20 15:02:45 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,9 @@ void	wait_for_process(t_pipex **pipex)
 	while (tmp->next->next)
 		tmp = tmp->next;
 	tmp->next = NULL;
-	if (WIFEXITED(status))
-	{
-		close_fd(last->pipefd[0], pipex);
-		close_fd(last->pipefd[1], pipex);
-		free(last);
-	}
+	close_fd(last->pipefd[0], pipex);
+	close_fd(last->pipefd[1], pipex);
+	free(last);
 }
 
 void	pipeline(t_pipex **pipex, int in_fd)
