@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:02:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/17 13:21:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/20 14:20:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ t_cmd	*parse_cmds(int argc, char **argv, char **envp)
 		if (i < argc - 4)
 		{
 			cmds->next = (t_cmd *)malloc(sizeof(t_cmd));
+			if (!cmds->next)
+				return (NULL);
 			cmds = cmds->next;
 		}
 		i++;
@@ -77,24 +79,24 @@ t_cmd	*parse_cmds(int argc, char **argv, char **envp)
 	return (tmp);
 }
 
-void	display_cmds(t_cmd *cmds)
-{
-	int		i;
-	t_cmd	*tmp;
+// void	display_cmds(t_cmd *cmds)
+// {
+// 	int		i;
+// 	t_cmd	*tmp;
 
-	tmp = cmds;
-	while (tmp)
-	{
-		i = 0;
-		while (tmp->cmd[i])
-		{
-			ft_printf(1, "%s ", tmp->cmd[i]);
-			i++;
-		}
-		ft_printf(1, "\n");
-		tmp = tmp->next;
-	}
-}
+// 	tmp = cmds;
+// 	while (tmp)
+// 	{
+// 		i = 0;
+// 		while (tmp->cmd[i])
+// 		{
+// 			ft_printf(1, "%s ", tmp->cmd[i]);
+// 			i++;
+// 		}
+// 		ft_printf(1, "\n");
+// 		tmp = tmp->next;
+// 	}
+// }
 
 t_pipex	*parse(int argc, char **argv, char **envp)
 {
@@ -106,18 +108,17 @@ t_pipex	*parse(int argc, char **argv, char **envp)
 	pipex->cmds = parse_cmds(argc, argv, envp);
 	if (!pipex->cmds)
 		return (free_pipex(&pipex), NULL);
-	pipex->processes = init_process();
+	pipex->first_cmd = pipex->cmds;
+	pipex->processes = init_process(&pipex);
 	if (!pipex->processes)
 		return (free_pipex(&pipex), NULL);
 	pipex->infile = open(argv[1], O_RDONLY);
 	if (pipex->infile < 0)
-		return (ft_printf(2, "pipex: %s: No such file or directory\n", argv[1]),
-			free_pipex(&pipex), NULL);
+		ft_printf(2, "pipex: %s: No such file or directory\n", argv[1]);
 	pipex->outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (pipex->outfile < 0)
-		return (ft_printf(2, "pipex: %s: No such file or directory\n", argv[1]),
+		return (ft_printf(2, "pipex: %s: %s\n", argv[argc - 1], strerror(errno)),
 			free_pipex(&pipex), NULL);
 	pipex->env = envp;
-	display_cmds(pipex->cmds);
 	return (pipex);
 }

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 10:24:24 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/17 12:36:29 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/20 12:56:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_process	*get_last_process(t_pipex **pipex)
 	return (tmp);
 }
 
-t_process	*init_process(void)
+t_process	*init_process(t_pipex **pipex)
 {
 	t_process	*new;
 
 	new = malloc(sizeof(t_process));
 	if (!new)
-		exit_with_error("malloc");
+		exit_with_error("malloc", pipex);
 	new->next = NULL;
 	return (new);
 }
@@ -50,20 +50,16 @@ int	proc_count(t_pipex **pipex)
 
 void	new_process(t_pipex **pipex)
 {
+	(*pipex)->processes->pid = fork();
+	if ((*pipex)->processes->pid == -1)
+		exit_with_error("fork", pipex);
+}
+
+void	next_process(t_pipex **pipex)
+{
 	t_process	*new;
 
-	new = malloc(sizeof(t_process));
-	if (!new)
-		exit_with_error("malloc");
-	new->pid = fork();
-	if (new->pid == -1)
-		exit_with_error("fork");
-	new->next = NULL;
-	if (!(*pipex)->processes)
-		(*pipex)->processes = new;
-	else
-	{
-		new->next = (*pipex)->processes;
-		(*pipex)->processes = new;
-	}
+	new = init_process(pipex);
+	new->next = (*pipex)->processes;
+	(*pipex)->processes = new;
 }
