@@ -1,3 +1,6 @@
+DIRS = $(shell find . -type d -name "_*")
+
+
 : save-all
 
 save-all: save-circle0
@@ -16,7 +19,10 @@ checkout-libft:
 	@echo "checking out libft" 
 	cd circle_0/libft && git checkout main
 
-push:
+fclean_all :
+	for i in $(DIRS); do $(MAKE) -C $$i fclean; done
+
+push: fclean_all
 	@echo "sending those file to github :"
 	@git status -u
 	git add . 
