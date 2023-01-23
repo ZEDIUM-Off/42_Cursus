@@ -10,7 +10,7 @@ SRC = $(SRC_DIR)/main.c $(SRC_DIR)/pipex.c $(UTILS_DIR)/parsing.c $(UTILS_DIR)/f
 
 OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
-HEADERS = $(INCLUDE_DIR)/pipex.h $(INCLUDE_DIR)/utils.h
+HEADERS = $(INCLUDE_DIR)/pipex.h
 LIB_PF = $(PF_DIR)/libftprintf.a
 LIBFT = $(LIB_DIR)/libft.a
 
@@ -24,13 +24,9 @@ test:
 $(NAME) : $(OBJECTS) $(LIBFT) $(LIB_PF) 
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)/utils
-	$(CC) $(CFLAGS) -o $@ -c $<
-
-$(BUILD_DIR)/$(UTILS_DIR)/%.o: $(SRC_DIR)/%.c
-	
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 pf : 

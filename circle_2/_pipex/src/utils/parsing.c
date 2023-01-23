@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:02:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/20 14:20:02 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/23 17:02:29 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_pipex	*parse(int argc, char **argv, char **envp)
 		return (free_pipex(&pipex), NULL);
 	pipex->infile = open(argv[1], O_RDONLY);
 	if (pipex->infile < 0)
-		ft_printf(2, "pipex: %s: No such file or directory\n", argv[1]);
+		ft_printf(2, "pipex: %s: %s\n", argv[1], strerror(errno));
 	pipex->outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (pipex->outfile < 0)
 		return (ft_printf(2, "pipex: %s: %s\n", argv[argc - 1], strerror(errno)),
