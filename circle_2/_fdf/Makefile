@@ -1,5 +1,6 @@
 NAME = fdf
 MLX_DIR = ./mlx
+MLX_LIN_DIR = ./mlx_lin
 BUILD_DIR = build
 SRC_DIR = ./src
 UTILS_DIR = $(SRC_DIR)/utils
@@ -10,6 +11,7 @@ LIB_DIR = $(SRC_DIR)/libft
 LIB_PF = $(PF_DIR)/libftprintf.a
 LIBFT = $(LIB_DIR)/libft.a
 MLX = libmlx.dylib
+MLX_LIN = libmlx.a
 
 SRC = $(SRC_DIR)/main.c
 OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
@@ -23,6 +25,10 @@ all : $(NAME)
 $(NAME) : $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX)
 	$(CC) $(PROG_FLAGS) -o $@ $^
 
+linux: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX_LIN)
+	$(CC) $(PROG_FLAGS) -o $@ $^
+
+
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)/utils
@@ -35,7 +41,7 @@ lib :
 	$(MAKE) -C $(LIB_DIR)
 
 mlibx :
-	$(MAKE) -C $(MLX_DIR) re
+	$(MAKE) -C $(MLX_DIR)
 
 $(LIB_PF): pf
 
