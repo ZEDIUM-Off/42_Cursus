@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2_init.c                                        :+:      :+:    :+:   */
+/*   matrix_op.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 13:54:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:26:08 by  mchenava        ###   ########lyon.fr   */
+/*   Created: 2023/01/30 15:53:57 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/01/30 15:58:16 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "geom.h"
 
-t_vec2	*vec2_init(float x, float y)
+t_mat4	translate(t_vec3	*pos)
 {
-	t_vec2	*vec;
+	t_mat4	res;
 
-	vec = (t_vec2 *)malloc(sizeof(t_vec2));
-	vec->x = x;
-	vec->y = y;
-	return (vec);
+	res = def_mat();
+	res[0][0] = 1;
+	res[1][1] = 1;
+	res[2][2] = 1;
+	res[3][0] = pos->x;
+	res[3][1] = pos->y;
+	res[3][2] = pos->z;
+	res[3][3] = 1;
+	return (res);
 }

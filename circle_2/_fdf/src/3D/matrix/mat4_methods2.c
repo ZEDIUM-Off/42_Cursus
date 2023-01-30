@@ -1,71 +1,75 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4_method2.c                                     :+:      :+:    :+:   */
+/*   mat4_methods2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:35:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/26 11:45:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/30 15:44:36 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "geom.h"
 
-t_mat4	*mat4_inv(t_mat4 *a)
+t_mat4	mat4_inv(t_mat4 *a)
 {
-	t_mat4	*res;
+	t_mat4	res;
 	int		i;
 	int		j;
 
 	i = 0;
-	j = 0;
-	res = malloc(sizeof(t_mat4));
+	res = def_mat();
 	while (i < 4)
 	{
+		j = 0;
 		while (j < 4)
 		{
-			res->m[i][j] = a->m[i][j];
+			res[i][j] = *a[i][j];
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 	return (res);
 }
 
-t_mat4	*transpose(t_mat4 *a)
+t_mat4	mat4_transpose(t_mat4 *a)
 {
-	t_mat4	*res;
+	t_mat4	res;
 	int		i;
 	int		j;
 
 	i = 0;
-	j = 0;
-	res = malloc(sizeof(t_mat4));
+	res = def_mat();
 	while (i < 4)
 	{
+		j = 0;
 		while (j < 4)
 		{
-			res->m[i][j] = a->m[j][i];
+			res[i][j] = *a[j][i];
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 	return (res);
 }
 
-float[]	mat4_get_row(t_mat4 *a, int row)
+t_mat4	mat4_scale(t_mat4 *a, float b)
 {
-	float	*res;
+	t_mat4	res;
 	int		i;
+	int		j;
 
 	i = 0;
-	res = malloc(sizeof(float) * 4);
+	res = def_mat();
 	while (i < 4)
 	{
-		res[i] = a->m[row][i];
+		j = 0;
+		while (j < 4)
+		{
+			res[i][j] = *a[i][j] * b;
+			j++;
+		}
 		i++;
 	}
 	return (res);

@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2_init.c                                        :+:      :+:    :+:   */
+/*   env3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 13:54:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:26:08 by  mchenava        ###   ########lyon.fr   */
+/*   Created: 2023/01/30 10:41:21 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/01/30 13:11:50 by  mchenava        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "geom.h"
+#ifndef ENV3D_H
+# define ENV3D_H
 
-t_vec2	*vec2_init(float x, float y)
+# include "geom.h"
+
+typedef struct s_3d_env	t_3d_env;
+struct s_3d_env
 {
-	t_vec2	*vec;
+	t_vec3	*world;
+	t_mat4	*world_camera;
+	float	screen_width;
+	float	screen_height;
+	float	render_width;
+	float	render_height;
+};
 
-	vec = (t_vec2 *)malloc(sizeof(t_vec2));
-	vec->x = x;
-	vec->y = y;
-	return (vec);
-}
+t_vec2	*compute_pixel(t_3d_env *env);
+
+#endif

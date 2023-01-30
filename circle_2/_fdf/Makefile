@@ -7,9 +7,11 @@ UTILS_DIR = $(SRC_DIR)/utils
 INCLUDE_DIR = ./includes
 PF_DIR = $(SRC_DIR)/ft_printf
 LIB_DIR = $(SRC_DIR)/libft
+3D_DIR = $(SRC_DIR)/3D
 
 LIB_PF = $(PF_DIR)/libftprintf.a
 LIBFT = $(LIB_DIR)/libft.a
+LIB3D = $(3D_DIR)/lib3d.a
 MLX = libmlx.dylib
 MLX_LIN = libmlx.a
 
@@ -18,11 +20,11 @@ OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 # HEADERS = 
 
 PROG_FLAGS = -L/usr/X11/lib -Lmlx -lXext -lX11 -framework OpenGL -framework AppKit
-OBJ_FLAGS = -Wall -Werror -Wextra -I$(MLX_DIR) -I$(INCLUDE_DIR) -I$(PF_DIR) -I$(LIB_DIR)
+OBJ_FLAGS = -Wall -Werror -Wextra -I$(MLX_DIR) -I$(INCLUDE_DIR) -I$(PF_DIR) -I$(LIB_DIR) -I$(3D_DIR)
 
 all : $(NAME)
 
-$(NAME) : $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX)
+$(NAME) : $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX) $(LIB3D)
 	$(CC) $(PROG_FLAGS) -o $@ $^
 
 linux: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX_LIN)
@@ -43,11 +45,16 @@ lib :
 mlibx :
 	$(MAKE) -C $(MLX_DIR)
 
+3d :
+	$(MAKE) -C $(3D_DIR)
+
 $(LIB_PF): pf
 
 $(LIBFT): lib
 
 $(MLX): mlibx
+
+$(LIB3D) : 3d
 
 clean : 
 	$(RM) $(OBJECTS)
