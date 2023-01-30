@@ -6,11 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:41:21 by  mchenava         #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/01/30 15:16:08 by  mchenava        ###   ########.fr       */
-=======
-/*   Updated: 2023/01/30 13:11:50 by  mchenava        ###   ########lyon.fr   */
->>>>>>> 4a409f02528d7e19743c06fea0d2049cb4958230
+/*   Updated: 2023/01/30 15:28:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +26,25 @@ struct s_3d_env
 	float	render_height;
 };
 
-<<<<<<< HEAD
 typedef struct s_camera	t_camera;
-
+struct s_camera
+{
+	t_vec3	*pos;
+	t_vec3	*rot;
+	t_vec3	*forward;
+	t_vec3	*up;
+	t_vec3	*right;
+	float	h_fov;
+	float	v_fov;
+	float	near;
+	float	far;
+	float	aspect_ratio;
+	float	pitch;
+	float	yaw;
+	float	roll;
+	float	move_speed;
+	float	rot_speed;
+};
 
 t_vec2	*compute_pixel(t_3d_env *env);
 
@@ -42,8 +54,4 @@ t_mat4	rotate_x(float angle);
 t_mat4	rotate_y(float angle);
 t_mat4	rotate_z(float angle);
 
-=======
-t_vec2	*compute_pixel(t_3d_env *env);
-
->>>>>>> 4a409f02528d7e19743c06fea0d2049cb4958230
 #endif
