@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:24:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/25 14:24:37 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/30 15:19:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "geom.h"
 
-t_vec3	*vec3_len(t_vec3 *a)
+float	vec3_len(t_vec3 *a)
 {
-	return (a.x * a.x + a.y * a.y + a.z * a.z);
+	return (a->x * a->x + a->y * a->y + a->z * a->z);
 }
