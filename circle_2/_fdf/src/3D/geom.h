@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:08:30 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/26 11:57:12 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/30 14:59:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ struct s_vec2_method
 	t_vec2*	(*mul)(t_vec2*, t_vec2*);
 	t_vec2*	(*div)(t_vec2*, t_vec2*);
 	t_vec2*	(*scale)(t_vec2*, float);
-	t_vec2*	(*inv)(t_vec2*);
+	t_vec2*	(*inv)(t_vec2*
+	);
 	t_vec2*	(*crossp)(t_vec2*, t_vec2*);
 	float		(*dotp)(t_vec2*, t_vec2*);
 	float		(*norm)(t_vec2*);
