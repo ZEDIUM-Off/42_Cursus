@@ -6,11 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:08:30 by  mchenava         #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/01/30 15:17:54 by  mchenava        ###   ########.fr       */
-=======
-/*   Updated: 2023/01/30 15:45:11 by  mchenava        ###   ########lyon.fr   */
->>>>>>> 4a409f02528d7e19743c06fea0d2049cb4958230
+/*   Updated: 2023/01/31 14:02:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +68,6 @@ t_mat4	mat4_div(t_mat4 *a, t_mat4 *b);
 t_mat4	mat4_scale(t_mat4 *a, float b);
 t_mat4	mat4_inv(t_mat4 *a);
 t_mat4	mat4_transpose(t_mat4 *a);
+t_mat4	mat4_new(float mat[4][4]);
 
 #endif

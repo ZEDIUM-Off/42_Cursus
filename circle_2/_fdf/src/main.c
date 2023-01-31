@@ -6,16 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:01:43 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2023/01/31 13:05:09 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <stdio.h>
 #include "env3D.h"
-
-#define WIN_WIDTH 512
-#define WIN_HEIGHT 512
 
 typedef struct s_data
 {

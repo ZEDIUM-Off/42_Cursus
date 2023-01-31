@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:35:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:21:55 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/01/31 12:48:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,27 @@ t_mat4	mat4_scale(t_mat4 *a, float b)
 		while (j < 4)
 		{
 			res[i][j] = *a[i][j] * b;
+			j++;
+		}
+		i++;
+	}
+	return (res);
+}
+
+t_mat4	mat4_new(float mat[4][4])
+{
+	t_mat4	res;
+	int		i;
+	int		j;
+
+	i = 0;
+	res = def_mat();
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			res[i][j] = mat[i][j];
 			j++;
 		}
 		i++;
