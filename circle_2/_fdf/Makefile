@@ -19,13 +19,13 @@ SRC = $(SRC_DIR)/main.c
 OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 # HEADERS = 
 
-PROG_FLAGS = -L/usr/X11/lib -Lmlx -lXext -lX11 -framework OpenGL -framework AppKit
+PROG_FLAGS = -Lmlx -framework OpenGL -framework AppKit
 OBJ_FLAGS = -Wall -Werror -Wextra -I$(MLX_DIR) -I$(INCLUDE_DIR) -I$(PF_DIR) -I$(LIB_DIR) -I$(3D_DIR)
 
 all : $(NAME)
 
 $(NAME) : $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX) $(LIB3D)
-	$(CC) $(PROG_FLAGS) -o $@ $^
+	$(CC) $(PROG_FLAGS) -fsanitize=address -g3 -o $@ $^
 
 linux: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX_LIN)
 	$(CC) $(PROG_FLAGS) -o $@ $^
@@ -61,12 +61,14 @@ clean :
 	$(MAKE) -C $(MLX_DIR) clean
 	$(MAKE) -C $(PF_DIR) clean
 	$(MAKE) -C $(LIB_DIR) clean
+	$(MAKE) -C $(3D_DIR) clean
 
 fclean : clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(PF_DIR) fclean
 	$(MAKE) -C $(LIB_DIR) fclean
 	$(MAKE) -C $(MLX_DIR) fclean
+	$(MAKE) -C $(3D_DIR) fclean
 
 check : 
 	norminette $(SRC) $(HEADERS)

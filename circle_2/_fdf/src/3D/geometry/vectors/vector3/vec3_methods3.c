@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_op.c                                           :+:      :+:    :+:   */
+/*   vec3_methods3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 13:19:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/02 12:12:57 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/01/25 14:24:12 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/02/05 17:24:33 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env3D.h"
+#include "../../geom.h"
 
-t_3d_env	*init_env3D(t_vec4 *cam_pos)
+float	vec3_len(t_vec3 *a)
 {
-	t_3d_env	*env;
-
-	env = (t_3d_env *)malloc(sizeof(t_3d_env));
-	env->cam = cam_init(cam_pos);
-	env->proj = init_proj(env->cam);
-	return (env);
+	return (a->x * a->x + a->y * a->y + a->z * a->z);
 }

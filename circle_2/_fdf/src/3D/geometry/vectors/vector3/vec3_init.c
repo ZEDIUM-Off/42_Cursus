@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2_methods2.c                                    :+:      :+:    :+:   */
+/*   vec3_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 13:52:05 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:22:06 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/01/25 14:24:52 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/02/05 17:24:14 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "geom.h"
+#include "../../geom.h"
 
-t_vec2	*vec2_inv(t_vec2 *a)
+t_vec3	*vec3_init(float x, float y, float z)
 {
-	return (vec2_init(-a->x, -a->y));
-}
+	t_vec3	*vec;
 
-t_vec2	*vec2_crossp(t_vec2 *a, t_vec2 *b)
-{
-	return (vec2_init(a->x * b->y, a->y * b->x));
-}
-
-float	vec2_dotp(t_vec2 *a, t_vec2 *b)
-{
-	return (a->x * b->x + a->y * b->y);
-}
-
-float	vec2_norm(t_vec2 *a)
-{
-	return (sqrt(a->x * a->x + a->y * a->y));
-}
-
-float	vec2_len(t_vec2 *a)
-{
-	return (a->x * a->x + a->y * a->y);
+	vec = (t_vec3 *)malloc(sizeof(t_vec3));
+	vec->x = x;
+	vec->y = y;
+	vec->z = z;
+	return (vec);
 }

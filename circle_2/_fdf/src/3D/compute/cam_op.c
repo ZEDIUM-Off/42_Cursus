@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:29:46 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/31 12:42:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/02 12:09:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env3D.h"
 
-t_mat4	look_at(t_vec3 *cam_pos, t_vec3 *cam_dir, t_vec3 *cam_up)
+/*t_mat4	look_at(t_vec3 *cam_pos, t_vec3 *cam_dir, t_vec3 *cam_up)
 {
 	t_mat4	res;
 	t_vec3	right;
@@ -37,16 +37,21 @@ t_mat4	look_at(t_vec3 *cam_pos, t_vec3 *cam_dir, t_vec3 *cam_up)
 	res[3][2] = -vec3_dot(&forward, cam_pos);
 	res[3][3] = 1;
 	return (res);
-}
+}*/
 
 void	up_cam_axii(t_camera *cam)
 {
 	t_mat4	rot;
-	rot = mat4_mul(rotate_x(cam->pitch), rotate_y(cam->yaw));
+	t_mat4	rotx;
+	t_mat4	roty;
+
+	roty = rotate_y(cam->yaw);
+	rotx = rotate_x(cam->pitch);
+	rot = mat4_mul(rotx, roty);
 	axii_cam(cam);
-	cam->forward = vec3_mul_mat(&rot, &cam->forward);
-	cam->right = vec3_mul_mat(&rot, &cam->right);
-	cam->up = vec3_mul_mat(&rot, &cam->up);
+	cam->forward = vec4_mul_mat(rot, cam->forward);
+	cam->right = vec4_mul_mat(rot, cam->right);
+	cam->up = vec4_mul_mat(rot, cam->up);
 }
 
 void up_cam_yaw(t_camera *cam, float angle)
@@ -61,7 +66,7 @@ void up_cam_pitch(t_camera *cam, float angle)
 
 void axii_cam(t_camera *cam)
 {
-	cam->forward = vec3_init(0, 0, 1);
-	cam->right = vec3_init(1, 0, 0);
-	cam->up = vec3_init(0, 1, 0);
+	cam->forward = vec4_init(0, 0, 1, 1);
+	cam->right = vec4_init(1, 0, 0, 1);
+	cam->up = vec4_init(0, 1, 0, 1);
 }

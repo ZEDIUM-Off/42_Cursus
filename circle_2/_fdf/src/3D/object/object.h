@@ -1,18 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_methods3.c                                    :+:      :+:    :+:   */
+/*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 14:24:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:21:25 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/02/05 17:14:21 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/02/05 17:15:25 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "geom.h"
+#ifndef OBJECT_H
+# define OBJECT_H
 
-float	vec3_len(t_vec3 *a)
+typedef struct s_obj	t_obj;
+typedef struct s_vertex	t_vertex;
+typedef struct s_face  t_face;
+
+struct s_vertex
 {
-	return (a->x * a->x + a->y * a->y + a->z * a->z);
-}
+	t_vec4		*coords;
+	t_vertex	*next;
+	int				index;
+};
+
+struct s_face
+{
+	int				vertices[3];
+  t_face    *next;
+};
+
+struct s_obj
+{
+	char			*name;
+	t_vertex	*vertices;
+	t_face		*faces;
+};
+
+#endif

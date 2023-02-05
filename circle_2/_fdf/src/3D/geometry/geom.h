@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2_init.c                                        :+:      :+:    :+:   */
+/*   geom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 13:54:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:21:59 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/01/25 11:08:30 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/02/05 17:10:20 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "geom.h"
+#ifndef GEOM_H
+# define GEOM_H
 
-t_vec2	*vec2_init(float x, float y)
-{
-	t_vec2	*vec;
+# include <stdlib.h>
+# include <math.h>
+# include <stdio.h>
+# include "vectors/vectors.h"
+# include "matrix/matrix4.h"
 
-	vec = (t_vec2 *)malloc(sizeof(t_vec2));
-	vec->x = x;
-	vec->y = y;
-	return (vec);
-}
+#endif

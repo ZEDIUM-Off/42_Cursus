@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_op.c                                           :+:      :+:    :+:   */
+/*   vec2_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 13:19:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/02 12:12:57 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/01/25 13:54:00 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/02/05 17:23:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env3D.h"
+#include "../../geom.h"
 
-t_3d_env	*init_env3D(t_vec4 *cam_pos)
+t_vec2	*vec2_init(float x, float y)
 {
-	t_3d_env	*env;
+	t_vec2	*vec;
 
-	env = (t_3d_env *)malloc(sizeof(t_3d_env));
-	env->cam = cam_init(cam_pos);
-	env->proj = init_proj(env->cam);
-	return (env);
+	vec = (t_vec2 *)malloc(sizeof(t_vec2));
+	vec->x = x;
+	vec->y = y;
+	return (vec);
 }

@@ -6,22 +6,22 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:43:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/31 13:11:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/03 10:53:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env3D.h"
 
-t_camera	*cam_init(t_vec3 *pos)
+t_camera	*cam_init(t_vec4 *pos)
 {
 	t_camera	*cam;
 
 	cam = (t_camera *)malloc(sizeof(t_camera));
 	cam->pos = pos;
-	cam->forward = vec3_init(0, 0, 1);
-	cam->up = vec3_init(0, 1, 0);
-	cam->right = vec3_init(1, 0, 0);
-	cam->h_fov = M_PI / 2;
+	cam->forward = vec4_init(0, 0, 1, 1);
+	cam->up = vec4_init(0, 1, 0, 1);
+	cam->right = vec4_init(1, 0, 0, 1);
+	cam->h_fov = M_PI / 3;
 	cam->v_fov = cam->h_fov * (WIN_HEIGHT / WIN_WIDTH);
 	cam->near = 0.1;
 	cam->far = 100;
@@ -33,7 +33,7 @@ t_camera	*cam_init(t_vec3 *pos)
 	return (cam);
 }
 
-t_mat4	cam_mat(t_cam *cam)
+t_mat4	cam_mat(t_camera *cam)
 {
 	t_mat4	trans;
 	t_mat4	rot;
@@ -41,10 +41,10 @@ t_mat4	cam_mat(t_cam *cam)
 	up_cam_axii(cam);
 	trans = cam_trans_mat(cam);
 	rot = cam_rot_mat(cam);
-	return (mat4_mul(&trans, &rot));
+	return (mat4_mul(trans, rot));
 }
 
-t_mat4	cam_trans_mat(t_cam *cam)
+t_mat4	cam_trans_mat(t_camera *cam)
 {
 	t_mat4	res;
 
@@ -53,13 +53,13 @@ t_mat4	cam_trans_mat(t_cam *cam)
 	res[1][1] = 1;
 	res[2][2] = 1;
 	res[3][3] = 1;
-	res[3][0] = -cam->pos.x;
-	res[3][1] = -cam->pos.y;
-	res[3][2] = -cam->pos.z;
+	res[3][0] = -cam->pos->x;
+	res[3][1] = -cam->pos->y;
+	res[3][2] = -cam->pos->z;
 	return (res);
 }
 
-t_mat4	cam_rot_mat(t_cam *cam)
+t_mat4	cam_rot_mat(t_camera *cam)
 {
 	t_mat4	res;
 

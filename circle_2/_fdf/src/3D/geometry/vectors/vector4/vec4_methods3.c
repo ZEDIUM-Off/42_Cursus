@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_init.c                                        :+:      :+:    :+:   */
+/*   vec4_methods3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 14:24:52 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:22:10 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/02/02 12:05:33 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/02/05 17:24:58 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "geom.h"
+#include "../../geom.h"
 
-t_vec3	*vec3_init(float x, float y, float z)
+float	vec4_len(t_vec4 *a)
 {
-	t_vec3	*vec;
-
-	vec = (t_vec3 *)malloc(sizeof(t_vec3));
-	vec->x = x;
-	vec->y = y;
-	vec->z = z;
-	return (vec);
+	return (a->x * a->x + a->y * a->y + a->z * a->z + a->w * a->w);
 }

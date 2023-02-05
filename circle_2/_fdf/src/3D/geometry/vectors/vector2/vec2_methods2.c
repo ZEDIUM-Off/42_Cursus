@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_op.c                                           :+:      :+:    :+:   */
+/*   vec2_methods2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 13:19:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/02 12:12:57 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/01/25 13:52:05 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/02/05 17:24:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env3D.h"
+#include "../../geom.h"
 
-t_3d_env	*init_env3D(t_vec4 *cam_pos)
+t_vec2	*vec2_inv(t_vec2 *a)
 {
-	t_3d_env	*env;
+	return (vec2_init(-a->x, -a->y));
+}
 
-	env = (t_3d_env *)malloc(sizeof(t_3d_env));
-	env->cam = cam_init(cam_pos);
-	env->proj = init_proj(env->cam);
-	return (env);
+t_vec2	*vec2_crossp(t_vec2 *a, t_vec2 *b)
+{
+	return (vec2_init(a->x * b->y, a->y * b->x));
+}
+
+float	vec2_dotp(t_vec2 *a, t_vec2 *b)
+{
+	return (a->x * b->x + a->y * b->y);
+}
+
+float	vec2_norm(t_vec2 *a)
+{
+	return (sqrt(a->x * a->x + a->y * a->y));
+}
+
+float	vec2_len(t_vec2 *a)
+{
+	return (a->x * a->x + a->y * a->y);
 }

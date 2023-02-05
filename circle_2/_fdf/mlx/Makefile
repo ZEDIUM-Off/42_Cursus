@@ -21,7 +21,7 @@ $(NAME): $(MODULE_OBJ) $(OBJ) $(C_OBJ)
 	cp $(NAME) ../
 	make clean
 
-%.o: %.swift
+%.o: %.swift 
 	swiftc $(INC) -parse-as-library -c $< -o $@
 
 %.swiftmodule: %.swift

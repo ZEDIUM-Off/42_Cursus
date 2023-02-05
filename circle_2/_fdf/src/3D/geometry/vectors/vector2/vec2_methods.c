@@ -6,11 +6,11 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 13:44:11 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:22:02 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/05 17:23:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "geom.h"
+#include "../../geom.h"
 
 t_vec2	*vec2_add(t_vec2 *a, t_vec2 *b)
 {

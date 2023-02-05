@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/31 13:05:09 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/05 17:27:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	int		i;
 
 	i = data->bits_per_pixel - 8;
-	printf("to draw : x=%d, y=%d \n", x, y);
+	//printf("to draw : x=%d, y=%d \n", x, y);
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	while (i >= 0)
 	{
@@ -46,25 +46,29 @@ int	main(void)
 	void		*mlx;
 	void		*mlx_win;
 	t_data		img;
-	t_3d_env	env;
-	t_vec2		*pixel;
+	t_3d_env	*env;
+	t_vec4	*cube[8];
 
-	env.world = vec3_init(1, 1, 1);
-	printf("env.world init\n");
-	env.world_camera = mat4_init(x);
-	printf("env.world-cam init\n");
-	env.screen_width = 2;
-	env.screen_height = 2;
-	env.render_width = 512;
-	env.render_height = 512;
-	pixel = compute_pixel(&env);
-	printf("coo: x=%f, y=%f\n", pixel->x, pixel->y);
+	env = init_env3D(vec4_init(0, 2, -10, 1));
+	cube[0] = vec4_init(0, 0, 0, 1);
+	cube[1] = vec4_init(0, 0, 1, 1);
+	cube[2] = vec4_init(0, 1, 0, 1);
+	cube[3] = vec4_init(0, 1, 1, 1);
+	cube[4] = vec4_init(1, 0, 0, 1);
+	cube[5] = vec4_init(1, 0, 1, 1);
+	cube[6] = vec4_init(1, 1, 0, 1);
+	cube[7] = vec4_init(1, 1, 1, 1);
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 512, 512, "Hello world!");
-	img.img = mlx_new_image(mlx, 512, 512);
+	mlx_win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
+	img.img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	my_mlx_pixel_put(&img, (int)pixel->x, -(int)pixel->y, 0x00FF0000);
+	for (int i = 0; i < 8; i++)
+	{
+		//cube[i] = vec4_mul_mat(rotate_y(-50),cube[i]);
+		t_vec2 *pixel = proj_point(env, cube[i]);
+		my_mlx_pixel_put(&img, (int)(pixel->x), (int)(pixel->y), 0x00FF0000);
+	}
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }

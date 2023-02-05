@@ -1,10 +1,19 @@
 NAME = lib3d.a
 
-MAT_SRC =  matrix/mat4_methods.c matrix/mat4_methods2.c
-VEC2_SRC = vector2/vec2_methods.c vector2/vec2_methods2.c vector2/vec2_init.c
-VEC3_SRC = vector3/vec3_methods.c vector3/vec3_methods2.c vector3/vec3_methods3.c vector3/vec3_init.c
+GEOM_DIR = geometry
+MAT_DIR = $(GEOM_DIR)/matrix
+VEC_DIR = $(GEOM_DIR)/vectors
+VEC2_DIR = $(VEC_DIR)/vector2
+VEC3_DIR = $(VEC_DIR)/vector3
+VEC4_DIR = $(VEC_DIR)/vector4
 
-SRC = $(MAT_SRC) $(VEC2_SRC) $(VEC3_SRC) compute.c
+MAT_SRC =  $(MAT_DIR)/mat4_methods.c $(MAT_DIR)/mat4_methods2.c
+VEC2_SRC = $(VEC2_DIR)/vec2_methods.c $(VEC2_DIR)/vec2_methods2.c $(VEC2_DIR)/vec2_init.c
+VEC3_SRC = $(VEC3_DIR)/vec3_methods.c $(VEC3_DIR)/vec3_methods2.c $(VEC3_DIR)/vec3_methods3.c $(VEC3_DIR)/vec3_init.c
+VEC4_SRC = $(VEC4_DIR)/vec4_methods.c $(VEC4_DIR)/vec4_methods2.c $(VEC4_DIR)/vec4_methods3.c $(VEC4_DIR)/vec4_init.c
+COMP_SRC = compute/cam_op.c compute/cam_op2.c compute/env_op.c compute/matrix_op.c compute/proj_op.c
+
+SRC = $(MAT_SRC) $(VEC2_SRC) $(VEC3_SRC) $(VEC4_SRC) $(COMP_SRC) 
 HEADERS = geom.h env3D.h
 
 OBJECTS = $(SRC:%.c=%.o)

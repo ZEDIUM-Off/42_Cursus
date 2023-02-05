@@ -6,11 +6,11 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:53:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/30 15:21:36 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/02 16:41:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "geom.h"
+#include "env3D.h"
 
 t_mat4	translate(t_vec3	*pos)
 {
@@ -56,7 +56,6 @@ t_mat4	rotate_x(float angle)
 t_mat4	rotate_y(float angle)
 {
 	t_mat4	res;
-
 	res = def_mat();
 	res[0][0] = cos(angle);
 	res[0][2] = -sin(angle);
