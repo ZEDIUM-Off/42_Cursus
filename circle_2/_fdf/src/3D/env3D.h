@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:41:21 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/05 17:16:09 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/06 14:11:20 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include "geometry/geom.h"
 # include "object/object.h"
 # include <stdio.h>
-
-#	define WIN_WIDTH 1600.00
-#	define WIN_HEIGHT 900.00
 
 
 typedef struct s_3d_env	t_3d_env;
@@ -57,7 +54,7 @@ struct s_projection
 	t_mat4  view_matrix;
 };
 
-t_3d_env	*init_env3D(t_vec4 *cam_pos);
+t_3d_env	*init_env3D(t_vec4 *cam_pos, float w_w, float w_h);
 
 t_mat4	translate(t_vec3	*pos);
 t_mat4	scale(float scale);
@@ -65,10 +62,10 @@ t_mat4	rotate_x(float angle);
 t_mat4	rotate_y(float angle);
 t_mat4	rotate_z(float angle);
 
-t_projection	*init_proj(t_camera *cam);
+t_projection	*init_proj(t_camera *cam, float w_w, float w_h);
 t_vec2	*proj_point(t_3d_env *env, t_vec4 *point);
 
-t_camera	*cam_init(t_vec4 *pos);
+t_camera	*cam_init(t_vec4 *pos, float w_w, float w_h);
 t_mat4	cam_mat(t_camera *cam);
 t_mat4	cam_trans_mat(t_camera *cam);
 t_mat4	cam_rot_mat(t_camera *cam);

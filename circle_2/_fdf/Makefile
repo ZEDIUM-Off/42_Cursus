@@ -15,13 +15,13 @@ LIB3D = $(3D_DIR)/lib3d.a
 MLX = libmlx.dylib
 MLX_LIN = $(MLX_LIN_DIR)/libmlx.a
 
-SRC = $(SRC_DIR)/main.c
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/mlx_use/display/init_win.c $(SRC_DIR)/mlx_use/display/update_img.c $(SRC_DIR)/mlx_use/hooks/hooks.c
 OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 # HEADERS = 
 
 OSX_FLAGS = -Lmlx -framework OpenGL -framework AppKit
-LIN_FLAGS = -Lmlx -lXext -lX11 -lm
-OBJ_FLAGS = -Wall -Werror -Wextra -I$(MLX_DIR) -I$(INCLUDE_DIR) -I$(PF_DIR) -I$(LIB_DIR) -I$(3D_DIR)
+LIN_FLAGS = -Lmlx-linux -lXext -lX11 -lm -I$(MLX_LIN_DIR)
+OBJ_FLAGS = -Wall -Werror -Wextra -I$(MLX_LIN_DIR) -I$(INCLUDE_DIR) -I$(PF_DIR) -I$(LIB_DIR) -I$(3D_DIR)
 
 all : $(NAME)
 
@@ -77,7 +77,7 @@ fclean : clean
 	$(MAKE) -C $(PF_DIR) fclean
 	$(MAKE) -C $(LIB_DIR) fclean
 	$(MAKE) -C $(MLX_OSX_DIR) fclean
-	$(MAKE) -C $(MLX_LIN_DIR) fclean
+	# $(MAKE) -C $(MLX_LIN_DIR) fclean
 	$(MAKE) -C $(3D_DIR) fclean
 
 check : 
