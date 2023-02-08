@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:41:21 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/06 14:11:20 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/08 12:38:50 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ typedef struct s_projection	t_projection;
 
 struct s_3d_env
 {
-	t_camera	*cam;
+	t_camera		*cam;
 	t_projection	*proj;
-	t_obj		**obj;
+	t_obj			**objs;
 };
 
 struct s_camera

@@ -15,7 +15,7 @@ LIB3D = $(3D_DIR)/lib3d.a
 MLX = libmlx.dylib
 MLX_LIN = $(MLX_LIN_DIR)/libmlx.a
 
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/mlx_use/display/init_win.c $(SRC_DIR)/mlx_use/display/update_img.c $(SRC_DIR)/mlx_use/hooks/hooks.c
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/mlx_use/display/init_win.c $(SRC_DIR)/mlx_use/display/update_img.c $(SRC_DIR)/mlx_use/hooks/hooks.c $(SRC_DIR)/mlx_use/drawing/draw.c
 OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 # HEADERS = 
 
