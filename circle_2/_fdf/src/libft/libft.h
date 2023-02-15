@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:36:51 by mchenava          #+#    #+#             */
-/*   Updated: 2023/01/16 10:16:03 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/08 13:57:57 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ long	ft_atoi(const char *nptr);
 int		ft_count_words(char const *str, char sep);
 int		ft_lstsize(t_list *lst);
 int		ft_tablen(char **tab);
+int		ft_abs(int n);
 
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:43:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/13 11:54:44 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/15 23:55:04 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ t_camera	*cam_init(t_vec4 *pos, float w_w, float w_h)
 
 	cam = (t_camera *)malloc(sizeof(t_camera));
 	cam->pos = pos;
-	cam->forward = vec4_init(0, 0, 1, 1);
-	cam->up = vec4_init(0, 1, 0, 1);
-	cam->right = vec4_init(1, 0, 0, 1);
-	cam->h_fov = M_PI / 3;
-	cam->v_fov = cam->h_fov * (w_h / w_w);
+	cam->dir = vec4_init(1, 0, 0, 1);
+	cam->right = vec4_init(0, 1, 0, 1);
+	cam->up = vec4_init(0, 0, 1, 1);
+	cam->fov = M_PI / 3;
 	cam->aspect_ratio = w_w / w_h;
 	cam->near = 0.1;
-	cam->far = 100;
+	cam->far = 1000;
 	cam->move_speed = 0.3;
 	cam->rot_speed = 0.025;
 	cam->pitch = 0;
 	cam->yaw = 0;
 	cam->roll = 0;
+	cam->cam_mat = cam_mat(cam);
 	return (cam);
 }
 
@@ -71,10 +71,9 @@ t_mat4	cam_rot_mat(t_camera *cam)
 	res[0][1] = cam->up->x;
 	res[1][1] = cam->up->y;
 	res[2][1] = cam->up->z;
-	res[0][2] = cam->forward->x;
-	res[1][2] = cam->forward->y;
-	res[2][2] = cam->forward->z;
+	res[0][2] = cam->dir->x;
+	res[1][2] = cam->dir->y;
+	res[2][2] = cam->dir->z;
 	res[3][3] = 1;
 	return (res);
 }
-

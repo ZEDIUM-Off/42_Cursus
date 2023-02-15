@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 17:14:21 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/05 17:15:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/08 12:36:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,27 @@
 
 typedef struct s_obj	t_obj;
 typedef struct s_vertex	t_vertex;
-typedef struct s_face  t_face;
+typedef struct s_edge	t_edge;
 
 struct s_vertex
 {
 	t_vec4		*coords;
 	t_vertex	*next;
-	int				index;
+	int			index;
 };
 
-struct s_face
+struct s_edge
 {
-	int				vertices[3];
-  t_face    *next;
+	t_vec4	*start;
+	t_vec4	*end;
+	t_edge	*next;
 };
 
 struct s_obj
 {
 	char			*name;
-	t_vertex	*vertices;
-	t_face		*faces;
+	t_vertex		*vertices;
+	t_edge			*edges;
 };
 
 #endif
