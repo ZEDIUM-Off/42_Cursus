@@ -18,7 +18,7 @@ HEADERS = geom.h env3D.h
 
 OBJECTS = $(SRC:%.c=%.o)
 
-CFLAGS = -Wall -Werror -Wextra -I .
+CFLAGS = -Wall -Werror -Wextra -I . -fsanitize=address -g3
 
 $(NAME) : $(OBJECTS) 
 	ar rc $@ $^

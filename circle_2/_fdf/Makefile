@@ -19,9 +19,9 @@ SRC = $(SRC_DIR)/main.c $(SRC_DIR)/mlx_use/display/init_win.c $(SRC_DIR)/mlx_use
 OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 # HEADERS = 
 
-OSX_FLAGS = -Lmlx -framework OpenGL -framework AppKit
-LIN_FLAGS = -Lmlx-linux -lXext -lX11 -lm -I$(MLX_LIN_DIR)
-OBJ_FLAGS = -Wall -Werror -Wextra -I$(MLX_LIN_DIR) -I$(INCLUDE_DIR) -I$(PF_DIR) -I$(LIB_DIR) -I$(3D_DIR)
+OSX_FLAGS = -L$(MLX_OSX_DIR) -framework OpenGL -framework AppKit
+LIN_FLAGS = -L$(MLX_LIN_DIR) -lXext -lX11 -lm -I$(MLX_LIN_DIR)
+OBJ_FLAGS = -Wall -Werror -Wextra -I$(MLX_LIN_DIR) -I$(INCLUDE_DIR) -I$(PF_DIR) -I$(LIB_DIR) -I$(3D_DIR) -fsanitize=address -g3
 
 all : $(NAME)
 

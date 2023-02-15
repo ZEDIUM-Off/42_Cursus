@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/08 16:00:50 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/15 11:12:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,36 @@ void	pixel_put(t_mlx_env	*env, int x, int y, int color)
 			*dst++ = (color >> (env->bpp - 8 - i)) & 0xFF;
 		i -= 8;
 	}
+}
+
+t_obj	*def_grid(int x, int y)
+{
+	t_obj		*obj;
+	t_vertex	*vertex;
+	int			i;
+	int			j;
+
+	obj = malloc(sizeof(t_obj));
+	vertex = malloc(sizeof(t_vertex));
+	obj->vertices = vertex;
+	i = 0;
+	while (i < x)
+	{
+		j = 0;
+		while (j < y)
+		{
+			vertex->coords = vec4_init(j - x / 2, 0, i - y / 2, 1);
+			if (i == x - 1 && j == y - 1)
+				vertex->next = NULL;
+			else
+				vertex->next = malloc(sizeof(t_vertex));
+			vertex = vertex->next;
+			j++;
+		}
+		i++;
+	}
+	obj->edges = NULL;
+	return (obj);
 }
 
 int	main(void)
@@ -77,9 +107,10 @@ int	main(void)
 	obj->edges->next->next->next->next->next->next->start = obj->vertices->next->next->next->next->next->next->coords;
 	obj->edges->next->next->next->next->next->next->end = obj->vertices->next->next->next->next->next->next->next->coords;
 	obj->edges->next->next->next->next->next->next->next = NULL;
-	mlx_env->env3d->objs = malloc(sizeof(t_obj *) * 2);
+	mlx_env->env3d->objs = malloc(sizeof(t_obj *) * 3);
 	mlx_env->env3d->objs[0] = obj;
-	mlx_env->env3d->objs[1] = NULL;
+	mlx_env->env3d->objs[1] = def_grid(10, 10);
+	mlx_env->env3d->objs[2] = NULL;
 	update_img(mlx_env);
 	mlx_hook(mlx_env->win, 2, 1L << 0, &cam_controls, &mlx_env);
 	mlx_loop(mlx_env->mlx);

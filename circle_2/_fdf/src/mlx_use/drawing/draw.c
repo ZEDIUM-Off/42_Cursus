@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:59:13 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/08 16:01:32 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/15 11:06:25 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,27 +69,28 @@ void	draw_edge(t_mlx_env *mlx_env,
 void	draw_object(t_mlx_env *mlx_env, t_obj *object)
 {
 	t_vec2		*point;
-	// t_vec2		*point1;
-	// t_vec2		*point2;
+	t_vec2		*point1;
+	t_vec2		*point2;
 	t_vertex	*tempv;
-	// t_edge		*tempe;
+	t_edge		*tempe;
 
 	tempv = object->vertices;
-	// tempe = object->edges;
-	draw_vertex(mlx_env, proj_point(mlx_env->env3d, vec4_init(0, 0, 0, 1)), 0x00FF0000);
+	tempe = object->edges;
+	// point = proj_point(mlx_env->env3d, get_cam_dir(mlx_env->env3d->cam));
+	// draw_vertex(mlx_env, point, 0x00FF0000);
 	while (tempv)
 	{
 		point = proj_point(mlx_env->env3d, tempv->coords);
 		draw_vertex(mlx_env, point, 0x0000FF00);
 		tempv = tempv->next;
 	}
-	// while (tempe)
-	// {
-	// 	point1 = proj_point(mlx_env->env3d, tempe->start);
-	// 	point2 = proj_point(mlx_env->env3d, tempe->end);
-	// 	draw_edge(mlx_env, point1, point2, 0x00FF0000);
-	// 	tempe = tempe->next;
-	// }
+	while (tempe)
+	{
+		point1 = proj_point(mlx_env->env3d, tempe->start);
+		point2 = proj_point(mlx_env->env3d, tempe->end);
+		draw_edge(mlx_env, point1, point2, 0x00FF0000);
+		tempe = tempe->next;
+	}
 	// free(point);
 	// free(point1);
 	// free(point2);
