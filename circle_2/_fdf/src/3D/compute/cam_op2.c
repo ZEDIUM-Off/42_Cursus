@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:43:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/06 16:25:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/13 11:54:44 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_camera	*cam_init(t_vec4 *pos, float w_w, float w_h)
 	cam->right = vec4_init(1, 0, 0, 1);
 	cam->h_fov = M_PI / 3;
 	cam->v_fov = cam->h_fov * (w_h / w_w);
+	cam->aspect_ratio = w_w / w_h;
 	cam->near = 0.1;
 	cam->far = 100;
 	cam->move_speed = 0.3;

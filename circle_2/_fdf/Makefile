@@ -67,7 +67,7 @@ $(LIB3D) : 3d
 clean : 
 	$(RM) $(OBJECTS)
 	$(MAKE) -C $(MLX_OSX_DIR) clean
-	$(MAKE) -C $(MLX_LIN_DIR) clean
+	#$(MAKE) -C $(MLX_LIN_DIR) clean
 	$(MAKE) -C $(PF_DIR) clean
 	$(MAKE) -C $(LIB_DIR) clean
 	$(MAKE) -C $(3D_DIR) clean
