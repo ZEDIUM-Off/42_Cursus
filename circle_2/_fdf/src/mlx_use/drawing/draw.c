@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:59:13 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/15 11:06:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/16 12:16:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ void	draw_object(t_mlx_env *mlx_env, t_obj *object)
 	// draw_vertex(mlx_env, point, 0x00FF0000);
 	while (tempv)
 	{
-		point = proj_point(mlx_env->env3d, tempv->coords);
+		point = proj_point(mlx_env->env3d, tempv->coords, WIN_WIDTH, WIN_HEIGHT);
 		draw_vertex(mlx_env, point, 0x0000FF00);
 		tempv = tempv->next;
 	}
 	while (tempe)
 	{
-		point1 = proj_point(mlx_env->env3d, tempe->start);
-		point2 = proj_point(mlx_env->env3d, tempe->end);
+		point1 = proj_point(mlx_env->env3d, tempe->start, WIN_WIDTH, WIN_HEIGHT);
+		point2 = proj_point(mlx_env->env3d, tempe->end, WIN_WIDTH, WIN_HEIGHT);
 		draw_edge(mlx_env, point1, point2, 0x00FF0000);
 		tempe = tempe->next;
 	}

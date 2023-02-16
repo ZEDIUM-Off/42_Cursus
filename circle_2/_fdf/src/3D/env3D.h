@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:41:21 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/15 16:31:38 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/16 12:15:44 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,19 @@ t_mat4			rotate_y(float angle);
 t_mat4			rotate_z(float angle);
 
 t_projection	*init_proj(t_camera *cam, float w_w, float w_h);
-t_vec2			*proj_point(t_3d_env *env, t_vec4 *point);
+t_vec2	*proj_point(t_3d_env *env, t_vec4 *point, float w_w, float w_h);
 
 t_camera		*cam_init(t_vec4 *pos, float w_w, float w_h);
 t_mat4			cam_mat(t_camera *cam);
 t_mat4			cam_trans_mat(t_camera *cam);
 t_mat4			cam_rot_mat(t_camera *cam);
+t_mat4			look_at(t_vec4 *eye, t_vec4 *target, t_vec4 *up);
 void			up_cam_axii(t_camera *cam);
 void			up_cam_yaw(t_camera *cam, float angle);
 void			up_cam_pitch(t_camera *cam, float angle);
 void			axii_cam(t_camera *cam);
+void			up_cam_vec(t_camera *cam);
 t_vec4			*get_cam_dir(t_camera *cam);
+float			deg_to_rad(float angle);
 
 #endif

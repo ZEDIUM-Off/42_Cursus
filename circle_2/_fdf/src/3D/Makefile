@@ -11,7 +11,7 @@ MAT_SRC =  $(MAT_DIR)/mat4_methods.c $(MAT_DIR)/mat4_methods2.c
 VEC2_SRC = $(VEC2_DIR)/vec2_methods.c $(VEC2_DIR)/vec2_methods2.c $(VEC2_DIR)/vec2_init.c
 VEC3_SRC = $(VEC3_DIR)/vec3_methods.c $(VEC3_DIR)/vec3_methods2.c $(VEC3_DIR)/vec3_methods3.c $(VEC3_DIR)/vec3_init.c
 VEC4_SRC = $(VEC4_DIR)/vec4_methods.c $(VEC4_DIR)/vec4_methods2.c $(VEC4_DIR)/vec4_methods3.c $(VEC4_DIR)/vec4_init.c
-COMP_SRC = compute/cam_op.c compute/cam_op2.c compute/env_op.c compute/matrix_op.c compute/proj_op.c
+COMP_SRC = compute/cam_op.c compute/cam_op2.c compute/env_op.c compute/matrix_op.c compute/proj_op.c compute/math_op.c
 
 SRC = $(MAT_SRC) $(VEC2_SRC) $(VEC3_SRC) $(VEC4_SRC) $(COMP_SRC) 
 HEADERS = geom.h env3D.h

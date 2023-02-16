@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:56:21 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/15 23:57:50 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/16 12:22:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_projection	*init_proj(t_camera *cam, float w_w, float w_h)
 	return (proj);
 }
 
-t_vec2	*proj_point(t_3d_env *env, t_vec4 *point)
+t_vec2	*proj_point(t_3d_env *env, t_vec4 *point, float w_w, float w_h)
 {
 	float	x;
 	float	y;
@@ -75,9 +75,12 @@ t_vec2	*proj_point(t_3d_env *env, t_vec4 *point)
 	proj_point->y /= proj_point->w;
 	proj_point->z /= proj_point->w;
 	proj_point->w /= proj_point->w;
-	proj_point = vec4_mul_mat(env->proj->view_matrix, proj_point);
-	x = proj_point->x;
-	y = proj_point->y;
+
+
+	// printf("3proj_point: %f, %f, %f, %f | \n", proj_point->x, proj_point->y, proj_point->z, proj_point->w);
+	proj_point = vec4_scale(proj_point, 0.5);
+	x = (proj_point->x + 0.5) * w_w;
+	y = (proj_point->y + 0.5) * w_h;
 	free(proj_point);
 	return (vec2_init(x, y));
 }
