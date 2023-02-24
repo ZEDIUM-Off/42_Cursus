@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:29:46 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/16 11:38:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/22 11:01:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	up_cam_vec(t_camera *cam)
 	cam->dir->z = sin(deg_to_rad(cam->yaw)) * cos(deg_to_rad(cam->pitch));
 	cam->dir->w = 1;
 	cam->dir = vec4_norm(cam->dir);
-	cam->right = vec4_norm(vec4_crossp(cam->dir, vec4_init(0, 1, 0, 1)));
-	cam->up = vec4_norm(vec4_crossp(cam->right, cam->dir));
+	cam->right = vec4_norm(vec4_cross(cam->dir, vec4_init(0, 1, 0, 1)));
+	cam->up = vec4_norm(vec4_cross(cam->right, cam->dir));
 }
 
 void	up_cam_yaw(t_camera *cam, float angle)

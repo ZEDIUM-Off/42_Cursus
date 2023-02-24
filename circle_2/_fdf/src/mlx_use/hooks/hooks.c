@@ -6,27 +6,26 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:47:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/16 11:28:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/22 11:01:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 #include <env3D.h>
 
-/*t_vec4	*perp_dir(t_camera *cam)
+t_vec4	*perp_dir(t_camera *cam)
 {
-	return (vec4_crossp(cam->forward, cam->up));
+	return (vec4_cross(cam->dir, cam->up));
 }
-
 void	cam_move_pos(int key, t_mlx_env **env)
 {
-	// printf("cam forward: %f, %f, %f \n", (*env)->env3d->cam->forward->x, (*env)->env3d->cam->forward->y, (*env)->env3d->cam->forward->z);
+	// printf("cam dir: %f, %f, %f \n", (*env)->env3d->cam->dir->x, (*env)->env3d->cam->dir->y, (*env)->env3d->cam->dir->z);
 	if (key == XK_w)
 		(*env)->env3d->cam->pos = vec4_add((*env)->env3d->cam->pos,
-				vec4_scale((*env)->env3d->cam->forward, (*env)->env3d->cam->move_speed));
+				vec4_scale((*env)->env3d->cam->dir, (*env)->env3d->cam->move_speed));
 	if (key == XK_s)
 		(*env)->env3d->cam->pos = vec4_sub((*env)->env3d->cam->pos,
-				vec4_scale((*env)->env3d->cam->forward, (*env)->env3d->cam->move_speed));
+				vec4_scale((*env)->env3d->cam->dir, (*env)->env3d->cam->move_speed));
 	if (key == XK_a)
 		(*env)->env3d->cam->pos = vec4_add((*env)->env3d->cam->pos,
 				vec4_scale(perp_dir((*env)->env3d->cam), (*env)->env3d->cam->move_speed));
@@ -60,14 +59,14 @@ int	cam_controls(int key, t_mlx_env **env)
 	update_img(*env);
 	return (0);
 }
-
+/*
 int cam_controls(int key, t_mlx_env **env)
 {
 	printf("key pressed : %d \n", key);
 	if (key == 13)
-		(*env)->env3d->cam->pos = vec4_add((*env)->env3d->cam->pos, vec4_scale((*env)->env3d->cam->forward,(*env)->env3d->cam->move_speed));
+		(*env)->env3d->cam->pos = vec4_add((*env)->env3d->cam->pos, vec4_scale((*env)->env3d->cam->dir,(*env)->env3d->cam->move_speed));
 	if (key == 1)
-		(*env)->env3d->cam->pos = vec4_sub((*env)->env3d->cam->pos, vec4_scale((*env)->env3d->cam->forward,(*env)->env3d->cam->move_speed));
+		(*env)->env3d->cam->pos = vec4_sub((*env)->env3d->cam->pos, vec4_scale((*env)->env3d->cam->dir,(*env)->env3d->cam->move_speed));
 	if (key == 0)
 		(*env)->env3d->cam->pos = vec4_sub((*env)->env3d->cam->pos, vec4_scale((*env)->env3d->cam->right,(*env)->env3d->cam->move_speed));
 	if (key == 2)
@@ -86,7 +85,7 @@ int cam_controls(int key, t_mlx_env **env)
 		up_cam_yaw((*env)->env3d->cam, (*env)->env3d->cam->rot_speed);
 	update_img(*env, (*env)->cube);
 	return (0);
-}*/
+}
 
 int cam_controls(int key, t_mlx_env **env)
 {
@@ -114,4 +113,4 @@ int cam_controls(int key, t_mlx_env **env)
 	up_cam_vec((*env)->env3d->cam);
 	update_img(*env);
 	return (0);
-}
+}*/

@@ -6,21 +6,21 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:43:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/16 12:24:14 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/22 11:00:45 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env3D.h"
 
-t_camera	*cam_init(t_vec4 *pos, float w_w, float w_h)
+t_camera	*cam_init(t_vec4 *pos, t_vec4 *target, float w_w, float w_h)
 {
 	t_camera	*cam;
 
 	cam = (t_camera *)malloc(sizeof(t_camera));
 	cam->pos = pos;
-	cam->dir = vec4_init(1, 0, 0, 1);
-	cam->up = vec4_init(0, 1, 0, 1);
-	cam->right = vec4_init(0, 1, 0, 1);
+	cam->dir = vec4_norm(vec4_sub(pos, target));
+	cam->right = vec4_norm(vec4_cross(vec4_init(0, 1, 0, 1), cam->dir));
+	cam->up = vec4_cross(cam->dir, cam->right);
 	cam->fov = 45;
 	cam->aspect_ratio = w_w / w_h;
 	cam->near = 0.1;
@@ -36,14 +36,14 @@ t_camera	*cam_init(t_vec4 *pos, float w_w, float w_h)
 
 t_mat4	look_at(t_vec4 *eye, t_vec4 *target, t_vec4 *up)
 {
-	t_vec4 *zaxis;
-	t_vec4 *xaxis;
-	t_vec4 *yaxis;
-	t_mat4 res;
+	t_vec4	*zaxis;
+	t_vec4	*xaxis;
+	t_vec4	*yaxis;
+	t_mat4	res;
 
 	zaxis = vec4_norm(vec4_sub(eye, target));
-	xaxis = vec4_norm(vec4_crossp(up, zaxis));
-	yaxis = vec4_crossp(zaxis, xaxis);
+	xaxis = vec4_norm(vec4_cross(up, zaxis));
+	yaxis = vec4_cross(zaxis, xaxis);
 	res = def_mat();
 	res[0][0] = xaxis->x;
 	res[1][0] = xaxis->y;
@@ -54,9 +54,9 @@ t_mat4	look_at(t_vec4 *eye, t_vec4 *target, t_vec4 *up)
 	res[0][2] = zaxis->x;
 	res[1][2] = zaxis->y;
 	res[2][2] = zaxis->z;
-	res[3][0] = -vec4_dotp(xaxis, eye);
-	res[3][1] = -vec4_dotp(yaxis, eye);
-	res[3][2] = -vec4_dotp(zaxis, eye);
+	res[3][0] = -vec4_dot(xaxis, eye);
+	res[3][1] = -vec4_dot(yaxis, eye);
+	res[3][2] = -vec4_dot(zaxis, eye);
 	res[3][3] = 1;
 	return (res);
 }

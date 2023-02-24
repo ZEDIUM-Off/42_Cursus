@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 17:07:48 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/10 11:55:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/22 11:00:07 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ t_vec4	*vec4_mul(t_vec4 *a, t_vec4 *b);
 t_vec4	*vec4_div(t_vec4 *a, t_vec4 *b);
 t_vec4	*vec4_scale(t_vec4 *a, float b);
 t_vec4	*vec4_inv(t_vec4 *a);
-t_vec4	*vec4_crossp(t_vec4 *a, t_vec4 *b);
+t_vec4	*vec4_cross(t_vec4 *a, t_vec4 *b);
 t_vec4	*vec4_mul_mat(t_mat4 m, t_vec4 *v);
 t_vec4	*vec4_norm(t_vec4 *a);
-float	vec4_dotp(t_vec4 *a, t_vec4 *b);
+float	vec4_dot(t_vec4 *a, t_vec4 *b);
 float	vec4_len(t_vec4 *a);
 
 #endif

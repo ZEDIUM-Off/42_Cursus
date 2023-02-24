@@ -1,0 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_modes_base.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/24 13:44:11 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/02/24 14:45:38 by  mchenava        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <lite_gl.h>
+
+void	point_mode(GLint first, GLsizei count)
+{
+	int	i;
+	int	vert;
+
+	i = first;
+	vert = 0;
+	while (i < first + count)
+	{
+		c->glverts.a[vert].screen_space = mult_mat4_vec4(c->vp_mat,
+				c->glverts.a[vert].clip_space);
+		draw_point(&c->glverts.a[vert]);
+		i++;
+		vert++;
+	}
+}
+
+void	line_mode(GLint first, GLsizei count)
+{
+	int	i;
+	int	vert;
+
+	i = first;
+	vert = 0;
+	while (i < first + count - 1)
+	{
+		draw_line_clip(&c->glverts.a[vert], &c->glverts.a[vert + 1]);
+		i += 2;
+		vert += 2;
+	}
+}
+
+void	triangle_mode(GLint first, GLsizei count)
+{
+	int	i;
+	int	vert;
+	int	provoke;
+
+	i = first;
+	vert = 0;
+	provoke = 0;
+	if (c->provoking_vert == GL_LAST_VERTEX_CONVENTION)
+		provoke = 2;
+	while (i < first + count - 2)
+	{
+		draw_triangle_clip(&c->glverts.a[vert],
+			&c->glverts.a[vert + 1], &c->glverts.a[vert + 2], vert + provoke);
+		i += 3;
+		vert += 3;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 12:04:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/15 11:04:36 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/22 11:00:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_vec4	*vec4_inv(t_vec4 *a)
 	return (vec4_init(-a->x, -a->y, -a->z, -a->w));
 }
 
-t_vec4	*vec4_crossp(t_vec4 *a, t_vec4 *b)
+t_vec4	*vec4_cross(t_vec4 *a, t_vec4 *b)
 {
 	return (vec4_init(a->y * b->z - a->z * b->y,
 			a->z * b->x - a->x * b->z, a->x * b->y - a->y * b->x, 1));
@@ -32,7 +32,7 @@ t_vec4	*vec4_mul_mat(t_mat4 m, t_vec4 *v)
 			m[0][3] * v->x + m[1][3] * v->y + m[2][3] * v->z + m[3][3] * v->w));
 }
 
-float	vec4_dotp(t_vec4 *a, t_vec4 *b)
+float	vec4_dot(t_vec4 *a, t_vec4 *b)
 {
 	return (a->x * b->x + a->y * b->y + a->z * b->z + a->w * b->w);
 }
