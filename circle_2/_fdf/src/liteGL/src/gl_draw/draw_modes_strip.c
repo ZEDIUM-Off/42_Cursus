@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:45:41 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/24 14:00:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/27 15:39:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lite_gl.h>
 
-void	line_strip_mode(GLint first, GLsizei count)
+void	line_strip_mode(t_gl_int first, t_gl_sizei count)
 {
 	int	i;
 	int	vert;
@@ -27,7 +27,7 @@ void	line_strip_mode(GLint first, GLsizei count)
 	}
 }
 
-void	line_loop_mode(GLint first, GLsizei count)
+void	line_loop_mode(t_gl_int first, t_gl_sizei count)
 {
 	int	i;
 	int	vert;
@@ -43,7 +43,7 @@ void	line_loop_mode(GLint first, GLsizei count)
 	draw_line_clip(&c->glverts.a[count - 1], &c->glverts.a[0]);
 }
 
-void	triangle_strip_mode(GLsizei count)
+void	triangle_strip_mode(t_gl_sizei count)
 {
 	int	vert;
 	int	provoke;
@@ -70,7 +70,7 @@ void	triangle_strip_mode(GLsizei count)
 	}
 }
 
-void	triangle_fan_mode(GLsizei count)
+void	triangle_fan_mode(t_gl_sizei count)
 {
 	int	vert;
 	int	provoke;

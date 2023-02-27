@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:17:27 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/24 14:00:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/27 15:39:29 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lite_gl.h>
 
-void	run_pipeline(GLenum mode, GLint first, GLsizei count)
+void	run_pipeline(t_gl_enum mode, t_gl_int first, t_gl_sizei count)
 {
 	int	i;
 	int	vert;
@@ -35,7 +35,7 @@ void	run_pipeline(GLenum mode, GLint first, GLsizei count)
 		triangle_fan_mode(count);
 }
 
-void	gl_draw_arrays(GLenum mode, GLint first, GLsizei count)
+void	gl_draw_arrays(t_gl_enum mode, t_gl_int first, t_gl_sizei count)
 {
 	if (mode < GL_POINTS || mode > GL_TRIANGLE_FAN)
 	{
