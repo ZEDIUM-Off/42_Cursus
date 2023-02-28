@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:13:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/27 16:11:26 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/28 11:03:03 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ typedef struct glTexture
 	t_gl_boolean		user_owned;
 	t_u8				*data;
 }	t_glTexture;
+
+typedef struct pipeline_settings
+{
+	t_gl_enum		mode;
+	t_gl_uint		first;
+	t_gl_sizei		count;
+	t_gl_sizei		instance;
+	t_gl_uint		base_instance;
+	t_gl_boolean	use_elements;
+}	t_pipeline_settings;
 
 typedef struct glVertex
 {

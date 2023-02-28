@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:45:41 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/27 15:39:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/28 12:04:39 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lite_gl.h>
 
-void	line_strip_mode(t_gl_int first, t_gl_sizei count)
+void	line_strip_mode(t_GLContext *c, t_gl_int first, t_gl_sizei count)
 {
 	int	i;
 	int	vert;
@@ -21,13 +21,13 @@ void	line_strip_mode(t_gl_int first, t_gl_sizei count)
 	vert = 0;
 	while (i < first + count - 1)
 	{
-		draw_line_clip(&c->glverts.a[vert], &c->glverts.a[vert + 1]);
+		draw_line_clip(c, &c->glverts.a[vert], &c->glverts.a[vert + 1]);
 		i++;
 		vert++;
 	}
 }
 
-void	line_loop_mode(t_gl_int first, t_gl_sizei count)
+void	line_loop_mode(t_GLContext *c, t_gl_int first, t_gl_sizei count)
 {
 	int	i;
 	int	vert;
@@ -36,14 +36,14 @@ void	line_loop_mode(t_gl_int first, t_gl_sizei count)
 	vert = 0;
 	while (i < first + count - 1)
 	{
-		draw_line_clip(&c->glverts.a[vert], &c->glverts.a[vert + 1]);
+		draw_line_clip(c, &c->glverts.a[vert], &c->glverts.a[vert + 1]);
 		i++;
 		vert++;
 	}
-	draw_line_clip(&c->glverts.a[count - 1], &c->glverts.a[0]);
+	draw_line_clip(c, &c->glverts.a[count - 1], &c->glverts.a[0]);
 }
 
-void	triangle_strip_mode(t_gl_sizei count)
+void	triangle_strip_mode(t_GLContext *c, t_gl_sizei count)
 {
 	int	vert;
 	int	provoke;
@@ -70,7 +70,7 @@ void	triangle_strip_mode(t_gl_sizei count)
 	}
 }
 
-void	triangle_fan_mode(t_gl_sizei count)
+void	triangle_fan_mode(t_GLContext *c, t_gl_sizei count)
 {
 	int	vert;
 	int	provoke;

@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:44:11 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/27 15:39:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/28 12:04:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lite_gl.h>
 
-void	point_mode(t_gl_int first, t_gl_sizei count)
+void	point_mode(t_GLContext *c, t_gl_uint first, t_gl_sizei count)
 {
 	int	i;
 	int	vert;
@@ -23,13 +23,13 @@ void	point_mode(t_gl_int first, t_gl_sizei count)
 	{
 		c->glverts.a[vert].screen_space = mult_mat4_vec4(c->vp_mat,
 				c->glverts.a[vert].clip_space);
-		draw_point(&c->glverts.a[vert]);
+		draw_point(c, &c->glverts.a[vert]);
 		i++;
 		vert++;
 	}
 }
 
-void	line_mode(t_gl_int first, t_gl_sizei count)
+void	line_mode(t_GLContext *c, t_gl_int first, t_gl_sizei count)
 {
 	int	i;
 	int	vert;
@@ -38,13 +38,13 @@ void	line_mode(t_gl_int first, t_gl_sizei count)
 	vert = 0;
 	while (i < first + count - 1)
 	{
-		draw_line_clip(&c->glverts.a[vert], &c->glverts.a[vert + 1]);
+		draw_line_clip(c, &c->glverts.a[vert], &c->glverts.a[vert + 1]);
 		i += 2;
 		vert += 2;
 	}
 }
 
-void	triangle_mode(t_gl_int first, t_gl_sizei count)
+void	triangle_mode(t_GLContext *c, t_gl_int first, t_gl_sizei count)
 {
 	int	i;
 	int	vert;
