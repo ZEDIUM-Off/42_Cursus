@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:49:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/28 15:36:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/28 17:15:32 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	draw_line_shader_slope_less_minuss_one(
 		vars->lw = (1 - vars->t) * vars->w[0] + vars->t * vars->w[1];
 		set_vec4(c->builtins.gl_FragCoord,
 			vars->lx, vars->ly, vars->lz, 1 / vars->lw);
-		c->builtins.disgard = GL_FALSE;
+		c->builtins.discard = GL_FALSE;
 		c->builtins.gl_FragDepth = vars->lz;
 		setup_fs_input(c, v_out, vars, provoke);
 		c->programs.a[c->programs.cur_program].fragment_shader(c->fs_input,
 			&c->builtins, c->programs.a[c->programs.cur_program].uniform);
-		if (!c->builtins.disgard)
+		if (!c->builtins.discard)
 			draw_pixel(c, c->builtins.gl_FragColor,
-				vars->lx, vars->ly, c->builtins.gl_FragDepth);
+			{vars->lx, vars->ly}, c->builtins.gl_FragDepth);
 		if (line_func(&vars->line, vars->lx + 0.5f, vars->ly - 1) < 0)
 			vars->lx++;
 		vars->ly--;
@@ -56,14 +56,14 @@ void	draw_line_shader_slope_less_zero(
 		vars->lw = (1 - vars->t) * vars->w[0] + vars->t * vars->w[1];
 		set_vec4(c->builtins.gl_FragCoord,
 			vars->lx, vars->ly, vars->lz, 1 / vars->lw);
-		c->builtins.disgard = GL_FALSE;
+		c->builtins.discard = GL_FALSE;
 		c->builtins.gl_FragDepth = vars->lz;
 		setup_fs_input(c, v_out, vars, provoke);
 		c->programs.a[c->programs.cur_program].fragment_shader(c->fs_input,
 			&c->builtins, c->programs.a[c->programs.cur_program].uniform);
-		if (!c->builtins.disgard)
+		if (!c->builtins.discard)
 			draw_pixel(c, c->builtins.gl_FragColor,
-				vars->lx, vars->ly, c->builtins.gl_FragDepth);
+			{vars->lx, vars->ly}, c->builtins.gl_FragDepth);
 		if (line_func(&vars->line, vars->lx + 1, vars->ly - 0.5f) > 0)
 			vars->ly--;
 		vars->lx++;
@@ -85,14 +85,14 @@ void	draw_line_shader_slope_less_one(
 		vars->lw = (1 - vars->t) * vars->w[0] + vars->t * vars->w[1];
 		set_vec4(c->builtins.gl_FragCoord,
 			vars->lx, vars->ly, vars->lz, 1 / vars->lw);
-		c->builtins.disgard = GL_FALSE;
+		c->builtins.discard = GL_FALSE;
 		c->builtins.gl_FragDepth = vars->lz;
 		setup_fs_input(c, v_out, vars, provoke);
 		c->programs.a[c->programs.cur_program].fragment_shader(c->fs_input,
 			&c->builtins, c->programs.a[c->programs.cur_program].uniform);
-		if (!c->builtins.disgard)
+		if (!c->builtins.discard)
 			draw_pixel(c, c->builtins.gl_FragColor,
-				vars->lx, vars->ly, c->builtins.gl_FragDepth);
+			{vars->lx, vars->ly}, c->builtins.gl_FragDepth);
 		if (line_func(&vars->line, vars->lx + 1, vars->ly + 0.5f) < 0)
 			vars->ly++;
 		vars->lx++;
@@ -114,14 +114,14 @@ void	draw_line_shader_slope_more_one(
 		vars->lw = (1 - vars->t) * vars->w[0] + vars->t * vars->w[1];
 		set_vec4(c->builtins.gl_FragCoord,
 			vars->lx, vars->ly, vars->lz, 1 / vars->lw);
-		c->builtins.disgard = GL_FALSE;
+		c->builtins.discard = GL_FALSE;
 		c->builtins.gl_FragDepth = vars->lz;
 		setup_fs_input(c, v_out, vars, provoke);
 		c->programs.a[c->programs.cur_program].fragment_shader(c->fs_input,
 			&c->builtins, c->programs.a[c->programs.cur_program].uniform);
-		if (!c->builtins.disgard)
+		if (!c->builtins.discard)
 			draw_pixel(c, c->builtins.gl_FragColor,
-				vars->lx, vars->ly, c->builtins.gl_FragDepth);
+			{vars->lx, vars->ly}, c->builtins.gl_FragDepth);
 		if (line_func(&vars->line, vars->lx + 0.5f, vars->ly + 1) > 0)
 			vars->lx++;
 		vars->ly++;

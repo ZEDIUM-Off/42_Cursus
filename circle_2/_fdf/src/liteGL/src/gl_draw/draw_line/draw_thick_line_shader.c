@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:04:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/28 15:38:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/28 16:51:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	draw_thick_line_shader_slope_less_minus_one(
 		vars->lw = (1 - vars->t) * vars->w[0] + vars->t * vars->w[1];
 		c->builtins.gl_FragCoord = {.z = vars->lz, .w = 1 / vars->lw};
 		setup_fs_input(c, v_out, vars, provoke);
-		vars->diag = draw_perp_line(-1 / vars->slope,
-				vars->lx - vars->ab.x, vars->ly - vars->ab.y,
-				vars->lx + vars->abs.x, vars->ly + vars->abs.y);
+		vars->diag = draw_perp_line(c, -1 / vars->slope,
+			{vars->lx - vars->ab.x, vars->lx + vars->abs.x},
+			{vars->ly - vars->ab.y, vars->ly + vars->abs.y});
 		if (line_func(&vars->line, vars->lx + 0.5f, vars->ly + 0.5f) < 0)
 		{
 			if (vars->diag)
-				draw_perp_line(-1 / vars->slope,
-					vars->lx - vars->ab.x, vars->ly - 1 - vars->ab.y,
-					vars->lx + vars->abs.x, vars->ly - 1 + vars->abs.y);
+				draw_perp_line(c, -1 / vars->slope,
+				{vars->lx - vars->ab.x, vars->lx + vars->abs.x},
+				{vars->ly - 1 - vars->ab.y, vars->ly - 1 + vars->abs.y});
 			vars->lx++;
 		}
 		vars->ly--;
@@ -57,15 +57,15 @@ void	draw_thick_line_shader_slope_less_zero(
 		vars->lw = (1 - vars->t) * vars->w[0] + vars->t * vars->w[1];
 		c->builtins.gl_FragCoord = {.z = vars->lz, .w = 1 / vars->lw};
 		setup_fs_input(c, v_out, vars, provoke);
-		vars->diag = draw_perp_line(-1 / vars->slope,
-				vars->lx - vars->ab.x, vars->ly - vars->ab.y,
-				vars->lx + vars->abs.x, vars->ly + vars->abs.y);
+		vars->diag = draw_perp_line(c, -1 / vars->slope,
+			{vars->lx - vars->ab.x, vars->lx + vars->abs.x},
+			{vars->ly - vars->ab.y, vars->ly + vars->abs.y});
 		if (line_func(&vars->line, vars->lx + 1, vars->ly - 0.5f) > 0)
 		{
 			if (vars->diag)
-				draw_perp_line(-1 / vars->slope,
-					vars->lx + 1 - vars->ab.x, vars->ly - vars->ab.y,
-					vars->lx + 1 + vars->abs.x, vars->ly + vars->abs.y);
+				draw_perp_line(c, -1 / vars->slope,
+				{vars->lx + 1 - vars->ab.x, vars->lx + 1 + vars->abs.x},
+				{vars->ly - vars->ab.y, vars->ly + vars->abs.y});
 			vars->ly--;
 		}
 		vars->lx++;
@@ -87,15 +87,15 @@ void	draw_thick_line_shader_slope_less_one(
 		vars->lw = (1 - vars->t) * vars->w[0] + vars->t * vars->w[1];
 		c->builtins.gl_FragCoord = {.z = vars->lz, .w = 1 / vars->lw};
 		setup_fs_input(c, v_out, vars, provoke);
-		vars->diag = draw_perp_line(-1 / vars->slope,
-				vars->lx + vars->ab.x, vars->ly + vars->ab.y,
-				vars->lx - vars->abs.x, vars->ly - vars->abs.y);
+		vars->diag = draw_perp_line(c, -1 / vars->slope,
+			{vars->lx + vars->ab.x, vars->lx - vars->abs.x},
+			{vars->ly + vars->ab.y, vars->ly - vars->abs.y});
 		if (line_func(&vars->line, vars->lx + 1, vars->ly + 0.5f) < 0)
 		{
 			if (vars->diag)
-				draw_perp_line(-1 / vars->slope,
-					vars->lx + 1 + vars->ab.x, vars->ly + vars->ab.y,
-					vars->lx + 1 - vars->abs.x, vars->ly - vars->abs.y);
+				draw_perp_line(c, -1 / vars->slope,
+				{vars->lx + 1 + vars->ab.x, vars->lx + 1 - vars->abs.x},
+				{vars->ly + vars->ab.y, vars->ly - vars->abs.y});
 			vars->ly++;
 		}
 		vars->lx++;
@@ -117,15 +117,15 @@ void	draw_thick_line_shader_slope_more_one(
 		vars->lw = (1 - vars->t) * vars->w[0] + vars->t * vars->w[1];
 		c->builtins.gl_FragCoord = {.z = vars->lz, .w = 1 / vars->lw};
 		setup_fs_input(c, v_out, vars, provoke);
-		vars->diag = draw_perp_line(-1 / vars->slope,
-				vars->lx + vars->ab.x, vars->ly + vars->ab.y,
-				vars->lx - vars->abs.x, vars->ly - vars->abs.y);
+		vars->diag = draw_perp_line(c, -1 / vars->slope,
+			{vars->lx + vars->ab.x, vars->lx - vars->abs.x},
+			{vars->ly + vars->ab.y, vars->ly - vars->abs.y});
 		if (line_func(&vars->line, vars->lx + 0.5f, vars->ly + 1) > 0)
 		{
 			if (vars->diag)
-				draw_perp_line(-1 / vars->slope,
-					vars->lx + vars->ab.x, vars->ly + 1 + vars->ab.y,
-					vars->lx - vars->abs.x, vars->ly + 1 - vars->abs.y);
+				draw_perp_line(c, -1 / vars->slope,
+				{vars->lx + vars->ab.x, vars->lx - vars->abs.x},
+				{vars->ly + 1 + vars->ab.y, vars->ly + 1 - vars->abs.y});
 			vars->lx++;
 		}
 		vars->ly++;

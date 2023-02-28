@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:16:10 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/28 15:40:26 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/02/28 17:02:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct draw_line_shader_vars
 	float	ly;
 	float	lz;
 	float	lw;
+	float	lh;
 	t_vec2	p[2];
 	t_vec2	pr;
 	t_vec2	sub_p;
@@ -35,6 +36,7 @@ typedef struct draw_line_shader_vars
 	float	y_mima[2];
 	float	line_len_sq;
 	int		diag;
+	int		first_is_diag;
 }	t_draw_line_shader_vars;
 
 void	left_right(t_draw_line_shader_vars *vars, float ***v_out)
@@ -104,4 +106,21 @@ void	set_line_shader_vars(t_GLContext *c, t_draw_line_shader_vars *vars,
 			c->depth_range_far);
 	vars->z[1] = map(vars->z[1], -1.0f, 1.0f, c->depth_range_near,
 			c->depth_range_far);
+}
+
+void	set_perp_line_vars(
+	t_GLContext *c, t_draw_line_shader_vars *vars, float *vx, float *vy)
+{
+	vars->line = make_line(vars->x[0], vars->y[0], vars->x[1], vars->y[1]);
+	vars->i_x[0] = floor(vars->x[0]) + 0.5;
+	vars->i_x[1] = floor(vars->x[1]) + 0.5;
+	vars->i_y[0] = floor(vars->y[0]) + 0.5;
+	vars->i_y[1] = floor(vars->y[1]) + 0.5;
+	vars->x_mima[0] = vars->i_x[0];
+	vars->x_mima[1] = vars->i_x[1];
+	mima_left_right(vars);
+	vars->lz = c->builtins.glFragCoord.z;
+	vars->lw = c->back_buffer.w;
+	vars->lh = c->back_buffer.h;
+	vars->first_is_diag = GL_FALSE;
 }
