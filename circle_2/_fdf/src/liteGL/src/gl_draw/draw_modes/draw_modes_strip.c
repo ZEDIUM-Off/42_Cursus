@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:45:41 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/28 12:04:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/01 15:01:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	triangle_strip_mode(t_GLContext *c, t_gl_sizei count)
 		provoke = 0;
 	while (vert < count)
 	{
-		draw_triangle(&c->glverts.a[a], &c->glverts.a[b],
-			&c->glverts.a[vert], vert + provoke);
+		draw_triangle(c, {&c->glverts.a[a], &c->glverts.a[b],
+			&c->glverts.a[vert]}, vert + provoke);
 		if (!toggle)
 			a = vert;
 		else
@@ -81,8 +81,8 @@ void	triangle_fan_mode(t_GLContext *c, t_gl_sizei count)
 		provoke = 0;
 	while (vert < count)
 	{
-		draw_triangle(&c->glverts.a[0], &c->glverts.a[vert - 1],
-			&c->glverts.a[vert], vert + provoke);
+		draw_triangle(c, {&c->glverts.a[0], &c->glverts.a[vert - 1],
+			&c->glverts.a[vert]}, vert + provoke);
 		vert++;
 	}
 }

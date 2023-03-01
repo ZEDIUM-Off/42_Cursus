@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:11:41 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/28 11:49:09 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/01 10:58:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	draw_point(t_GLContext *c, t_glVertex *vert)
 	float	y;
 
 	point = vert->screen_space;
+	printf("=============draw_point==============\npoint.w = %f \n", point.w);
 	point.z = map(point.z, -1.0f, 1.0f,
 			c->depth_range_near, c->depth_range_far);
 	if (c->depth_clamp)

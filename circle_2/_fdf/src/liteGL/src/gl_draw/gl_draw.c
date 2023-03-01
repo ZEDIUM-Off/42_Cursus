@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:17:27 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/28 11:09:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/01 12:41:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ void	gl_draw_arrays(t_GLContext *c,
 	}
 	if (!count)
 		return ;
-	settings = (t_pipeline_settings){.mode = mode,
-		.first = first,
-		.count = count
-		.instance = 0,
-		.base_instance = 0,
-		.use_elements = GL_FALSE};
+	settings = (t_pipeline_settings){mode, first, count, 0, 0, GL_FALSE};
 	run_pipeline(c, &settings);
 }
