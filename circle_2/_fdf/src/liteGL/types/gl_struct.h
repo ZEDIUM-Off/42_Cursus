@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:13:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/28 11:03:03 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/03 12:22:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,20 @@ typedef struct Color // rendre compatible avec mlx
 	t_u8	g;
 	t_u8	b;
 	t_u8	a;
-}	t_Color;
+}	t_color;
+
+typedef struct Line
+{
+	float	a;
+	float	b;
+	float	c;
+}	t_line;
+
+typedef struct Plane
+{
+	t_vec3	n;
+	float	d;
+}	t_plane;
 
 typedef struct cvector_float
 {
