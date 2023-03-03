@@ -6,12 +6,19 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:52:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/27 15:52:42 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/03 14:30:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GL_ENUM_H
 # define GL_ENUM_H
+
+enum
+{
+	SMOOTH,
+	FLAT,
+	NOPERSPECTIVE
+};
 
 enum
 {

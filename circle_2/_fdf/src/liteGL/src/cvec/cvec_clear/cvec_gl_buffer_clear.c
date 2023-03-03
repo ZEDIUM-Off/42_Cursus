@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cvec.h                                             :+:      :+:    :+:   */
+/*   cvec_gl_buffer_clear.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 12:23:03 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/03 16:43:18 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/03/03 16:55:15 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/03/03 16:55:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CVEC_H
-# define CVEC_H
+#include <lite_gl.h>
 
-# include <lite_gl.h>
-
-# define CVEC_FLOAT_SZ 50
-
-typedef struct cvector_float
+void	cvec_clear_t_gl_buffer(cvector_t_gl_buffer *vec)
 {
-	float	*a;
-	size_t	size;
-	size_t	capacity;
-}	t_cvector_float;
+	vec->size = 0;
+}
 
-typedef struct cvector_glVertex_Array
+void	cvec_free_t_gl_buffer_heap(void *vec)
 {
-	t_glVertex_Array	*a;
-	size_t				size;
-	size_t				capacity;
-}	t_cvector_gl_vertex_array;
+	cvector_t_gl_buffer	*tmp;
 
-typedef struct cvector_t_gl_buffer
+	tmp = (cvector_t_gl_buffer *)vec;
+	if (!tmp)
+		return ;
+	free(tmp->a);
+	free(tmp);
+}
+
+void	cvec_free_t_gl_buffer(void *vec)
 {
-	t_gl_buffer	*a;
-	size_t		size;
-	size_t		capacity;
-}	t_cvector_t_gl_buffer;
+	cvector_t_gl_buffer	*tmp;
+
+	tmp = (cvector_t_gl_buffer *)vec;
+	free(tmp->a);
+	tmp->size = 0;
+	tmp->capacity = 0;
+}

@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lite_gl.h                                          :+:      :+:    :+:   */
+/*   cvec_float_clear.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 14:31:11 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/03 14:29:32 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/03/03 14:26:03 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/03/03 14:28:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LITE_GL_H
-# define LITE_GL_H
+void	cvec_clear_float(t_cvector_float *vec)
+{
+	vec->size = 0;
+}
 
-# define GL_FALSE 0
-# define GL_TRUE 1
+void	cvec_free_float_heap(void *vec)
+{
+	t_cvector_float	*tmp;
 
-# define MAX_VERTICES 500000
-# define GL_MAX_VERTEX_ATTRIBS 16
-# define GL_MAX_VERTEX_OUTPUT_COMPONENTS 64
-# define GL_MAX_DRAW_BUFFERS 8
-# define GL_MAX_COLOR_ATTACHMENTS 8
+	tmp = (t_cvector_float *)vec;
+	if (!tmp)
+		return ;
+	free(tmp->a);
+	free(tmp);
+}
 
-#endif
+void	cvec_free_float(void *vec)
+{
+	t_cvector_float	*tmp;
+
+	tmp = (t_cvector_float *)vec;
+	free(tmp->a);
+	tmp->size = 0;
+	tmp->capacity = 0;
+}

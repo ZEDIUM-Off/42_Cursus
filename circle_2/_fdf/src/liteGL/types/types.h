@@ -6,12 +6,20 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:13:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/27 15:52:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/03 14:33:29 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
+
+typedef void (*		t_vert_func) (float *vs_output, void *vertex_attribs,
+	Shader_Builtins *builtins, void *uniforms);
+typedef void (*		t_frag_func)(float *fs_input,
+	Shader_Builtins *builtins, void* uniforms);
+
+typedef void (*		t_draw_triangle_func)(t_GLContext *c,
+	t_glVertex **v, unsigned int provoke);
 
 typedef uint8_t		t_u8;
 typedef uint16_t	t_u16;
