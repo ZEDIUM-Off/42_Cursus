@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 12:23:03 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/03 16:43:18 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/05 21:18:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct cvector_glVertex_Array
 	size_t				capacity;
 }	t_cvector_gl_vertex_array;
 
-typedef struct cvector_t_gl_buffer
+typedef struct t_cvector_gl_buffer
 {
 	t_gl_buffer	*a;
 	size_t		size;
 	size_t		capacity;
-}	t_cvector_t_gl_buffer;
+}	t_t_cvector_gl_buffer;

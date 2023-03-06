@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:47:55 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/03 16:48:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/05 21:18:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lite_gl.h>
 
-int	cvec_push_t_gl_buffer(cvector_t_gl_buffer *vec, t_gl_buffer a)
+int	cvec_push_gl_buffer(t_cvector_gl_buffer *vec, t_gl_buffer a)
 {
 	t_gl_buffer	*tmp;
 	size_t		tmp_sz;
@@ -35,7 +35,7 @@ int	cvec_push_t_gl_buffer(cvector_t_gl_buffer *vec, t_gl_buffer a)
 	return (1);
 }
 
-t_gl_buffer	cvec_pop_t_gl_buffer(cvector_t_gl_buffer *vec)
+t_gl_buffer	cvec_pop_gl_buffer(t_cvector_gl_buffer *vec)
 {
 	return (vec->a[--vec->size]);
 }

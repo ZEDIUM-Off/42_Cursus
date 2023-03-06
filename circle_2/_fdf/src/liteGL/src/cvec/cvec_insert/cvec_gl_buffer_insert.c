@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:51:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/03 16:52:42 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/05 21:18:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lite_gl.h>
 
-int	cvec_insert_t_gl_buffer(cvector_t_gl_buffer *vec, size_t i, t_gl_buffer a)
+int	cvec_insert_gl_buffer(t_cvector_gl_buffer *vec, size_t i, t_gl_buffer a)
 {
 	t_gl_buffer	*tmp;
 	size_t		tmp_sz;
@@ -39,15 +39,15 @@ int	cvec_insert_t_gl_buffer(cvector_t_gl_buffer *vec, size_t i, t_gl_buffer a)
 	return (1);
 }
 
-int	cvec_insert_array_t_gl_buffer(
-	cvector_t_gl_buffer *vec, size_t i, t_gl_buffer *a, size_t num)
+int	cvec_insert_array_gl_buffer(
+	t_cvector_gl_buffer *vec, size_t i, t_gl_buffer *a, size_t num)
 {
 	t_gl_buffer	*tmp;
 	size_t		tmp_sz;
 
 	if (vec->capacity < vec->size + num)
 	{
-		tmp_sz = vec->capacity + num + CVEC_t_gl_buffer_SZ;
+		tmp_sz = vec->capacity + num + CVEC_gl_buffer_SZ;
 		tmp = (t_gl_buffer *)ft_realloc(vec->a, sizeof(t_gl_buffer) * tmp_sz);
 		if (!tmp)
 		{
