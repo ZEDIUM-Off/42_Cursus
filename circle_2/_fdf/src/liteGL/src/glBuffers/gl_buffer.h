@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_dist.c                                         :+:      :+:    :+:   */
+/*   gl_buffer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 12:02:01 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/07 11:53:45 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/03/07 12:07:59 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/03/07 12:12:03 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lite_gl.h>
+#ifndef GL_BUFFER_H
+# define GL_BUFFER_H
 
-float	distance_vec2(t_vec2 v1, t_vec2 v2)
-{
-	return (length_vec2(sub_vec2s(v1, v2)));
-}
+# include <lite_gl.h>
 
-float	distance_vec3(t_vec3 v1, t_vec3 v2)
-{
-	return (length_vec3(sub_vec3s(v1, v2)));
-}
+void	gl_buffer_data(t_GLContext *c,
+			t_gl_enum target, t_gl_sizei size, const t_gl_void *data);
+void	gl_bind_buffer(t_GLContext *c, t_gl_enum target, t_gl_uint buffer);
+void	gl_gen_buffers(t_GLContext *c, t_gl_sizei n, t_gl_uint *buffers);
+
+#endif

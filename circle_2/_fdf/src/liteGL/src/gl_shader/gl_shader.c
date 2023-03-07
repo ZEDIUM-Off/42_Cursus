@@ -6,13 +6,14 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:35:37 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/28 10:00:19 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/07 12:05:58 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lite_gl.h>
 
-void	set_interpol(glProgram	*prog, t_gl_sizei n, GLenum *interpolation)
+void	set_interpol(
+	t_glProgram	*prog, t_gl_sizei n, t_glenum *interpolation)
 {
 	int	i;
 
@@ -29,9 +30,9 @@ void	lgl_set_uniform(t_GLContext *c, void *uniform)
 	c->programs.a[c->cur_program].uniform = uniform;
 }
 
-GLuint	lgl_create_program(t_GLContext *c, glProgram prog_attr)
+t_gl_uint	lgl_create_program(t_GLContext *c, t_glProgram prog_attr)
 {
-	glProgram	tmp;
+	t_glProgram	tmp;
 	int			i;
 
 	if (!prog_attr.vertex_shader || !prog_attr.fragment_shader)
@@ -55,10 +56,10 @@ GLuint	lgl_create_program(t_GLContext *c, glProgram prog_attr)
 		}
 		i++;
 	}
-	return (cvec_push_glProgram(&c->programs, tmp), c->programs.size - 1);
+	return (cvec_push_gl_program(&c->programs, tmp), c->programs.size - 1);
 }
 
-void	gl_use_program(t_GLContext *c, GLuint program)
+void	gl_use_program(t_GLContext *c, t_gl_uint program)
 {
 	if (program >= c->programs.size)
 	{
@@ -74,7 +75,7 @@ void	gl_use_program(t_GLContext *c, GLuint program)
 	c->cur_program = program;
 }
 
-void	gl_delete_program(t_ GLContext *c, GLuint program)
+void	gl_delete_program(t_GLContext *c, t_gl_uint program)
 {
 	if (!program)
 		return ;

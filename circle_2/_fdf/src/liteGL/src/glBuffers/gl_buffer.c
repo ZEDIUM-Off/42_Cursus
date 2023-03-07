@@ -6,33 +6,14 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:37:28 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/27 16:22:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/07 12:11:42 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	cvec_extend_gl_buffer(t_GLContext *c, cvector_glBuffer *vec, size_t num)
-{
-	glBuffer	*tmp;
-	size_t		tmp_sz;
-
-	if (vec->capacity < vec->size + num)
-	{
-		tmp_sz = vec->capacity + num + CVEC_glBuffer_SZ;
-		tmp = (glBuffer *)ft_realloc(vec->a, sizeof(glBuffer) * tmp_sz);
-		if (!tmp)
-		{
-			ft_assert(tmp != NULL);
-			return (0);
-		}
-		vec->a = tmp;
-		vec->capacity = tmp_sz;
-	}
-	vec->size += num;
-	return (1);
-}
+#include <lite_gl.h>
 
 void	gl_buffer_data(t_GLContext *c,
-	GLenum target, GLsizei size, const GLvoid *data)
+	t_gl_enum target, t_gl_sizei size, const t_gl_void *data)
 {
 	if (target != GL_ARRAY_BUFFER && target != GL_ELEMENT_ARRAY_BUFFER
 		&& !c->error)
@@ -92,7 +73,7 @@ void	gl_gen_buffers(t_GLContext *c, t_gl_sizei n, t_gl_uint *buffers)
 	}
 	if (j != n)
 	{
-		cvec_extend_gl_buffer(c, &c->buffers, n - j);
+		cvec_extend_gl_buffer(&c->buffers, n - j);
 		i = c->buffers.size;
 		while (j < n)
 		{

@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_dist.c                                         :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 12:02:01 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/07 11:53:45 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/03/07 10:17:54 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/03/07 10:18:21 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lite_gl.h>
+#ifndef COLOR_H
+# define COLOR_H
 
-float	distance_vec2(t_vec2 v1, t_vec2 v2)
-{
-	return (length_vec2(sub_vec2s(v1, v2)));
-}
+# include <lite_gl.h>
 
-float	distance_vec3(t_vec3 v1, t_vec3 v2)
-{
-	return (length_vec3(sub_vec3s(v1, v2)));
-}
+t_color	make_color(float r, float g, float b, float a);
+
+t_color	vec4_to_color(t_vec4 v);
+
+t_vec4	color_to_vec4(t_color c);
+
+#endif

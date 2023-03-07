@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_tri_vars.h                                    :+:      :+:    :+:   */
+/*   draw_tri_vars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:17 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/01 18:21:38 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/07 10:23:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_TRI_VARS_H
-# define DRAW_TRI_VARS_H
+#include <lite_gl.h>
 
-# include <lite_gl.h>
-
-# define SMALL_INCR 0.000001;
+#define SMALL_INCR 0.000001;
 
 typedef struct s_draw_tri_vars
 {
@@ -125,5 +122,3 @@ void	set_draw_tri_vars(t_GLContext *c, t_draw_tri_vars *vars, t_glVertex **v)
 	vars->vs_output = &c->vs_output.output_buf.a[0];
 	set_perspective(c, vars, v);
 }
-
-#endif

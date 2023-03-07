@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:24:07 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/02/27 16:33:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/07 12:07:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	gl_disable_vertex_attrib_array(t_GLContext *c, t_gl_uint index)
 	GL_FALSE;
 }
 
-void	gl_vertex_attrib_pointer(t_GLContext *c, GLuint index,
-	t_glVertex_Attrib attr, const GLvoid *pointer)
+void	gl_vertex_attrib_pointer(t_GLContext *c, t_gl_uint index,
+	t_glVertex_Attrib attr, const t_gl_void *pointer)
 {
 	t_glVertex_Attrib	*v;
 
@@ -48,7 +48,7 @@ void	gl_vertex_attrib_pointer(t_GLContext *c, GLuint index,
 	if (attr.stride)
 		v->stride = attr.stride;
 	else
-		v->stride = attr.size * attr.sizeof(GLfloat);
+		v->stride = attr.size * attr.sizeof(t_gl_float);
 	v->offset = (GLsizeiptr)pointer;
 	v->normalized = attr.normalized;
 	v->buf = c->bound_buffers[GL_ARRAY_BUFFER - GL_ARRAY_BUFFER];

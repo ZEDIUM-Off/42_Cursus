@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_dist.c                                         :+:      :+:    :+:   */
+/*   gl_shader.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 12:02:01 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/07 11:53:45 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/03/07 12:03:12 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/03/07 12:06:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lite_gl.h>
+#ifndef GL_SHADER_H
+# define GL_SHADER_H
 
-float	distance_vec2(t_vec2 v1, t_vec2 v2)
-{
-	return (length_vec2(sub_vec2s(v1, v2)));
-}
+# include <lite_gl.h>
 
-float	distance_vec3(t_vec3 v1, t_vec3 v2)
-{
-	return (length_vec3(sub_vec3s(v1, v2)));
-}
+void		set_interpol(
+				t_glProgram	*prog, t_gl_sizei n, t_gl_enum *interpolation);
+void		lgl_set_uniform(t_GLContext *c, void *uniform);
+t_gl_uint	lgl_create_program(t_GLContext *c, t_glProgram prog_attr);
+void		gl_use_program(t_GLContext *c, t_gl_uint program);
+void		gl_delete_program(t_GLContext *c, t_gl_uint program);

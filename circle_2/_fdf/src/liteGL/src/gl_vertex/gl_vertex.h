@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_dist.c                                         :+:      :+:    :+:   */
+/*   gl_vertex.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 12:02:01 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/07 11:53:45 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/03/07 12:06:25 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/03/07 12:07:37 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lite_gl.h>
+#ifndef GL_VERTEX_H
+# define GL_VERTEX_H
 
-float	distance_vec2(t_vec2 v1, t_vec2 v2)
-{
-	return (length_vec2(sub_vec2s(v1, v2)));
-}
+# include <lite_gl.h>
 
-float	distance_vec3(t_vec3 v1, t_vec3 v2)
-{
-	return (length_vec3(sub_vec3s(v1, v2)));
-}
+void	gl_enable_vertex_attrib_array(t_GLContext *c, t_gl_uint index);
+void	gl_disable_vertex_attrib_array(t_GLContext *c, t_gl_uint index);
+void	gl_vertex_attrib_pointer(t_GLContext *c, GLuint index,
+			t_glVertex_Attrib attr, const GLvoid *pointer);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:16:19 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/01 17:16:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/07 11:50:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,28 @@ void	setz_mat4v4(t_mat4 m, t_vec4 v);
 void	setw_mat4v4(t_mat4 m, t_vec4 v);
 
 t_vec4	mult_mat4_vec4(t_mat4 m, t_vec4 v);
+t_vec3	mult_mat3_vec3(t_mat3 m, t_vec3 v);
+t_vec2	mult_mat2_vec2(t_mat2 m, t_vec2 v);
+void	mult_mat2_mat2(t_mat2 c, t_mat2 a, t_mat2 b);
+void	mult_mat3_mat3(t_mat3 c, t_mat3 a, t_mat3 b);
+void	mult_mat4_mat4(t_mat4 c, t_mat4 a, t_mat4 b);
+void	scale_mat3(t_mat3 m, float x, float y, float z);
+void	scale_mat4(t_mat4 m, float x, float y, float z);
+
+void	load_rotation_mat2(t_mat2 mat, float angle);
+void	load_rotation_mat3(t_mat3 mat, t_vec3 v, float angle);
+void	load_rotation_mat4(t_mat4 mat, t_vec3 v, float angle);
+
+void	make_orthographic_matrix(
+			t_mat4 mat, float	*lr, float *bt, float *near_far);
+void	make_perspective_matrix(
+			t_mat4 mat, float fov, float aspect, float *near_far);
+void	make_perspective_proj_matrix(
+			t_mat4 mat, float *lr, float *bt, float *near_far);
+void	make_pers_matrix(t_mat4 mat, float z_near, float z_far);
+void	make_viewport_matrix(
+			t_mat4 mat, float	*xy, unsigned int *wh, int opengl);
+void	look_at(t_mat4 mat, t_vec3 eye, t_vec3 center, t_vec3 up);
+void	translation_mat4(t_mat4 m, float x, float y, float z);
 
 #endif
