@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 12:25:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/03 14:49:38 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/07 10:04:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	cvec_gl_vertex_array(
 	t_cvector_gl_vertex_array *vec, size_t size, size_t capacity)
 {
 	vec->size = size;
-	vec->capacity = vec->size + CVEC_FLOAT_SZ;
+	vec->capacity = vec->size + CVEC_SZ;
 	if (capacity > vec->size || (vec->size && capacity == vec->size))
 		vec->capacity = capacity;
 	vec->a = (float *)malloc(sizeof(float) * vec->capacity);
@@ -34,7 +34,7 @@ int	cvec_init_gl_vertex_array(
 	t_cvector_gl_vertex_array *vec, float *vals, size_t num)
 {
 	vec->size = num;
-	vec->capacity = vec->size + CVEC_FLOAT_SZ;
+	vec->capacity = vec->size + CVEC_SZ;
 	vec->a = (float *)malloc(sizeof(float) * vec->capacity);
 	if (!vec->a)
 	{
@@ -60,7 +60,7 @@ t_cvector_gl_vertex_array	*cvec_gl_vertex_array_heap(
 		return (NULL);
 	}
 	vec->size = size;
-	vec->capacity = vec->size + CVEC_FLOAT_SZ;
+	vec->capacity = vec->size + CVEC_SZ;
 	if (capacity > vec->size || (vec->size && capacity == vec->size))
 		vec->capacity = capacity;
 	vec->a = (t_gl_vertex_array *)malloc(
@@ -107,7 +107,7 @@ int	cvec_extend_gl_vertex_array(t_cvector_gl_vertex_array *vec, size_t num)
 
 	if (vec->capacity < vec->size + num)
 	{
-		tmp_sz = vec->capacity + num + CVEC_FLOAT_SZ;
+		tmp_sz = vec->capacity + num + CVEC_SZ;
 		tmp = (t_gl_vertex_array *)ft_realloc(vec->a,
 				sizeof(t_gl_vertex_array) * tmp_sz);
 		if (!tmp)

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 12:25:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/03 14:02:32 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/07 10:04:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	cvec_float(t_cvector_float *vec, size_t size, size_t capacity)
 {
 	vec->size = size;
-	vec->capacity = vec->size + CVEC_FLOAT_SZ;
+	vec->capacity = vec->size + CVEC_SZ;
 	if (capacity > vec->size || (vec->size && capacity == vec->size))
 		vec->capacity = capacity;
 	vec->a = (float *)malloc(sizeof(float) * vec->capacity);
@@ -32,7 +32,7 @@ int	cvec_float(t_cvector_float *vec, size_t size, size_t capacity)
 int	cvec_init_float(t_cvector_float *vec, float *vals, size_t num)
 {
 	vec->size = num;
-	vec->capacity = vec->size + CVEC_FLOAT_SZ;
+	vec->capacity = vec->size + CVEC_SZ;
 	vec->a = (float *)malloc(sizeof(float) * vec->capacity);
 	if (!vec->a)
 	{
@@ -56,7 +56,7 @@ t_cvector_float	*cvec_float_heap(size_t size, size_t capacity)
 		return (NULL);
 	}
 	vec->size = size;
-	vec->capacity = vec->size + CVEC_FLOAT_SZ;
+	vec->capacity = vec->size + CVEC_SZ;
 	if (capacity > vec->size || (vec->size && capacity == vec->size))
 		vec->capacity = capacity;
 	vec->a = (float *)malloc(sizeof(float) * vec->capacity);
@@ -99,7 +99,7 @@ int	cvec_extend_float(t_cvector_float *vec, size_t num)
 
 	if (vec->capacity < vec->size + num)
 	{
-		tmp_sz = vec->capacity + num + CVEC_FLOAT_SZ;
+		tmp_sz = vec->capacity + num + CVEC_SZ;
 		tmp = (float *)ft_realloc(vec->a, sizeof(float) * tmp_sz);
 		if (!tmp)
 		{

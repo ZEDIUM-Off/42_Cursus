@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:15:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/03/03 15:58:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/03/07 10:04:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int	cvec_reserve_gl_vertex_array(t_cvector_gl_vertex_array *vec, size_t size)
 	if (vec->capacity < size)
 	{
 		tmp = (t_gl_vertex_array *)ft_realloc(vec->a,
-				sizeof(t_gl_vertex_array) * (size + CVEC_FLOAT_SZ));
+				sizeof(t_gl_vertex_array) * (size + CVEC_SZ));
 		if (!tmp)
 		{
 			ft_assert(tmp != NULL);
 			return (0);
 		}
 		vec->a = tmp;
-		vec->capacity = size + CVEC_FLOAT_SZ;
+		vec->capacity = size + CVEC_SZ;
 	}
 	return (1);
 }
