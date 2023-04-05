@@ -9,6 +9,8 @@ PF_DIR = ./ft_printf
 LIB_DIR = ./libft
 GL_DIR = ./42LiteGL
 GNL_DIR = ./gnl
+WIN_DIR = $(SRC_DIR)/window
+GRAPH_DIR = $(SRC_DIR)/graphics
 
 LIB_PF = $(PF_DIR)/libftprintf.a
 LIBFT = $(LIB_DIR)/libft.a
@@ -16,8 +18,14 @@ MLX = libmlx.dylib
 MLX_LIN = $(MLX_LIN_DIR)/libmlx.a
 GL = $(GL_DIR)/lite_gl.a
 
+
+WIN_SRC = $(WIN_DIR)/init_window.c
+GRAPH_SRC = $(GRAPH_DIR)/setup_glx.c
 SRC = $(SRC_DIR)/fdf.c $(SRC_DIR)/read_file.c $(SRC_DIR)/init_fdf.c
+SRC += $(WIN_SRC) $(GRAPH_SRC)
 GNL = $(GNL_DIR)/get_next_line.o $(GNL_DIR)/get_next_line_utils.o
+
+
 OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 HEADERS = $(SRC_DIR)/fdf.h $(PF_DIR)/ft_printf.h $(LIB_DIR)/libft.h $(GL_DIR)/lite_gl.h
 
@@ -38,7 +46,8 @@ mac: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX) $(GL)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	mkdir -p $(BUILD_DIR)
-	mkdir -p $(BUILD_DIR)/utils
+	mkdir -p $(BUILD_DIR)/window
+	mkdir -p $(BUILD_DIR)/graphics
 	$(CC) $(OBJ_FLAGS) -o $@ -c $<
 
 %.o: %.c
@@ -72,10 +81,10 @@ $(GL): gl
 clean : 
 	$(RM) $(OBJECTS)
 	$(MAKE) -C $(MLX_OSX_DIR) clean
-	#$(MAKE) -C $(MLX_LIN_DIR) clean
+	$(MAKE) -C $(MLX_LIN_DIR) clean
 	$(MAKE) -C $(PF_DIR) clean
 	$(MAKE) -C $(LIB_DIR) clean
-	# $(MAKE) -C $(GL_DIR) clean
+	#* $(MAKE) -C $(GL_DIR) clean *#
 
 fclean : clean
 	$(RM) $(NAME)

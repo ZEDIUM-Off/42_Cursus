@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 13:10:53 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/05 14:08:42 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/04/05 10:47:53 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/04/05 14:04:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-int	main(int argc, char **argv)
+void	init_window(t_fdf *fdf)
 {
-	t_fdf	fdf;
-
-	setup_fdf_data(&fdf, argc, argv);
-	for (int i = 0; i < fdf.map_height * fdf.map_width * 3; i++)
-	{
-		if (i % (fdf.map_width * 3) == 0)
-			printf(" \n");
-		if (i % 3 == 0)
-			printf("|");
-		printf("%.02f ", fdf.map[i]);
-	}
-	mlx_loop(fdf.mxv.mlx);
-	free(fdf.map);
-	return (0);
+	fdf->mxv.mlx = mlx_init();
+	fdf->mxv.win = mlx_new_window(fdf->mxv.mlx, WIDTH, HEIGHT, "fdf");
+	fdf->mxv.img = mlx_new_image(fdf->mxv.mlx, WIDTH, HEIGHT);
 }

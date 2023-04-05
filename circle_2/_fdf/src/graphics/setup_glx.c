@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   setup_glx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 13:10:53 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/05 14:08:42 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/04/05 11:00:05 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/04/05 14:04:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-int	main(int argc, char **argv)
+void	setup_gl_context(t_fdf *fdf)
 {
-	t_fdf	fdf;
+	t_mlx_env		*mxv;
+	t_gl_context	*c;
 
-	setup_fdf_data(&fdf, argc, argv);
-	for (int i = 0; i < fdf.map_height * fdf.map_width * 3; i++)
+	mxv = &fdf->mxv;
+	c = &fdf->glx;
+	if (!init_gl_context(c, (t_context_settings){
+			(t_u32 **)&mxv->img->data, WIDTH, HEIGHT, 32,
+			0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000}))
 	{
-		if (i % (fdf.map_width * 3) == 0)
-			printf(" \n");
-		if (i % 3 == 0)
-			printf("|");
-		printf("%.02f ", fdf.map[i]);
+		ft_printf(2, "Failed to initialize glContext");
+		exit(0);
 	}
-	mlx_loop(fdf.mxv.mlx);
-	free(fdf.map);
-	return (0);
 }
