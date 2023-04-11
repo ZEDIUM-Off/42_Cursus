@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/05 14:02:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/11 14:12:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define WIDTH	1280
 # define HEIGHT 720
 
-# define F_SZ_X 40.0f
-# define F_SZ_Z 40.0f
+# define F_SZ_X 0.50f
+# define F_SZ_Z 0.50f
 
 typedef struct s_mlx_env
 {

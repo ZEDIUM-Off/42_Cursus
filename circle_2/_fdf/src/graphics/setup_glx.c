@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:00:05 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/05 14:04:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/11 15:35:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 
 void	setup_gl_context(t_fdf *fdf)
 {
-	t_mlx_env		*mxv;
-	t_gl_context	*c;
+	t_mlx_env			*mxv;
+	t_gl_context		*c;
+	t_context_settings	settings;
 
 	mxv = &fdf->mxv;
 	c = &fdf->glx;
-	if (!init_gl_context(c, (t_context_settings){
-			(t_u32 **)&mxv->img->data, WIDTH, HEIGHT, 32,
-			0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000}))
+	settings.back = (t_u32 **)&mxv->img->data;
+	settings.w = WIDTH;
+	settings.h = HEIGHT;
+	settings.bitdepth = 32;
+	settings.r_mask = 0x00FF0000;
+	settings.g_mask = 0x0000FF00;
+	settings.b_mask = 0x000000FF;
+	settings.a_mask = 0xFF000000;
+	if (!init_gl_context(c, settings))
 	{
 		ft_printf(2, "Failed to initialize glContext");
 		exit(0);
