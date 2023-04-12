@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:57:16 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/11 15:52:18 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/12 15:56:04 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	test_file(const char *file_name)
 
 int	parse_line(const char *line, t_fdf *fdf)
 {
-	char	**splitted_line;
-	int		i;
-	long	value;
-	int		index;
+	char			**splitted_line;
+	int				i;
+	long			value;
+	int				index;
 
-	fdf->map = realloc(fdf->map,
+	fdf->map = ft_realloc(fdf->map,
 			sizeof(float) * fdf->map_width * (fdf->map_height + 1) * 3);
 	splitted_line = ft_split(line, ' ');
 	if (splitted_line == NULL)
@@ -47,7 +47,7 @@ int	parse_line(const char *line, t_fdf *fdf)
 			return (ft_printf(2, "fdf: \"%s\" is not a valid map.\n", line),
 				ft_free_tab(splitted_line, fdf->map_width), 0);
 		index = fdf->map_height * (fdf->map_width) * 3 + i * 3;
-		fdf->map[index + 1] = value * 0.125;
+		fdf->map[index + 1] = value;
 		i++;
 	}
 	return (ft_free_tab(splitted_line, fdf->map_width), 1);
