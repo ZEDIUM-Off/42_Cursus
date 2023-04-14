@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:57:16 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/12 15:56:04 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/14 16:26:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	test_file(const char *file_name)
 int	parse_line(const char *line, t_fdf *fdf)
 {
 	char			**splitted_line;
-	int				i;
+	size_t			i;
 	long			value;
 	int				index;
 
@@ -46,8 +46,8 @@ int	parse_line(const char *line, t_fdf *fdf)
 		if (value == LONG_MAX)
 			return (ft_printf(2, "fdf: \"%s\" is not a valid map.\n", line),
 				ft_free_tab(splitted_line, fdf->map_width), 0);
-		index = fdf->map_height * (fdf->map_width) * 3 + i * 3;
-		fdf->map[index + 1] = value;
+		index = fdf->map_height * fdf->map_width * 3 + i * 3;
+		fdf->map[index + 1] = value * 0.5;
 		i++;
 	}
 	return (ft_free_tab(splitted_line, fdf->map_width), 1);
@@ -63,7 +63,7 @@ int	read_file(int fd, t_fdf *fdf)
 	{
 		if (fdf->map_height == 0)
 			fdf->map_width = ft_count_words(line, ' ');
-		if (fdf->map_width != ft_count_words(line, ' '))
+		if ((int)fdf->map_width != ft_count_words(line, ' '))
 			return (ft_printf(2, "fdf: \"%s\" is not a valid map.\n", line), -1);
 		if (!parse_line(no_nl(line), fdf))
 			return (free(line), 0);
@@ -74,5 +74,7 @@ int	read_file(int fd, t_fdf *fdf)
 	close(fd);
 	if (fdf->map_height == 0)
 		return (ft_printf(2, "fdf: \"%s\" is empty.\n", line), 0);
+	fdf->map_size = fdf->map_width * fdf->map_height * 3;
+	fdf->indices_size = (fdf->map_width - 1) * (fdf->map_height - 1) * 6;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:46:19 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/12 13:38:44 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/14 15:27:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_realloc(void *ptr, size_t newsize)
 	if (newsize <= cursize)
 		return (ptr);
 	newptr = malloc(newsize);
-	ft_memcpy(ptr, newptr, cursize);
+	ft_memcpy(newptr, ptr, newsize);
 	free(ptr);
 	return (newptr);
 }
