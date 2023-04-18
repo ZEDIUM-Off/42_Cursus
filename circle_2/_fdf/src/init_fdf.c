@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:42:59 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/14 15:49:35 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/17 12:05:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	set_indices(t_fdf *fdf)
 int	setup_fdf_data(t_fdf *fdf, int argc, char **argv)
 {
 	int							fd;
-	// t_draw_elements_settings	sett;
+	t_draw_elements_settings	sett;
 
 	if (argc != 2)
 		return (ft_printf(2, "Usage: ./fdf <filename>.fdf\n"), 1);
@@ -79,9 +79,15 @@ int	setup_fdf_data(t_fdf *fdf, int argc, char **argv)
 	init_window(fdf);
 	setup_gl_context(fdf);
 	set_map_buffers(fdf);
-	// sett = (t_draw_elements_settings){(fdf->map_width - 1) * (fdf->map_height - 1) * 6, GL_UNSIGNED_INT, 0};
-	// gl_polygon_mode(&fdf->glx, GL_FRONT_AND_BACK, GL_LINE);
-	// gl_draw_elements(&fdf->glx, GL_TRIANGLES, &sett);
-	// mlx_put_image_to_window(fdf->mxv.mlx, fdf->mxv.win, fdf->mxv.img, 0, 0);
+	struct s_uniform {
+		t_mat4	mvp_mat;
+	} ud = {
+		.mvp_mat = isometric_view(),
+	};
+	lgl_set_uniform(&fdf->glx, &ud);
+	sett = (t_draw_elements_settings){fdf->indices_size, GL_UNSIGNED_INT, 0};
+	gl_polygon_mode(&fdf->glx, GL_FRONT_AND_BACK, GL_LINE);
+	gl_draw_elements(&fdf->glx, GL_TRIANGLES, &sett);
+	mlx_put_image_to_window(fdf->mxv.mlx, fdf->mxv.win, fdf->mxv.img, 0, 0);
 	return (1);
 }

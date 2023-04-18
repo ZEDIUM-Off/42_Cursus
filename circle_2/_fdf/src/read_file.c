@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:57:16 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/14 16:26:01 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/17 12:16:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	parse_line(const char *line, t_fdf *fdf)
 			return (ft_printf(2, "fdf: \"%s\" is not a valid map.\n", line),
 				ft_free_tab(splitted_line, fdf->map_width), 0);
 		index = fdf->map_height * fdf->map_width * 3 + i * 3;
-		fdf->map[index + 1] = value * 0.5;
+		fdf->map[index + 1] = value * 0.125;
 		i++;
 	}
 	return (ft_free_tab(splitted_line, fdf->map_width), 1);

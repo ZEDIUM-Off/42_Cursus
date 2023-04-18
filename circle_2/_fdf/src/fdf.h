@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/14 15:41:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/17 11:58:09 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int		setup_fdf_data(t_fdf *fdf, int argc, char **argv);
 void	init_window(t_fdf *fdf);
 void	setup_gl_context(t_fdf *fdf);
 void	set_map_buffers(t_fdf *fdf);
+t_mat4	isometric_view(void);
 
 #endif 

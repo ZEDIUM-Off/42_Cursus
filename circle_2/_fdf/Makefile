@@ -20,13 +20,13 @@ GL = $(GL_DIR)/lite_gl.a
 
 
 WIN_SRC = $(WIN_DIR)/init_window.c
-GRAPH_SRC = $(GRAPH_DIR)/setup_glx.c $(GRAPH_DIR)/set_map_buffers.c
+GRAPH_SRC = $(GRAPH_DIR)/setup_glx.c $(GRAPH_DIR)/set_map_buffers.c $(GRAPH_DIR)/projection.c
 SRC = $(SRC_DIR)/fdf.c $(SRC_DIR)/read_file.c $(SRC_DIR)/init_fdf.c
 SRC += $(WIN_SRC) $(GRAPH_SRC)
-GNL = $(GNL_DIR)/get_next_line.o $(GNL_DIR)/get_next_line_utils.o
+GNL = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 
 
-OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o) #$(GNL:%.c=%.o)
 HEADERS = $(SRC_DIR)/fdf.h $(PF_DIR)/ft_printf.h $(LIB_DIR)/libft.h $(GL_DIR)/lite_gl.h
 
 OSX_FLAGS = -Lmlx-osx -framework OpenGL -framework AppKit

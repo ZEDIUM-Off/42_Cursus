@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:38:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/14 14:46:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/17 11:11:08 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	set_map_buffers(t_fdf *fdf)
 
 	attr = (t_gl_vertex_attrib){.size = 3, .type = GL_FLOAT,
 		.normalized = GL_FALSE, .stride = 0};
-	// sett = (t_draw_elements_settings){fdf->indices_size, GL_UNSIGNED_INT, 0};
 	gl_gen_buffers(&fdf->glx, 1, &fdf->map_vbo);
 	gl_bind_buffer(&fdf->glx, GL_ARRAY_BUFFER, fdf->map_vbo);
 	gl_buffer_data(&fdf->glx,

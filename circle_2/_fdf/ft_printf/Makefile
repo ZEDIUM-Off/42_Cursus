@@ -15,8 +15,8 @@ CLEAN = rm -f
 all :	$(NAME)
 
 $(NAME) : $(OBJECTS)
-	ar rc $@ $^
-	ranlib $@
+	ar rcs $@ $^
+	# *ranlib $@
 
 %.o : %.c $(HEADER) Makefile
 	$(CC) $(CFLAGS) $(EXTRA_FLAGS) $< -o $@
