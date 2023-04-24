@@ -19,9 +19,14 @@ MLX_LIN = $(MLX_LIN_DIR)/libmlx.a
 GL = $(GL_DIR)/lite_gl.a
 
 
-WIN_SRC = $(WIN_DIR)/init_window.c
-GRAPH_SRC = $(GRAPH_DIR)/setup_glx.c $(GRAPH_DIR)/set_map_buffers.c $(GRAPH_DIR)/projection.c
-SRC = $(SRC_DIR)/fdf.c $(SRC_DIR)/read_file.c $(SRC_DIR)/init_fdf.c
+WIN_SRC = $(WIN_DIR)/init_window.c 
+GRAPH_SRC = $(GRAPH_DIR)/setup_glx.c \
+						$(GRAPH_DIR)/set_map_buffers.c \
+						$(GRAPH_DIR)/projection.c \
+						$(GRAPH_DIR)/shaders.c \
+						$(GRAPH_DIR)/draw_map.c \
+
+SRC = $(SRC_DIR)/fdf.c $(SRC_DIR)/read_file.c $(SRC_DIR)/init_fdf.c $(SRC_DIR)/run_app.c
 SRC += $(WIN_SRC) $(GRAPH_SRC)
 GNL = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 

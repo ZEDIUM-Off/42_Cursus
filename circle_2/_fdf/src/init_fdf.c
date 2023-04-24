@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:42:59 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/17 12:05:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/24 15:11:07 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,30 @@ void	init_fdf(t_fdf *fdf)
 	fdf->indices = NULL;
 	fdf->map_width = 0;
 	fdf->map_height = 0;
+	fdf->uniforms.height_max = 0;
+	fdf->uniforms.height_min = 0;
 }
 
 void	build_map(t_fdf	*fdf)
 {
-	float	col;
-	float	row;
-	size_t	i;
+	t_fdf_uniforms	*u;
+	float			col;
+	float			row;
+	size_t			i;
+	float			norm_alt;
 
 	i = 0;
+	u = &fdf->uniforms;
 	while (i < fdf->map_height * fdf->map_width)
 	{
 		col = (float)(i % fdf->map_width);
 		row = (float)(i / fdf->map_width);
-		fdf->map[i * 3] = -F_SZ_X / 2 + col * F_SZ_X
-			/ (fdf->map_width - 1);
-		fdf->map[i * 3 + 2] = -F_SZ_Z / 2 + row * F_SZ_Z
-			/ (fdf->map_width - 1);
+		norm_alt = (fdf->map[i * 3 + 1] - u->height_min)
+			/ (u->height_max - u->height_min);
+		norm_alt = norm_alt - 0.5;
+		fdf->map[i * 3] = -0.5 + col * 1 / (fdf->map_width - 1);
+		fdf->map[i * 3 + 1] = norm_alt;
+		fdf->map[i * 3 + 2] = -0.5 + row * 1 / (fdf->map_width - 1);
 		i++;
 	}
 }
@@ -64,10 +71,9 @@ void	set_indices(t_fdf *fdf)
 int	setup_fdf_data(t_fdf *fdf, int argc, char **argv)
 {
 	int							fd;
-	t_draw_elements_settings	sett;
 
 	if (argc != 2)
-		return (ft_printf(2, "Usage: ./fdf <filename>.fdf\n"), 1);
+		return (ft_printf(2, FDF_USAGE), 1);
 	fd = test_file(argv[1]);
 	if (fd == -1)
 		return (0);
@@ -79,15 +85,7 @@ int	setup_fdf_data(t_fdf *fdf, int argc, char **argv)
 	init_window(fdf);
 	setup_gl_context(fdf);
 	set_map_buffers(fdf);
-	struct s_uniform {
-		t_mat4	mvp_mat;
-	} ud = {
-		.mvp_mat = isometric_view(),
-	};
-	lgl_set_uniform(&fdf->glx, &ud);
-	sett = (t_draw_elements_settings){fdf->indices_size, GL_UNSIGNED_INT, 0};
-	gl_polygon_mode(&fdf->glx, GL_FRONT_AND_BACK, GL_LINE);
-	gl_draw_elements(&fdf->glx, GL_TRIANGLES, &sett);
-	mlx_put_image_to_window(fdf->mxv.mlx, fdf->mxv.win, fdf->mxv.img, 0, 0);
+	fdf_shader_init(fdf);
+	draw_map(fdf);
 	return (1);
 }

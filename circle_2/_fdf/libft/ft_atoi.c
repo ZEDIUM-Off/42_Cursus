@@ -6,12 +6,11 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:43:55 by mchenava          #+#    #+#             */
-/*   Updated: 2023/04/04 14:01:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/24 10:53:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 long	ft_atoi(const char *nptr)
 {
@@ -35,6 +34,6 @@ long	ft_atoi(const char *nptr)
 		i++;
 	}
 	if (nptr[i] != '\0')
-		return (printf("===\"%c\"===\n", nptr[i]), LONG_MAX);
+		return (LONG_MAX);
 	return ((result * sign));
 }
