@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:04:17 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/24 15:16:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/26 14:48:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	vertex_shader(
 	t_fdf_uniforms	*u;
 	t_vec4			*v_attribs;
 
-	(void)vs_output;
 	u = uniforms;
 	v_attribs = vertex_attribs;
 	builtins->gl_position = mult_mat4_vec4(u->mvp_mat, v_attribs[0]);
