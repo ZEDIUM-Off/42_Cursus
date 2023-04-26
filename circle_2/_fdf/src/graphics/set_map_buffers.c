@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:38:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/17 11:11:08 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/26 15:40:09 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	set_map_buffers(t_fdf *fdf)
 		sizeof(unsigned int) * fdf->indices_size, fdf->indices);
 	gl_enable_vertex_attrib_array(&fdf->glx, 0);
 	gl_vertex_attrib_pointer(&fdf->glx, 0, attr, 0);
+	printf("Map Buffers Setted\n");
 }
