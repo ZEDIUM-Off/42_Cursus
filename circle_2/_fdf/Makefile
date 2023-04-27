@@ -31,7 +31,7 @@ SRC += $(WIN_SRC) $(GRAPH_SRC)
 GNL = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 
 
-OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o) #$(GNL:%.c=%.o)
+OBJECTS = $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o) $(GNL:%.c=%.o)
 HEADERS = $(SRC_DIR)/fdf.h $(PF_DIR)/ft_printf.h $(LIB_DIR)/libft.h $(GL_DIR)/lite_gl.h
 
 OSX_FLAGS = -Lmlx-osx -framework OpenGL -framework AppKit
