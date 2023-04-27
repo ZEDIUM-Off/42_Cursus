@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:42:59 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/26 16:16:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/27 11:29:51 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	build_map(t_fdf	*fdf)
 		fdf->map[i * 3 + 2] = -0.5 + row * 1 / (fdf->map_width - 1);
 		i++;
 	}
+	printf("Map Builded\n");
 }
 
 void	set_indices(t_fdf *fdf)
