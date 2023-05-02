@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/27 11:24:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/04/27 23:37:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define WIDTH	2000
-# define HEIGHT 2000
+# define WIDTH	800
+# define HEIGHT	600
 
 # define F_SZ_X 1.0f
 # define F_SZ_Z 1.0f
