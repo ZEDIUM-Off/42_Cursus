@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:27:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/02 15:29:42 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/02 17:06:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	mouse_pressed(int btn, int x, int y, t_fdf *fdf)
 	t_ctrl	*ctrl;
 
 	ctrl = (t_ctrl *)&fdf->ctrl;
-	printf("mouse_pressed, btn %d, x %d, y %d \n", btn, x, y);
 	if (btn == LEFT_CLICK)
 	{
 		ctrl->rotate = true;
@@ -33,7 +32,6 @@ int	mouse_released(int btn, int x, int y, t_fdf *fdf)
 	(void)x;
 	(void)y;
 	ctrl = (t_ctrl *)&fdf->ctrl;
-	printf("mouse_released, btn %d\n", btn);
 	if (btn == LEFT_CLICK)
 		ctrl->rotate = false;
 	return (0);
@@ -45,7 +43,9 @@ int	mouse_move(int x, int y, t_fdf *fdf)
 
 	ctrl = (t_ctrl *)&fdf->ctrl;
 	if (ctrl->rotate)
+	{
 		cam_rotate(fdf, x - ctrl->mouse_pos.x, y - ctrl->mouse_pos.y);
-	draw_map(fdf);
+		draw_map(fdf);
+	}
 	return (0);
 }

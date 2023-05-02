@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:13:17 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/02 15:02:32 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/02 17:06:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ t_mat4	cam_proj(t_fdf *fdf)
 	cam = (t_cam *)&fdf->cam;
 	make_perspective_matrix(proj,
 		radians(cam->zoom), WIDTH / HEIGHT, new_float2(0.1, 100.0));
-	print_mat4(proj, "proj_matrix");
 	look_at(view, cam->pos, cam->target, (t_vec3){0, 1, 0});
-	print_mat4(view, "view_matrix");
 	mult_mat4_mat4(result, proj, view);
-	print_mat4(result, "res");
 	return (result);
 }
