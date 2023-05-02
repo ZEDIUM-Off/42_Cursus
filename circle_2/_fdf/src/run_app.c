@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:18:10 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/04/24 15:18:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/02 15:13:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	run_app(t_fdf *fdf)
 {
+	set_hooks(fdf);
 	mlx_loop(fdf->mxv.mlx);
 }

@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_window.c                                      :+:      :+:    :+:   */
+/*   set_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 10:47:53 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/02 15:13:19 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/05/02 10:59:48 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/05/02 15:18:00 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-void	init_window(t_fdf *fdf)
+void	set_mouse_hooks(t_fdf	*fdf)
 {
-	fdf->mxv.mlx = mlx_init();
-	fdf->mxv.win = mlx_new_window(fdf->mxv.mlx, WIDTH, HEIGHT, "fdf");
-	fdf->mxv.img = mlx_new_image(fdf->mxv.mlx, WIDTH, HEIGHT);
+	mlx_hook(fdf->mxv.win,
+		BUTTON_PRESSED_EVT, BUTTON_PRESSED_MASK, mouse_pressed, fdf);
+	mlx_hook(fdf->mxv.win,
+		BUTTON_RELEASED_EVT, BUTTON_RELEASED_MASK, mouse_released, fdf);
+	mlx_hook(fdf->mxv.win,
+		MOUSE_MOVE_EVT, MOUSE_MOVE_MASK, mouse_move, fdf);
+}
+
+void	set_hooks(t_fdf	*fdf)
+{
+	set_mouse_hooks(fdf);
+	printf("hooks setted\n");
 }

@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_window.c                                      :+:      :+:    :+:   */
+/*   init_cam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 10:47:53 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/02 15:13:19 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/05/02 12:01:30 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/05/02 15:24:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-void	init_window(t_fdf *fdf)
+void	init_cam(t_fdf	*fdf)
 {
-	fdf->mxv.mlx = mlx_init();
-	fdf->mxv.win = mlx_new_window(fdf->mxv.mlx, WIDTH, HEIGHT, "fdf");
-	fdf->mxv.img = mlx_new_image(fdf->mxv.mlx, WIDTH, HEIGHT);
+	t_cam	*cam;
+
+	cam = (t_cam *)&fdf->cam;
+	cam->pos = (t_vec3){0.0, 0.0, 3.0};
+	cam->target = (t_vec3){0.0, 0.0, 0.0};
+	cam->dir = norm_vec3(sub_vec3s(cam->pos, cam->target));
+	cam->right = norm_vec3(cross_product((t_vec3){0.0, 1.0, 0.0}, cam->dir));
+	cam->up = cross_product(cam->dir, cam->right);
+	cam->zoom = 45.0f;
+	cam->speed = 0.05f;
 }

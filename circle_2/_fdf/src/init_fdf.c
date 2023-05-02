@@ -6,7 +6,11 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:42:59 by  mchenava         #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/05/02 15:30:22 by  mchenava        ###   ########.fr       */
+=======
 /*   Updated: 2023/04/27 11:29:51 by  mchenava        ###   ########.fr       */
+>>>>>>> 6a44d99080733503409e9ccd0e6d666345f59c36
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +24,7 @@ void	init_fdf(t_fdf *fdf)
 	fdf->map_height = 0;
 	fdf->uniforms.height_max = 0;
 	fdf->uniforms.height_min = 0;
+	fdf->ctrl.rotate = false;
 }
 
 void	build_map(t_fdf	*fdf)
@@ -86,6 +91,7 @@ int	setup_fdf_data(t_fdf *fdf, int argc, char **argv)
 	init_window(fdf);
 	setup_gl_context(fdf);
 	set_map_buffers(fdf);
+	init_cam(fdf);
 	fdf_shader_init(fdf);
 	draw_map(fdf);
 	return (1);
