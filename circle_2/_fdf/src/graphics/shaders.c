@@ -6,11 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:04:17 by  mchenava         #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/02 13:41:30 by  mchenava        ###   ########.fr       */
-=======
-/*   Updated: 2023/04/27 23:36:15 by  mchenava        ###   ########.fr       */
->>>>>>> 6a44d99080733503409e9ccd0e6d666345f59c36
+/*   Updated: 2023/05/02 16:28:54 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +59,5 @@ void	fdf_shader_init(t_fdf *fdf)
 	gl_use_program(&fdf->glx, shader);
 	lgl_set_uniform(&fdf->glx, &fdf->uniforms);
 	fdf->uniforms.project = cam_proj;
-	fdf->uniforms.mvp_mat = fdf->uniforms.project(fdf);
 	printf("shader initialized\n");
 }
