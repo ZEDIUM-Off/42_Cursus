@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/02 16:00:35 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/03 16:26:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# define WIDTH	800
-# define HEIGHT	600
+# define WIDTH	2000
+# define HEIGHT	2000
 
 # define F_SZ_X 1.0f
 # define F_SZ_Z 1.0f
@@ -37,6 +37,7 @@
 # define NO_FDF "fdf: \"%s\" is not a '.fdf' file.\n"
 # define NO_FILE "fdf: \"%s\" does not exist.\n"
 # define FDF_USAGE "Usage: ./fdf <filename>.fdf\n"
+# define TOO_BIG_MAP "fdf: \"%s\" is a too big map.\n"
 
 enum {
 	KEY_PRESSED_EVT = 02,
@@ -56,10 +57,10 @@ enum {
 
 enum {
 	LEFT_CLICK = 1,
-	RIGHT_CLICK,
-	MIDDLE_CLICK,
-	SCROLL_UP,
-	SCROLL_DOWN,
+	RIGHT_CLICK = 3,
+	MIDDLE_CLICK = 2,
+	SCROLL_UP = 4,
+	SCROLL_DOWN = 5,
 };
 
 typedef struct s_fdf	t_fdf;
@@ -96,6 +97,7 @@ typedef struct s_camera
 typedef struct s_controls
 {
 	bool	rotate;
+	bool	translate;
 	t_vec2	mouse_pos;
 }	t_ctrl;
 struct s_fdf
@@ -113,6 +115,10 @@ struct s_fdf
 	t_fdf_uniforms	uniforms;
 	t_cam			cam;
 	t_ctrl			ctrl;
+	size_t			evt_ctr;
+	size_t			loop_ctr;
+	size_t			images;
+	time_t			runtime;
 };
 
 int		test_file(const char *file_name);
@@ -134,5 +140,7 @@ int		mouse_pressed(int btn, int x, int y, t_fdf *fdf);
 int		mouse_released(int btn, int x, int y, t_fdf *fdf);
 int		mouse_move(int x, int y, t_fdf *fdf);
 void	cam_rotate(t_fdf *fdf, float delta_x, float delta_y);
+void	cam_translate(t_fdf *fdf, int x_offset, int y_offset);
+void	clean_fdf(t_fdf *fdf);
 
 #endif 

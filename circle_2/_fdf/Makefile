@@ -36,7 +36,7 @@ CAM_SRC = $(CAM_DIR)/init_cam.c \
 
 CTRL_SRC = $(CTRL_DIR)/mouse_ctrl.c
 
-SRC = $(SRC_DIR)/fdf.c $(SRC_DIR)/read_file.c $(SRC_DIR)/init_fdf.c $(SRC_DIR)/run_app.c
+SRC = $(SRC_DIR)/fdf.c $(SRC_DIR)/read_file.c $(SRC_DIR)/init_fdf.c $(SRC_DIR)/run_app.c $(SRC_DIR)/clean.c
 SRC += $(WIN_SRC) $(GRAPH_SRC) $(CAM_SRC) $(CTRL_SRC)
 GNL = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 

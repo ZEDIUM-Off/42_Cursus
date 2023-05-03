@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:04:17 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/02 16:28:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/03 11:16:21 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	fragment_shader(
 	vert_alt = fs_input[0];
 	norm_alt = (vert_alt + 1) / 2;
 	color1 = (t_vec4){0.0, 0.0, 1.0, 1.0};
-	color2 = (t_vec4){0.0, 1.0, 0.0, 1.0};
+	color2 = (t_vec4){1.0, 0.0, 0.0, 1.0};
 	builtins->gl_frag_color.x = color1.x * (1 - norm_alt) + color2.x * norm_alt;
 	builtins->gl_frag_color.y = color1.y * (1 - norm_alt) + color2.y * norm_alt;
 	builtins->gl_frag_color.z = color1.z * (1 - norm_alt) + color2.z * norm_alt;

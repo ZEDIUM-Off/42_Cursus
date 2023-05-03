@@ -6,11 +6,12 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:42:59 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/02 16:27:18 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/03 15:44:56 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
+#include <time.h>
 
 void	init_fdf(t_fdf *fdf)
 {
@@ -21,6 +22,11 @@ void	init_fdf(t_fdf *fdf)
 	fdf->uniforms.height_max = 0;
 	fdf->uniforms.height_min = 0;
 	fdf->ctrl.rotate = false;
+	fdf->ctrl.translate = false;
+	fdf->evt_ctr = 0;
+	fdf->loop_ctr = 0;
+	fdf->runtime = time(NULL);
+	fdf->images = 0;
 }
 
 void	build_map(t_fdf	*fdf)
@@ -39,9 +45,8 @@ void	build_map(t_fdf	*fdf)
 		row = (float)(i / fdf->map_width);
 		norm_alt = (fdf->map[i * 3 + 1] - u->height_min)
 			/ (u->height_max - u->height_min);
-		norm_alt = norm_alt - 0.5;
 		fdf->map[i * 3] = -0.5 + col * 1 / (fdf->map_width - 1);
-		fdf->map[i * 3 + 1] = norm_alt;
+		fdf->map[i * 3 + 1] = norm_alt - 0.5;
 		fdf->map[i * 3 + 2] = -0.5 + row * 1 / (fdf->map_width - 1);
 		i++;
 	}
@@ -82,6 +87,8 @@ int	setup_fdf_data(t_fdf *fdf, int argc, char **argv)
 	init_fdf(fdf);
 	if (!read_file(fd, fdf))
 		return (0);
+	if (fdf->indices_size > MAX_VERTICES)
+		return (ft_printf(2, TOO_BIG_MAP, argv[1]), 0);
 	build_map(fdf);
 	set_indices(fdf);
 	init_window(fdf);
