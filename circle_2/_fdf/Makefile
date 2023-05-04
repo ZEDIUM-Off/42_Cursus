@@ -29,12 +29,13 @@ GRAPH_SRC = $(GRAPH_DIR)/setup_glx.c \
 						$(GRAPH_DIR)/set_map_buffers.c \
 						$(GRAPH_DIR)/projection.c \
 						$(GRAPH_DIR)/shaders.c \
-						$(GRAPH_DIR)/draw_map.c \
+						$(GRAPH_DIR)/render.c \
 
 CAM_SRC = $(CAM_DIR)/init_cam.c \
 					$(CAM_DIR)/move_cam.c
 
-CTRL_SRC = $(CTRL_DIR)/mouse_ctrl.c
+CTRL_SRC =	$(CTRL_DIR)/mouse_ctrl.c \
+						$(CTRL_DIR)/keyboard_ctrl.c
 
 SRC = $(SRC_DIR)/fdf.c $(SRC_DIR)/read_file.c $(SRC_DIR)/init_fdf.c $(SRC_DIR)/run_app.c $(SRC_DIR)/clean.c
 SRC += $(WIN_SRC) $(GRAPH_SRC) $(CAM_SRC) $(CTRL_SRC)
@@ -46,14 +47,14 @@ HEADERS = $(SRC_DIR)/fdf.h $(PF_DIR)/ft_printf.h $(LIB_DIR)/libft.h $(GL_DIR)/li
 
 OSX_FLAGS = -Lmlx-osx -framework OpenGL -framework AppKit
 LIN_FLAGS = -Lmlx-linux -lXext -lX11 -lm -I$(MLX_LIN_DIR)
-OBJ_FLAGS = -Wall -Werror -Wextra -fsanitize=address -g3 -I$(LIB_DIR) -I$(MLX_LIN_DIR) -I$(INCLUDE_DIR) -I$(PF_DIR) -I$(GL_DIR) -I$(GNL_DIR) -I$(SRC_DIR) -I/usr/X11/include -I$(MLX_OSX_DIR)
+OBJ_FLAGS = -Wall -Werror -Wextra -I$(LIB_DIR) -I$(MLX_LIN_DIR) -I$(INCLUDE_DIR) -I$(PF_DIR) -I$(GL_DIR) -I$(GNL_DIR) -I$(SRC_DIR) -I/usr/X11/include -I$(MLX_OSX_DIR) #-fsanitize=address -g3
 
 all : $(NAME)
 
 $(NAME) : linux
 
 linux: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX_LIN) $(GL) $(GNL) 
-	$(CC) $(LIN_FLAGS) -fsanitize=address -g3 -o $(NAME) $^
+	$(CC) $(LIN_FLAGS) -o $(NAME) $^ #*-fsanitize=address -g3
 
 mac: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX_LIN) $(GL)
 	$(CC) $(OSX_FLAGS) -fsanitize=address -g3 -o $(NAME) $^
@@ -96,7 +97,7 @@ $(MLX_LIN): mlibx_lin
 $(GL): gl
 
 clean : 
-	$(RM) $(OBJECTS)
+	$(RM) -r $(BUILD_DIR)
 	$(MAKE) -C $(MLX_OSX_DIR) clean
 	$(MAKE) -C $(MLX_LIN_DIR) clean
 	$(MAKE) -C $(PF_DIR) clean

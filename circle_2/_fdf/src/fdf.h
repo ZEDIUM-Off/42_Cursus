@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/03 16:26:38 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/04 12:40:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# define WIDTH	2000
-# define HEIGHT	2000
+# define WIDTH	800
+# define HEIGHT	800
 
 # define F_SZ_X 1.0f
 # define F_SZ_Z 1.0f
@@ -72,7 +72,7 @@ typedef struct s_mlx_env
 	t_img		*img;
 }	t_mlx_env;
 
-typedef t_mat4 (*		t_proj_func) (t_fdf *);
+typedef void (*			t_proj_func) (t_fdf *, t_mat4);
 typedef struct fdf_uniforms
 {
 	t_mat4		mvp_mat;
@@ -129,8 +129,8 @@ int		setup_fdf_data(t_fdf *fdf, int argc, char **argv);
 void	init_window(t_fdf *fdf);
 void	setup_gl_context(t_fdf *fdf);
 void	set_map_buffers(t_fdf *fdf);
-t_mat4	isometric_view(t_fdf *fdf);
-t_mat4	cam_proj(t_fdf *fdf);
+void	isometric_view(t_fdf *fdf, t_mat4 proj_mat);
+void	cam_proj(t_fdf *fdf, t_mat4 proj_mat);
 void	fdf_shader_init(t_fdf *fdf);
 int		draw_map(t_fdf *fdf);
 void	run_app(t_fdf *fdf);
@@ -142,5 +142,7 @@ int		mouse_move(int x, int y, t_fdf *fdf);
 void	cam_rotate(t_fdf *fdf, float delta_x, float delta_y);
 void	cam_translate(t_fdf *fdf, int x_offset, int y_offset);
 void	clean_fdf(t_fdf *fdf);
+int		key_pressed(int key, t_fdf *fdf);
+int		render(t_fdf *fdf);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:59:48 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/03 15:15:46 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/04 11:52:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,16 @@ void	set_mouse_hooks(t_fdf	*fdf)
 		MOUSE_MOVE_EVT, MOUSE_MOVE_MASK, mouse_move, fdf);
 }
 
-int	render(t_fdf *fdf)
+void	set_keyboard_hooks(t_fdf	*fdf)
 {
-	time_t	current_time;
-
-	draw_map(fdf);
-	current_time = time(NULL);
-	if (current_time - fdf->runtime == 1)
-	{
-		printf("FPS = %ld\n", fdf->images / (current_time - fdf->runtime));
-		fdf->runtime = time(NULL);
-		fdf->images = 0;
-		printf("loop_count = %ld\n", fdf->loop_ctr);
-			fdf->loop_ctr = 0;
-	}
-	fdf->loop_ctr++;
-	return (0);
+	mlx_hook(fdf->mxv.win,
+		KEY_PRESSED_EVT, KEY_PRESSED_MASK, key_pressed, fdf);
 }
 
 void	set_hooks(t_fdf	*fdf)
 {
 	set_mouse_hooks(fdf);
+	set_keyboard_hooks(fdf);
 	mlx_loop_hook(fdf->mxv.mlx, render, fdf);
 	printf("hooks setted\n");
 }
