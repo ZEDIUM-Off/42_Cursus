@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:04:17 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/03 11:16:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/05 15:17:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	vertex_shader(
 	v_attribs = vertex_attribs;
 	builtins->gl_position = mult_mat4_vec4(u->mvp_mat, v_attribs[0]);
 	vs_output[0] = v_attribs[0].y;
+	// printf ("vs_output[0] = %f\n", vs_output[0]);
 }
 
 void	fragment_shader(

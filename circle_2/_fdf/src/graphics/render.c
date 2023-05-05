@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:03:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/04 12:42:08 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/05 15:09:08 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	draw_map(t_fdf *fdf)
 	gl_polygon_mode(&fdf->glx, GL_FRONT_AND_BACK, GL_LINE);
 	gl_draw_elements(&fdf->glx, GL_TRIANGLES, &sett);
 	mlx_put_image_to_window(fdf->mxv.mlx, fdf->mxv.win, fdf->mxv.img, 0, 0);
-	fdf->images++;
+	// printf("draw map\n");
 	return (1);
 }
 
