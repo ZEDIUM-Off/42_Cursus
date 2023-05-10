@@ -40,7 +40,7 @@ $(LIB_PF): pf
 $(LIBFT): lib
 
 clean :
-	$(RM) $(OBJECTS)
+	$(RM) -rf $(BUILD_DIR)
 	$(MAKE) -C $(PF_DIR) clean
 	$(MAKE) -C $(LIB_DIR) clean
 
