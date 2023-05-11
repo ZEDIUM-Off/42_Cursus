@@ -51,11 +51,7 @@ OBJ_FLAGS = -Wall -Werror -Wextra -I$(LIB_DIR) -I$(MLX_LIN_DIR) -I$(INCLUDE_DIR)
 
 all : dirs $(NAME)
 
-<<<<<<< HEAD
-dirs :
-=======
 dirs : 
->>>>>>> 5c34037078b41bb6b17741d768abaa3a871a4ebd
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)/window
 	mkdir -p $(BUILD_DIR)/graphics
