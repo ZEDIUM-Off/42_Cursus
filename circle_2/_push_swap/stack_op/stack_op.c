@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:10:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/09 17:19:53 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2023/05/10 14:11:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ void	swap(t_stack **stack, int disp_op)
 		tmp1 = (*stack)->top;
 		tmp2 = (*stack)->top->next;
 		tmp1->next = tmp2->next;
-		tmp1->prev = tmp2;
 		tmp2->next = tmp1;
-		tmp2->prev = NULL;
-		tmp1->next->prev = tmp1;
 		(*stack)->top = tmp2;
 		act_position(stack);
 		if (disp_op && ft_strncmp((*stack)->name, "a", 5) == 0)
@@ -43,14 +40,9 @@ void	push(t_stack **stack_in, t_stack **stack_out, int disp_op)
 	{
 		tmp = (*stack_out)->top;
 		(*stack_out)->top = (*stack_out)->top->next;
-		if ((*stack_out)->top)
-			(*stack_out)->top->prev = NULL;
 		(*stack_out)->size--;
 		tmp->next = (*stack_in)->top;
 		(*stack_in)->top = tmp;
-		tmp->prev = NULL;
-		if (tmp->next)
-			tmp->next->prev = tmp;
 		(*stack_in)->size++;
 		act_position(stack_in);
 		act_position(stack_out);
@@ -70,11 +62,9 @@ void	rotate(t_stack **stack, int disp_op)
 	{
 		tmp1 = (*stack)->top;
 		(*stack)->top = (*stack)->top->next;
-		(*stack)->top->prev = NULL;
 		tmp1->next = NULL;
 		tmp2 = get_node(stack, (*stack)->size - 1);
 		tmp2->next = tmp1;
-		tmp1->prev = tmp2;
 		act_position(stack);
 		if (disp_op && ft_strncmp((*stack)->name, "a", 5) == 0)
 			ft_printf("ra\n");
@@ -86,15 +76,15 @@ void	rotate(t_stack **stack, int disp_op)
 void	rev_rotate(t_stack **stack, int disp_op)
 {
 	t_node	*tmp;
+	t_node	*tmp2;
 
 	if ((*stack)->size > 1)
 	{
 		tmp = get_node(stack, (*stack)->size - 1);
-		tmp->prev->next = NULL;
-		tmp->prev = NULL;
+		tmp2 = get_node(stack, (*stack)->size - 2);
 		tmp->next = (*stack)->top;
-		(*stack)->top->prev = tmp;
 		(*stack)->top = tmp;
+		tmp2->next = NULL;
 		act_position(stack);
 		if (disp_op && ft_strncmp((*stack)->name, "a", 5) == 0)
 			ft_printf("rra\n");

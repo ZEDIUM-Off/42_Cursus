@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:49:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/09 17:19:21 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2023/05/10 13:00:42 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	display_stack(t_stack *stack)
 	ft_printf("======== stack %s : ==========\n", stack->name);
 	while (node != NULL)
 	{
-		printf("Valeur n.%d = %ld [prev : %ld <> next : %ld]\n",
+		printf("Valeur n.%d = %ld  -> next : %ld]\n",
 			node->position, node->value,
-			node->prev ? node->prev->value : 0,
 			node->next ? node->next->value : 0);
 		node = node->next;
 	}
@@ -64,7 +63,6 @@ t_node	*new_node(int value, int position)
 	node->value = value;
 	node->position = position;
 	node->next = NULL;
-	node->prev = NULL;
 	return (node);
 }
 
@@ -86,7 +84,6 @@ void	stack_init(int size, int *values, char *name, t_stack	**stack)
 			tmp = (*stack)->top;
 			(*stack)->top = node;
 			(*stack)->top->next = tmp;
-			tmp->prev = (*stack)->top;
 		}
 		i--;
 	}

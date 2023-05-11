@@ -18,8 +18,7 @@ HEADERS = push_swap.h ./libstack/stack.h stack_op/stack_op.h ./sorting_algo/algo
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 EXTRA_FLAGS = -I . -I ./libstack -I ./stack_op -I ./ft_printf -I ./libft -I ./sorting_algo -I ./utils
 
-all : 
-	$(MAKE) $(NAME) pf lib
+all : $(NAME) pf lib
 
 $(NAME) : $(OBJECTS) $(LIB_PF) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $^

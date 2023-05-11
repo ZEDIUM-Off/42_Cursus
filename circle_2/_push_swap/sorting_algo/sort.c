@@ -6,25 +6,25 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:11:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/10 08:59:47 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/10 15:58:33 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_min(t_stack **stack)
+t_node	*find_min(t_stack **stack)
 {
-	int				min;
 	unsigned int	i;
 	t_node			*node;
+	t_node			*min;
 
-	min = (*stack)->top->value;
+	min = (*stack)->top;
 	node = (*stack)->top;
 	i = 0;
 	while (i < (*stack)->size)
 	{
-		if (node->value < min)
-			min = node->value;
+		if (node->value < min->value)
+			min = node;
 		node = node->next;
 		i++;
 	}
@@ -46,10 +46,7 @@ void	sort_3(t_stack **stack)
 		swap(stack, 1);
 	else if ((*stack)->top->value < (*stack)->top->next->value
 		&& (*stack)->top->value > (*stack)->top->next->next->value)
-	{
-		swap(stack, 1);
 		rev_rotate(stack, 1);
-	}
 	else if ((*stack)->top->value < (*stack)->top->next->value
 		&& (*stack)->top->value < (*stack)->top->next->next->value)
 	{
@@ -60,19 +57,23 @@ void	sort_3(t_stack **stack)
 
 void	sort_5(t_stack	**stack_a, t_stack	**stack_b)
 {
-	int		i;
-	int		min;
+	int			i;
+	t_node		*min;
 
 	i = 0;
 	while (i < 2)
 	{
 		min = find_min(stack_a);
-		while ((*stack_a)->top->value != min)
-			rotate(stack_a, 1);
+		if (min->position >= (int)(*stack_a)->size / 2)
+			while ((*stack_a)->top->value != min->value)
+				rev_rotate(stack_a, 1);
+		else if (min->position < (int)(*stack_a)->size / 2)
+			while ((*stack_a)->top->value != min->value)
+				rotate(stack_a, 1);
 		push(stack_b, stack_a, 1);
 		i++;
 	}
-	sort_3(stack_a);
+	sort(stack_a, stack_b);
 	push(stack_a, stack_b, 1);
 	push(stack_a, stack_b, 1);
 }
