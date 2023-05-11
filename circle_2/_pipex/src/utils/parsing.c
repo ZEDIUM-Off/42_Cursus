@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:02:45 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/23 17:02:29 by  mchenava        ###   ########lyon.fr   */
+/*   Updated: 2023/05/09 11:54:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	**find_cmd(char *cmd, char **envp)
 	int		i;
 
 	_cmd = ft_split(cmd, ' ');
+	if (!_cmd[0])
+		ft_printf(2, "pipex: %s: command not found\n", cmd);
 	if (access(_cmd[0], X_OK) == 0)
 		return (_cmd);
 	i = 0;
@@ -105,10 +107,11 @@ t_pipex	*parse(int argc, char **argv, char **envp)
 	pipex = (t_pipex *)malloc(sizeof(t_pipex));
 	if (!pipex)
 		return (NULL);
+	pipex->processes = NULL;
 	pipex->cmds = parse_cmds(argc, argv, envp);
+	pipex->first_cmd = pipex->cmds;
 	if (!pipex->cmds)
 		return (free_pipex(&pipex), NULL);
-	pipex->first_cmd = pipex->cmds;
 	pipex->processes = init_process(&pipex);
 	if (!pipex->processes)
 		return (free_pipex(&pipex), NULL);

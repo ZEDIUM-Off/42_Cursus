@@ -51,7 +51,11 @@ OBJ_FLAGS = -Wall -Werror -Wextra -I$(LIB_DIR) -I$(MLX_LIN_DIR) -I$(INCLUDE_DIR)
 
 all : dirs $(NAME)
 
+<<<<<<< HEAD
 dirs :
+=======
+dirs : 
+>>>>>>> 5c34037078b41bb6b17741d768abaa3a871a4ebd
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)/window
 	mkdir -p $(BUILD_DIR)/graphics
@@ -66,7 +70,6 @@ linux: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX_LIN) $(GL) $(GNL)
 
 mac: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX_LIN) $(GL)
 	$(CC) $(OSX_FLAGS) -fsanitize=address -g3 -o $(NAME) $^
-
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	$(CC) $(OBJ_FLAGS) -o $@ -c $<
@@ -112,7 +115,7 @@ fclean : clean
 	$(MAKE) -C $(PF_DIR) fclean
 	$(MAKE) -C $(LIB_DIR) fclean
 	$(MAKE) -C $(MLX_OSX_DIR) fclean
-	# $(MAKE) -C $(MLX_LIN_DIR) fclean
+	#* $(MAKE) -C $(MLX_LIN_DIR) fclean
 	$(MAKE) -C $(GL_DIR) fclean
 
 check : 

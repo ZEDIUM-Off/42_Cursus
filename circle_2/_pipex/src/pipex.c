@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:59:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/01/20 15:02:45 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/10 10:18:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	child_process(t_pipex **pipex, int in_fd)
 	newfd((*pipex)->processes->pipefd[1], STDOUT_FILENO, pipex);
 	if (execve((*pipex)->cmds->cmd[0],
 			(*pipex)->cmds->cmd, (*pipex)->env) == -1)
+	{
+		perror("execve");
 		exit(1);
+	}
 }
 
 void	parent_process(t_pipex **pipex, int in_fd)
@@ -41,7 +44,10 @@ void	last_process(t_pipex **pipex, int in_fd)
 	newfd((*pipex)->outfile, STDOUT_FILENO, pipex);
 	if (execve((*pipex)->cmds->cmd[0],
 			(*pipex)->cmds->cmd, (*pipex)->env) == -1)
+	{
+		perror("execve");
 		exit_with_error("execve", pipex);
+	}
 }
 
 void	wait_for_process(t_pipex **pipex)
