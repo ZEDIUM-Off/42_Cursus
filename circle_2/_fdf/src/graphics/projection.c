@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:13:17 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/04 12:41:48 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 13:06:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,18 @@ void	cam_proj(t_fdf *fdf, t_mat4	result)
 		radians(cam->zoom), WIDTH / HEIGHT, (float [2]){0.1, 100.0});
 	look_at(view, cam->pos, cam->target, (t_vec3){0, 1, 0});
 	mult_mat4_mat4(result, proj, view);
+}
+
+void	switch_proj(t_fdf *fdf)
+{
+	if (fdf->proj_mode == ISO)
+	{
+		fdf->proj_mode = CAM;
+		fdf->uniforms.project = cam_proj;
+	}
+	else
+	{
+		fdf->proj_mode = ISO;
+		fdf->uniforms.project = isometric_view;
+	}
 }

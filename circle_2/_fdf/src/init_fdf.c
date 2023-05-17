@@ -6,12 +6,11 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:42:59 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/17 11:52:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 12:57:51 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
-#include <time.h>
 
 void	init_fdf(t_fdf *fdf)
 {
@@ -23,10 +22,8 @@ void	init_fdf(t_fdf *fdf)
 	fdf->uniforms.height_min = 0;
 	fdf->ctrl.rotate = false;
 	fdf->ctrl.translate = false;
-	fdf->evt_ctr = 0;
-	fdf->loop_ctr = 0;
-	fdf->runtime = time(NULL);
-	fdf->images = 0;
+	fdf->draw_mode = GL_LINE;
+	fdf->proj_mode = ISO;
 }
 
 void	build_map(t_fdf	*fdf)

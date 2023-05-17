@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:27:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/04 11:47:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 13:01:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,23 @@ int	mouse_pressed(int btn, int x, int y, t_fdf *fdf)
 
 	ctrl = (t_ctrl *)&fdf->ctrl;
 	cam = (t_cam *)&fdf->cam;
-	if (btn == LEFT_CLICK)
+	if (fdf->proj_mode == CAM)
 	{
-		ctrl->rotate = true;
-		ctrl->mouse_pos = (t_vec2){x, y};
+		if (btn == LEFT_CLICK)
+		{
+			ctrl->rotate = true;
+			ctrl->mouse_pos = (t_vec2){x, y};
+		}
+		if (btn == RIGHT_CLICK)
+		{
+			ctrl->translate = true;
+			ctrl->mouse_pos = (t_vec2){x, y};
+		}
+		if (btn == SCROLL_UP)
+			cam->zoom -= 0.5;
+		if (btn == SCROLL_DOWN)
+			cam->zoom += 0.5;
 	}
-	if (btn == RIGHT_CLICK)
-	{
-		ctrl->translate = true;
-		ctrl->mouse_pos = (t_vec2){x, y};
-	}
-	if (btn == SCROLL_UP)
-		cam->zoom -= 0.5;
-	if (btn == SCROLL_DOWN)
-		cam->zoom += 0.5;
 	return (0);
 }
 
@@ -42,12 +45,14 @@ int	mouse_released(int btn, int x, int y, t_fdf *fdf)
 
 	(void)x;
 	(void)y;
-	ctrl = (t_ctrl *)&fdf->ctrl;
-	if (btn == LEFT_CLICK)
-		ctrl->rotate = false;
-	if (btn == RIGHT_CLICK)
-		ctrl->translate = false;
-	fdf->evt_ctr = 0;
+	if (fdf->proj_mode == CAM)
+	{
+		ctrl = (t_ctrl *)&fdf->ctrl;
+		if (btn == LEFT_CLICK)
+			ctrl->rotate = false;
+		if (btn == RIGHT_CLICK)
+			ctrl->translate = false;
+	}
 	return (0);
 }
 

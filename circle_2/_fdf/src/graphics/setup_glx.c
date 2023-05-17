@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:00:05 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/17 10:47:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 13:19:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int	setup_gl_context(t_fdf *fdf)
 	if (!init_gl_context(c, settings))
 		return (ft_printf(2, "Failed to initialize glContext"), 0);
 	gl_clear_color(c, (float [4]){0.0f, 0.0f, 0.0f, 1.0f});
+	gl_enable(&fdf->glx, GL_DEPTH_TEST);
 	return (1);
 }

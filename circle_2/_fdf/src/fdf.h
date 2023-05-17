@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/17 11:10:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 13:10:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ enum {
 	GLX_ERROR,
 };
 
+enum {
+	ISO,
+	CAM,
+};
+
 typedef struct s_fdf	t_fdf;
 
 typedef struct s_mlx_env
@@ -124,10 +129,8 @@ struct s_fdf
 	t_fdf_uniforms	uniforms;
 	t_cam			cam;
 	t_ctrl			ctrl;
-	size_t			evt_ctr;
-	size_t			loop_ctr;
-	size_t			images;
-	time_t			runtime;
+	t_gl_enum		draw_mode;
+	int				proj_mode;
 };
 
 int		test_file(const char *file_name);
@@ -153,5 +156,8 @@ void	cam_translate(t_fdf *fdf, int x_offset, int y_offset);
 void	clean_fdf(t_fdf *fdf);
 int		key_pressed(int key, t_fdf *fdf);
 int		render(t_fdf *fdf);
+void	switch_proj(t_fdf *fdf);
+void	switch_draw(t_fdf *fdf);
+void	quit_fdf(t_fdf *fdf);
 
 #endif 
