@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:04:17 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/11 15:56:29 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 11:55:26 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	fdf_shader_init(t_fdf *fdf)
 	shader = lgl_create_program(&fdf->glx, prog_attr, interp);
 	gl_use_program(&fdf->glx, shader);
 	lgl_set_uniform(&fdf->glx, &fdf->uniforms);
-	fdf->uniforms.project = cam_proj;
+	fdf->uniforms.project = isometric_view;
 	printf("shader initialized\n");
 }

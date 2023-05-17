@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:00:05 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/04 12:23:04 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 10:47:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-void	setup_gl_context(t_fdf *fdf)
+int	setup_gl_context(t_fdf *fdf)
 {
 	t_mlx_env			*mxv;
 	t_gl_context		*c;
@@ -29,9 +29,7 @@ void	setup_gl_context(t_fdf *fdf)
 	settings.b_mask = 0x000000FF;
 	settings.a_mask = 0xFF000000;
 	if (!init_gl_context(c, settings))
-	{
-		ft_printf(2, "Failed to initialize glContext");
-		exit(0);
-	}
+		return (ft_printf(2, "Failed to initialize glContext"), 0);
 	gl_clear_color(c, (float [4]){0.0f, 0.0f, 0.0f, 1.0f});
+	return (1);
 }

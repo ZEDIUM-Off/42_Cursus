@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/04 12:40:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 11:10:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,14 @@ enum {
 	SCROLL_DOWN = 5,
 };
 
+enum {
+	FILE_ERROR = 0,
+	SUCCESS,
+	MAP_ERROR,
+	IND_ERROR,
+	GLX_ERROR,
+};
+
 typedef struct s_fdf	t_fdf;
 
 typedef struct s_mlx_env
@@ -102,6 +110,7 @@ typedef struct s_controls
 }	t_ctrl;
 struct s_fdf
 {
+	int				status;
 	float			*map;
 	t_gl_uint		*indices;
 	t_gl_uint		map_vbo;
@@ -127,7 +136,7 @@ void	init_fdf(t_fdf *fdf);
 char	*no_nl(char *str);
 int		setup_fdf_data(t_fdf *fdf, int argc, char **argv);
 void	init_window(t_fdf *fdf);
-void	setup_gl_context(t_fdf *fdf);
+int		setup_gl_context(t_fdf *fdf);
 void	set_map_buffers(t_fdf *fdf);
 void	isometric_view(t_fdf *fdf, t_mat4 proj_mat);
 void	cam_proj(t_fdf *fdf, t_mat4 proj_mat);

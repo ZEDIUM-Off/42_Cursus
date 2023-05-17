@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:42:59 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/05 15:16:00 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 11:52:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ void	build_map(t_fdf	*fdf)
 	printf("Map Builded\n");
 }
 
-void	set_indices(t_fdf *fdf)
+int	set_indices(t_fdf *fdf)
 {
 	size_t	i;
 	int		offset;
 
 	fdf->indices = malloc(sizeof(unsigned int) * fdf->indices_size);
+	if (!fdf->indices)
+		return (0);
 	i = 0;
 	offset = 0;
 	while (i < (fdf->map_width - 1) * (fdf->map_height - 1))
@@ -68,11 +70,12 @@ void	set_indices(t_fdf *fdf)
 		fdf->indices[i * 6] = i + offset;
 		fdf->indices[i * 6 + 1] = i + offset + fdf->map_width;
 		fdf->indices[i * 6 + 2] = i + offset + 1;
-		fdf->indices[i * 6 + 3] = i + offset + fdf->map_width;
-		fdf->indices[i * 6 + 4] = i + offset + 1;
 		fdf->indices[i * 6 + 5] = i + offset + fdf->map_width + 1;
+		fdf->indices[i * 6 + 4] = i + offset + 1;
+		fdf->indices[i * 6 + 3] = i + offset + fdf->map_width;
 		i++;
 	}
+	return (1);
 }
 
 int	setup_fdf_data(t_fdf *fdf, int argc, char **argv)
@@ -80,22 +83,23 @@ int	setup_fdf_data(t_fdf *fdf, int argc, char **argv)
 	int							fd;
 
 	if (argc != 2)
-		return (ft_printf(2, FDF_USAGE), 1);
+		return (ft_printf(2, FDF_USAGE), FILE_ERROR);
 	fd = test_file(argv[1]);
 	if (fd == -1)
-		return (0);
+		return (FILE_ERROR);
 	init_fdf(fdf);
 	if (!read_file(fd, fdf))
-		return (0);
+		return (MAP_ERROR);
 	if (fdf->indices_size > MAX_VERTICES)
-		return (ft_printf(2, TOO_BIG_MAP, argv[1]), 0);
+		return (ft_printf(2, TOO_BIG_MAP, argv[1]), MAP_ERROR);
 	build_map(fdf);
-	set_indices(fdf);
+	if (!set_indices(fdf))
+		return (IND_ERROR);
 	init_window(fdf);
-	setup_gl_context(fdf);
+	if (!setup_gl_context(fdf))
+		return (GLX_ERROR);
 	set_map_buffers(fdf);
 	init_cam(fdf);
 	fdf_shader_init(fdf);
-	draw_map(fdf);
-	return (1);
+	return (SUCCESS);
 }

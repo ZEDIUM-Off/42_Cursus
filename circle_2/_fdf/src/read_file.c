@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:57:16 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/03 15:44:35 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/17 11:49:26 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	parse_line(const char *line, t_fdf *fdf)
 	fdf->map = ft_realloc(fdf->map,
 			sizeof(float) * fdf->map_width * (fdf->map_height + 1) * 3,
 			sizeof(float) * fdf->map_width * (fdf->map_height) * 3);
+	if (!fdf->map)
+		return (0);
 	splitted_line = ft_split(line, ' ');
 	i = 0;
 	while (splitted_line && splitted_line[i] != NULL && i < fdf->map_width)
