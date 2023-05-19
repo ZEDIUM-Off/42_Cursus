@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:03:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/17 13:20:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/19 20:21:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@ int	draw_map(t_fdf *fdf)
 	return (1);
 }
 
+void	display_controls(t_fdf *fdf)
+{
+	(void)fdf;
+	return ;
+}
+
 int	render(t_fdf *fdf)
 {
 	draw_map(fdf);
-	// display controls
+	display_controls(fdf);
 	return (0);
 }
 

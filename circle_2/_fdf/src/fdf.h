@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/17 13:10:38 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/19 20:12:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ enum {
 	BUTTON_PRESSED_EVT = 04,
 	BUTTON_RELEASED_EVT = 05,
 	MOUSE_MOVE_EVT = 06,
+	DESTROY_NOTIFY_EVT = 17,
 };
 
 enum {
@@ -158,6 +159,6 @@ int		key_pressed(int key, t_fdf *fdf);
 int		render(t_fdf *fdf);
 void	switch_proj(t_fdf *fdf);
 void	switch_draw(t_fdf *fdf);
-void	quit_fdf(t_fdf *fdf);
+int		quit_fdf(t_fdf *fdf);
 
 #endif 

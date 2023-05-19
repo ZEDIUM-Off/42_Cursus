@@ -6,11 +6,20 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:57:16 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/17 11:49:26 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/19 20:17:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
+
+void	set_height(t_fdf *fdf, int index, long value)
+{
+	if (value > fdf->uniforms.height_max)
+			fdf->uniforms.height_max = value;
+	if (value < fdf->uniforms.height_min)
+		fdf->uniforms.height_min = value;
+	fdf->map[index + 1] = value;
+}
 
 int	test_file(const char *file_name)
 {
@@ -48,11 +57,7 @@ int	parse_line(const char *line, t_fdf *fdf)
 			return (ft_printf(2, UNVALID_MAP, line),
 				ft_free_tab(splitted_line, fdf->map_width), 0);
 		index = fdf->map_height * fdf->map_width * 3 + (i++) * 3;
-		if (value > fdf->uniforms.height_max)
-			fdf->uniforms.height_max = value;
-		if (value < fdf->uniforms.height_min)
-			fdf->uniforms.height_min = value;
-		fdf->map[index + 1] = value;
+		set_height(fdf, index, value);
 	}
 	return (ft_free_tab(splitted_line, fdf->map_width), 1);
 }
