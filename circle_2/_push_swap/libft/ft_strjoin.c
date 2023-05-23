@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:08:23 by mchenava          #+#    #+#             */
-/*   Updated: 2023/01/13 14:47:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/12 11:48:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*ft_strsepjoin(char *s1, char *s2, char delim)
 			i++;
 		}
 		str[i++] = delim;
+		free(s1);
 	}
 	if (s2)
 		while (s2[j])
