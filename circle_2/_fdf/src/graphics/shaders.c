@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:04:17 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/12 12:02:34 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/23 10:22:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	vertex_shader(
 	v_attribs = vertex_attribs;
 	builtins->gl_position = mult_mat4_vec4(u->mvp_mat, v_attribs[0]);
 	vs_output[0] = v_attribs[0].y;
-	// printf ("vs_output[0] = %f\n", vs_output[0]);
 }
 
 void	fragment_shader(
@@ -59,6 +58,6 @@ void	fdf_shader_init(t_fdf *fdf)
 	shader = lgl_create_program(&fdf->glx, prog_attr, interp);
 	gl_use_program(&fdf->glx, shader);
 	lgl_set_uniform(&fdf->glx, &fdf->uniforms);
-	fdf->uniforms.project = cam_proj;
+	fdf->uniforms.project = isometric_view;
 	printf("shader initialized\n");
 }

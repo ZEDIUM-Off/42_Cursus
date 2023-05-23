@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:01:30 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/03 11:45:53 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/23 11:39:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_cam(t_fdf	*fdf)
 	t_cam	*cam;
 
 	cam = (t_cam *)&fdf->cam;
-	cam->pos = (t_vec3){0.0, 0.0, 3.0};
+	cam->pos = (t_vec3){-2.0, 2.0, 3.0};
 	cam->target = (t_vec3){0.0, 0.0, 0.0};
 	cam->dir = norm_vec3(sub_vec3s(cam->pos, cam->target));
 	cam->right = norm_vec3(cross_product((t_vec3){0.0, 1.0, 0.0}, cam->dir));

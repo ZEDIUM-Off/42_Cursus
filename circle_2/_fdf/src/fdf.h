@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/04 12:40:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/23 10:45:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# define WIDTH	800
-# define HEIGHT	800
+# define WIDTH	1600
+# define HEIGHT	1600
 
 # define F_SZ_X 1.0f
 # define F_SZ_Z 1.0f
@@ -45,6 +45,7 @@ enum {
 	BUTTON_PRESSED_EVT = 04,
 	BUTTON_RELEASED_EVT = 05,
 	MOUSE_MOVE_EVT = 06,
+	DESTROY_NOTIFY_EVT = 17,
 };
 
 enum {
@@ -61,6 +62,19 @@ enum {
 	MIDDLE_CLICK = 2,
 	SCROLL_UP = 4,
 	SCROLL_DOWN = 5,
+};
+
+enum {
+	FILE_ERROR = 0,
+	SUCCESS,
+	MAP_ERROR,
+	IND_ERROR,
+	GLX_ERROR,
+};
+
+enum {
+	ISO,
+	CAM,
 };
 
 typedef struct s_fdf	t_fdf;
@@ -102,6 +116,7 @@ typedef struct s_controls
 }	t_ctrl;
 struct s_fdf
 {
+	int				status;
 	float			*map;
 	t_gl_uint		*indices;
 	t_gl_uint		map_vbo;
@@ -115,10 +130,8 @@ struct s_fdf
 	t_fdf_uniforms	uniforms;
 	t_cam			cam;
 	t_ctrl			ctrl;
-	size_t			evt_ctr;
-	size_t			loop_ctr;
-	size_t			images;
-	time_t			runtime;
+	t_gl_enum		draw_mode;
+	int				proj_mode;
 };
 
 int		test_file(const char *file_name);
@@ -127,7 +140,7 @@ void	init_fdf(t_fdf *fdf);
 char	*no_nl(char *str);
 int		setup_fdf_data(t_fdf *fdf, int argc, char **argv);
 void	init_window(t_fdf *fdf);
-void	setup_gl_context(t_fdf *fdf);
+int		setup_gl_context(t_fdf *fdf);
 void	set_map_buffers(t_fdf *fdf);
 void	isometric_view(t_fdf *fdf, t_mat4 proj_mat);
 void	cam_proj(t_fdf *fdf, t_mat4 proj_mat);
@@ -144,5 +157,8 @@ void	cam_translate(t_fdf *fdf, int x_offset, int y_offset);
 void	clean_fdf(t_fdf *fdf);
 int		key_pressed(int key, t_fdf *fdf);
 int		render(t_fdf *fdf);
+void	switch_proj(t_fdf *fdf);
+void	switch_draw(t_fdf *fdf);
+int		quit_fdf(t_fdf *fdf);
 
 #endif 

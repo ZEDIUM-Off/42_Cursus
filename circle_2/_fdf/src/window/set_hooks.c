@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:59:48 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/04 11:52:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/19 20:12:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	set_mouse_hooks(t_fdf	*fdf)
 		BUTTON_RELEASED_EVT, BUTTON_RELEASED_MASK, mouse_released, fdf);
 	mlx_hook(fdf->mxv.win,
 		MOUSE_MOVE_EVT, MOUSE_MOVE_MASK, mouse_move, fdf);
+	mlx_hook(fdf->mxv.win, DESTROY_NOTIFY_EVT, 0, quit_fdf, fdf);
 }
 
 void	set_keyboard_hooks(t_fdf	*fdf)

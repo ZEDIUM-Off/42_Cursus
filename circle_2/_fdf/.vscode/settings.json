@@ -3,6 +3,27 @@
 		"stdbool.h": "c",
 		"xkblib.h": "c",
 		"shm.h": "c",
-		"xlib.h": "c"
+		"xlib.h": "c",
+		"__bit_reference": "c",
+		"__node_handle": "c",
+		"atomic": "c",
+		"bitset": "c",
+		"chrono": "c",
+		"cstddef": "c",
+		"deque": "c",
+		"__memory": "c",
+		"limits": "c",
+		"locale": "c",
+		"optional": "c",
+		"random": "c",
+		"ratio": "c",
+		"system_error": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"vector": "c",
+		"array": "c",
+		"functional": "c",
+		"utility": "c",
+		"variant": "c"
 	}
 }
