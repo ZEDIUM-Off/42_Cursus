@@ -2,27 +2,27 @@ Map Builded
 Map Buffers Setted
 shader initialized
 hooks setted
-Process:         fdf [8211]
+Process:         fdf [57583]
 Path:            /Users/USER/Documents/*/fdf
-Load Address:    0x109eab000
+Load Address:    0x107f00000
 Identifier:      fdf
 Version:         0
 Code Type:       X86-64
 Platform:        macOS
-Parent Process:  leaks [8210]
+Parent Process:  leaks [57582]
 
-Date/Time:       2023-05-19 20:27:15.431 +0200
-Launch Time:     2023-05-19 20:27:13.139 +0200
+Date/Time:       2023-05-23 16:03:14.456 +0200
+Launch Time:     2023-05-23 16:03:12.293 +0200
 OS Version:      macOS 13.2.1 (22D68)
 Report Version:  7
 Analysis Tool:   /usr/bin/leaks
 
-Physical footprint:         7476K
-Physical footprint (peak):  7476K
+Physical footprint:         7540K
+Physical footprint (peak):  7540K
 Idle exit: untracked
 ----
 
 leaks Report Version: 4.0, multi-line stacks
-Process 8211: 237 nodes malloced for 75 KB
-Process 8211: 0 leaks for 0 total leaked bytes.
+Process 57583: 272 nodes malloced for 85 KB
+Process 57583: 0 leaks for 0 total leaked bytes.
 

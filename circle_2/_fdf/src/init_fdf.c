@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:42:59 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/17 12:57:51 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/23 16:07:25 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_fdf(t_fdf *fdf)
 	fdf->ctrl.translate = false;
 	fdf->draw_mode = GL_LINE;
 	fdf->proj_mode = ISO;
+	fdf->uniforms.project = isometric_view;
 }
 
 void	build_map(t_fdf	*fdf)

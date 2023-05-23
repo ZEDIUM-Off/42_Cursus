@@ -24,6 +24,7 @@
 		"array": "c",
 		"functional": "c",
 		"utility": "c",
-		"variant": "c"
+		"variant": "c",
+		"mlx_int.h": "c"
 	}
 }

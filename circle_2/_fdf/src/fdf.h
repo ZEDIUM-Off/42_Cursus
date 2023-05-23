@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/23 10:45:02 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/23 13:25:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# define WIDTH	1600
-# define HEIGHT	1600
+# define WIDTH	800
+# define HEIGHT	800
 
 # define F_SZ_X 1.0f
 # define F_SZ_Z 1.0f
