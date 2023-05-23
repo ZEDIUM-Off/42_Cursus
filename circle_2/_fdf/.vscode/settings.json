@@ -25,6 +25,7 @@
 		"functional": "c",
 		"utility": "c",
 		"variant": "c",
-		"mlx_int.h": "c"
+		"mlx_int.h": "c",
+		"types.h": "c"
 	}
 }

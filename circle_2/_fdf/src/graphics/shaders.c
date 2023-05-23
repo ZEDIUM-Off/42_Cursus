@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:04:17 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/23 16:06:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/23 17:02:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	vertex_shader(
 
 	u = uniforms;
 	v_attribs = vertex_attribs;
+	if (u->height_modifier != 0 && v_attribs[0].y != -0.5)
+		v_attribs[0].y += u->height_modifier;
 	builtins->gl_position = mult_mat4_vec4(u->mvp_mat, v_attribs[0]);
 	vs_output[0] = v_attribs[0].y;
 }
@@ -30,17 +32,17 @@ void	fragment_shader(
 {
 	float			norm_alt;
 	float			vert_alt;
-	t_vec4			color1;
-	t_vec4			color2;
+	t_fdf_uniforms	*u;
 
-	(void)uniforms;
+	u = uniforms;
 	vert_alt = fs_input[0];
 	norm_alt = (vert_alt + 1) / 2;
-	color1 = (t_vec4){0.0, 0.0, 1.0, 1.0};
-	color2 = (t_vec4){1.0, 0.0, 0.0, 1.0};
-	builtins->gl_frag_color.x = color1.x * (1 - norm_alt) + color2.x * norm_alt;
-	builtins->gl_frag_color.y = color1.y * (1 - norm_alt) + color2.y * norm_alt;
-	builtins->gl_frag_color.z = color1.z * (1 - norm_alt) + color2.z * norm_alt;
+	builtins->gl_frag_color.x = \
+		u->col_h.x * (1 - norm_alt) + u->col_l.x * norm_alt;
+	builtins->gl_frag_color.y = \
+		u->col_h.y * (1 - norm_alt) + u->col_l.y * norm_alt;
+	builtins->gl_frag_color.z = \
+		u->col_h.z * (1 - norm_alt) + u->col_l.z * norm_alt;
 	builtins->gl_frag_color.w = 1;
 }
 
@@ -58,5 +60,8 @@ void	fdf_shader_init(t_fdf *fdf)
 	shader = lgl_create_program(&fdf->glx, prog_attr, interp);
 	gl_use_program(&fdf->glx, shader);
 	lgl_set_uniform(&fdf->glx, &fdf->uniforms);
+	fdf->uniforms.col_h = (t_vec4){0.0, 0.0, 1.0, 1.0};
+	fdf->uniforms.col_l = (t_vec4){1.0, 0.0, 0.0, 1.0};
+	fdf->uniforms.height_modifier = 0;
 	printf("shader initialized\n");
 }

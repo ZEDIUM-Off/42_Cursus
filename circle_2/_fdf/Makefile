@@ -61,7 +61,7 @@ dirs :
 $(NAME) : linux
 
 linux: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX_LIN) $(GL) $(GNL) 
-	$(CC) $(LIN_FLAGS) -o $(NAME) $^ #*-fsanitize=address -g3
+	$(CC) $(LIN_FLAGS) -o $(NAME) $^ -fsanitize=address -g3
 	echo "fdf is ready"
 
 mac: $(OBJECTS) $(LIBFT) $(LIB_PF) $(MLX_LIN) $(GL)

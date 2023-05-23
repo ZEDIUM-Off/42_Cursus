@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:03:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/23 10:23:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/23 17:03:39 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ void	switch_draw(t_fdf *fdf)
 		fdf->draw_mode = GL_FILL;
 	else
 		fdf->draw_mode = GL_LINE;
+}
+
+void	modify_height(t_fdf *fdf, int key)
+{
+	if (key == XK_KP_Subtract)
+		fdf->uniforms.height_modifier -= 0.05;
+	if (key == XK_KP_Add)
+		fdf->uniforms.height_modifier += 0.05;
 }

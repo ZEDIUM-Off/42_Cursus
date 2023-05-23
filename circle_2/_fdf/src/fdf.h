@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:26 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/05/23 13:25:41 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/05/23 17:02:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,13 @@ typedef struct s_mlx_env
 typedef void (*			t_proj_func) (t_fdf *, t_mat4);
 typedef struct fdf_uniforms
 {
+	t_proj_func	project;
 	t_mat4		mvp_mat;
+	t_vec4		col_h;
+	t_vec4		col_l;
 	float		height_max;
 	float		height_min;
-	t_vec4		color_high;
-	t_vec4		color_low;
-	t_proj_func	project;
+	float		height_modifier;
 }	t_fdf_uniforms;
 
 typedef struct s_camera
@@ -160,5 +161,6 @@ int		render(t_fdf *fdf);
 void	switch_proj(t_fdf *fdf);
 void	switch_draw(t_fdf *fdf);
 int		quit_fdf(t_fdf *fdf);
+void	modify_height(t_fdf *fdf, int key);
 
 #endif 
