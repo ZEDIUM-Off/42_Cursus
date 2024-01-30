@@ -1,0 +1,16 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+for dir in ./*/*
+do
+	echo -en "Cleaning ${dir} : "
+	RES=$(make -C ${dir} re 2>&1)
+	if [ $? -eq 0 ]; then
+		echo -e "${GREEN}Builded ${dir}${NC}"
+	else
+		echo -e "${RED}Failed to build : ${dir}\n ====================== \n\n ${RES}${NC}"
+  fi
+done

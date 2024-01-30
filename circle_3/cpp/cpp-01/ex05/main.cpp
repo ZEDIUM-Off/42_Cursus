@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:25:24 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/12/07 16:29:18 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/01/30 15:23:59 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ int main(void) {
 	harl.complain("INFO");
 	harl.complain("WARNING");
 	harl.complain("ERROR");
+	harl.complain("INVALID");
 	return 0;
 }

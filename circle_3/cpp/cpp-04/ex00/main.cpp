@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:05:13 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/12/13 17:14:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/01/30 13:50:21 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int main()
 
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
+    meta->makeSound();
     i->makeSound();
     j->makeSound();
-    meta->makeSound();
 
     std::cout << wrongI->getType() << " " << std::endl;
-    wrongI->makeSound();
     wrongMeta->makeSound();
+    wrongI->makeSound();
 
     delete meta;
     delete j;

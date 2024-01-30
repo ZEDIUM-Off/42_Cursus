@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:14:59 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/01/30 13:35:15 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:22:30 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,15 @@ class Harl {
 		void error() { std::cout << "Error message" << std::endl; }
 
 		typedef void (Harl::*FuncPtr)();
-		FuncPtr funcArray[LEVEL_COUNT];
+		typedef struct LevelStruct {
+			std::string levelStr;
+			FuncPtr func;
+		} lvl;
+		LevelStruct levelArray[LEVEL_COUNT];
 
 	public:
 		Harl();
-		void complain(Level level);
+		void complain(std::string level);
 };
 
 #endif
