@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:59:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/12/13 15:03:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/01/29 11:26:40 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 class	ScavTrap : public ClapTrap
 {
 	private:
-		std::string	_name;
-		int			_hit_points;
-		int			_energy_points;
-		int			_attack_damage;
-
 	public:
 		ScavTrap();
 		ScavTrap(std::string name);

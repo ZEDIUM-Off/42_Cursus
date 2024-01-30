@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:11:07 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/12/06 15:20:41 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/01/30 13:40:18 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ class Weapon
 		str type;
 
 	public:
-		Weapon();
-		Weapon(str type);
-		~Weapon();
-		str const &getType();
-		void setType(str type);
+					Weapon();
+					Weapon(str type);
+					~Weapon();
+		str const 	&getType();
+		void 		setType(str type);
 };
 
 #endif

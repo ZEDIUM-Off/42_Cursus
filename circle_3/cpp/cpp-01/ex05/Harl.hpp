@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:14:59 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/01/23 14:35:43 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:35:15 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define HARL_HPP
 
 #include <iostream>
-#include <map>
 
 enum Level {
 	DEBUG,
 	INFO,
 	WARNING,
-	ERROR
+	ERROR,
+	LEVEL_COUNT
 };
 
 class Harl {
@@ -31,11 +31,11 @@ class Harl {
 		void error() { std::cout << "Error message" << std::endl; }
 
 		typedef void (Harl::*FuncPtr)();
-		std::map<std::string, FuncPtr> funcMap;
+		FuncPtr funcArray[LEVEL_COUNT];
 
 	public:
 		Harl();
-		void complain(std::string level);
+		void complain(Level level);
 };
 
 #endif

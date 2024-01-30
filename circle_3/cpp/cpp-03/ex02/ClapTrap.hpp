@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:44:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/12/13 15:49:46 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/01/29 11:26:00 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef std::string str;
 
 class ClapTrap
 {
-	private:
+	protected:
 		str		_name;
 		uint	_hit_points;
 		uint	_energy_points;

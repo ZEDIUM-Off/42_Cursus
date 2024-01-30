@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:05:09 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/12/01 15:27:50 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/01/30 13:23:13 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ typedef std::string str;
 
 class	Zombie {
 	private:
-		str name;
+		str 		name;
 	public:
-						Zombie();
-						Zombie(str name);
-						~Zombie();
+					Zombie();
+					Zombie(str name);
+					~Zombie();
 		void		announce();
 };
 
 void		randomChump(str name);
-Zombie*	newZombie(str name);
+Zombie*		newZombie(str name);
 
 #endif

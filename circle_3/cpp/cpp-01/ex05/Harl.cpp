@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:16:01 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/01/23 14:36:32 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:34:53 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 Harl::Harl() 
 {
-	funcMap["DEBUG"] = &Harl::debug;
-	funcMap["INFO"] = &Harl::info;
-	funcMap["WARNING"] = &Harl::warning;
-	funcMap["ERROR"] = &Harl::error;
+	funcArray[DEBUG] = &Harl::debug;
+	funcArray[INFO] = &Harl::info;
+	funcArray[WARNING] = &Harl::warning;
+	funcArray[ERROR] = &Harl::error;
 }
 
-void Harl::complain(std::string level)
+void Harl::complain(Level level)
 {
-	if (funcMap.find(level) != funcMap.end())
-		(this->*funcMap[level])();
+	if (level >= 0 && level < LEVEL_COUNT)
+		(this->*funcArray[level])();
 	else
 		std::cerr << "Invalid level: " << level << std::endl;
 }

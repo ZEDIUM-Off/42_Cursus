@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:24:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/01/23 14:31:45 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:45:57 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 
 	std::ofstream output((filename + ".replace").c_str());
 	if (!output.is_open()) {
-		std::cerr << "Error: Could not open file " << filename + ".replace" << std::endl;
+		std::cerr << "Error: Could not create file " << filename + ".replace" << std::endl;
 		return 1;
 	}
 
