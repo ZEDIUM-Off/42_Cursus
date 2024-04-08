@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 17:08:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/04/08 12:32:41 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/12/13 17:09:57 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/12/13 17:11:15 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
-Dog::Dog()
-{
-	type = "Dog";
-	std::cout << "Dog constructor called" << std::endl;
-}
+#include <iostream>
 
-Dog::~Dog()
+class WrongAnimal
 {
-	std::cout << "Dog destructor called" << std::endl;
-}
+	protected:
+		std::string type;
 
-void Dog::makeSound() const
-{
-	std::cout << "Woof woof" << std::endl;
-}
+	public:
+		WrongAnimal();
+		virtual ~WrongAnimal();
+
+		virtual void makeSound() const;
+		std::string getType() const;
+};
+
+#endif

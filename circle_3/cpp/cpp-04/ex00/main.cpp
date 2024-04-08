@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:05:13 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/01/30 13:50:21 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:46:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,22 @@ int main()
     const WrongAnimal* wrongMeta = new WrongAnimal();
     const WrongAnimal* wrongI = new WrongCat();
 
+    std::cout << "-------------------------------" << std::endl;
+    std::cout << meta->getType() << " " << std::endl;
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
+    std::cout << wrongMeta->getType() << " " << std::endl;
+    std::cout << wrongI->getType() << " " << std::endl;
+    std::cout << "-------------------------------" << std::endl;
     meta->makeSound();
     i->makeSound();
     j->makeSound();
 
+    std::cout << "-------------------------------" << std::endl;
     std::cout << wrongI->getType() << " " << std::endl;
     wrongMeta->makeSound();
     wrongI->makeSound();
+    std::cout << "-------------------------------" << std::endl;
 
     delete meta;
     delete j;

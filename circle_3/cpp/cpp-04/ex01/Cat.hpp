@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 17:08:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/04/08 12:32:41 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/12/13 17:08:50 by  mchenava         #+#    #+#             */
+/*   Updated: 2024/04/08 12:59:42 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#ifndef CAT_HPP
+#define CAT_HPP
 
-Dog::Dog()
-{
-	type = "Dog";
-	std::cout << "Dog constructor called" << std::endl;
-}
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-Dog::~Dog()
+class Cat : public Animal
 {
-	std::cout << "Dog destructor called" << std::endl;
-}
+private:
+    Brain* brain;
 
-void Dog::makeSound() const
-{
-	std::cout << "Woof woof" << std::endl;
-}
+public:
+    Cat();
+    Cat(const Cat& other);
+    Cat& operator=(const Cat& other);
+    virtual ~Cat();
+
+    void makeSound() const;
+    const Brain& getBrain() const { return *brain; }
+};
+
+#endif

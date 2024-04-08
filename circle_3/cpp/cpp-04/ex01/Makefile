@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 17:07:26 by  mchenava         #+#    #+#              #
-#    Updated: 2024/04/08 13:02:27 by  mchenava        ###   ########.fr        #
+#    Updated: 2024/04/08 13:02:20 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
