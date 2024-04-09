@@ -1,6 +1,17 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "cctype": "cpp",
+        "cwchar": "cpp",
+        "*.tcc": "cpp",
+        "compare": "cpp",
+        "cstdint": "cpp",
+        "algorithm": "cpp",
+        "memory_resource": "cpp",
+        "string": "cpp",
+        "type_traits": "cpp",
+        "iosfwd": "cpp",
+        "istream": "cpp"
     }
 }

@@ -6,12 +6,13 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:02:21 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/01/29 11:26:00 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/04/02 11:10:22 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name) 
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	this->_hit_points = 100;
 	this->_energy_points = 50;

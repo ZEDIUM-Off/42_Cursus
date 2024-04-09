@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 17:08:21 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/04/09 10:18:15 by mchenava         ###   ########.fr       */
+/*   Created: 2024/04/09 10:43:51 by mchenava          #+#    #+#             */
+/*   Updated: 2024/04/09 11:38:43 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include <string>
+#include "ICharacter.hpp"
 
-class Dog : public Animal
-{
-	private:
-		Brain* brain;
+class AMateria {
+protected:
+    std::string _type;
 
-	public:
-		Dog();
-		Dog(const Dog& other); // Constructeur de copie
-		Dog& operator=(const Dog& other); // Opérateur d'affectation
-		virtual ~Dog();
+public:
+    AMateria(std::string const & type);
+    virtual ~AMateria();
 
-		void makeSound() const;
-		const Brain& getBrain() const;
+    std::string const & getType() const; // Retourne le type de materia
+    virtual AMateria* clone() const = 0;
+    virtual void use(ICharacter& target);
 };
 
 #endif

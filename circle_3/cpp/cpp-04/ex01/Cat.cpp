@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:09:07 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/04/08 13:07:32 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/04/09 10:18:44 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,6 @@ void Cat::makeSound() const
 {
 	std::cout << "Meow meow" << std::endl;
 }
+
+const Brain& Cat::getBrain() const { return *brain; }
+

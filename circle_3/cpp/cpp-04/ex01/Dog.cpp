@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:08:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/04/08 13:01:19 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/04/09 10:18:24 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,6 @@ Dog::~Dog() {
 void Dog::makeSound() const {
 	std::cout << "Woof woof" << std::endl;
 }
+
+const Brain& Dog::getBrain() const { return *brain; }
+

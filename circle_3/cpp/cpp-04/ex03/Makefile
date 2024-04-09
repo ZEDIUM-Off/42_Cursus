@@ -5,18 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/13 14:53:52 by  mchenava         #+#    #+#              #
-#    Updated: 2024/04/02 10:51:53 by mchenava         ###   ########.fr        #
+#    Created: 2024/04/09 11:35:29 by mchenava          #+#    #+#              #
+#    Updated: 2024/04/09 13:01:17 by mchenava         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = claptrap
+NAME = materia
 
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
 
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRC = main.cpp AMateria.cpp MateriaSource.cpp Ice.cpp Cure.cpp Character.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
