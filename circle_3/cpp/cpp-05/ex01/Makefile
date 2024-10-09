@@ -5,7 +5,7 @@ CXX			=	c++
 CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98
 
 # Fichiers sources
-SRC_FILES	=	Bureaucrat.cpp main.cpp
+SRC_FILES	=	Bureaucrat.cpp Form.cpp main.cpp
 
 # Fichiers objets
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)

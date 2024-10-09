@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include <iostream>
 
+class AForm; // Forward declaration
+
 class Bureaucrat {
 private:
     const std::string _name;
@@ -22,6 +24,9 @@ public:
     void incrementGrade();
     void decrementGrade();
 
+    void signForm(AForm& form);
+    void executeForm(AForm const & form) const;
+
     class GradeTooHighException : public std::exception {
     public:
         const char* what() const throw();
@@ -36,3 +41,4 @@ public:
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
 #endif
+

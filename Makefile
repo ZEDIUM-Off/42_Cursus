@@ -28,3 +28,8 @@ push: fclean_all
 	git add . 
 	git commit -m 'send $(shell git status -u | grep circle) to github' -a
 	git push
+
+# Fichiers sources
+SRC_FILES	=	Bureaucrat.cpp AForm.cpp main.cpp \
+				ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp \
+				Intern.cpp
