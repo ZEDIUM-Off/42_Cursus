@@ -15,7 +15,7 @@ private:
     const int _gradeToExecute;
 
 public:
-    AForm(const std::string& name, int gradeToSign, int gradeToExecute);
+    AForm(const std::string& name = "Default", int gradeToSign = 150, int gradeToExecute = 150);
     AForm(const AForm& other);
     AForm& operator=(const AForm& other);
     virtual ~AForm();
